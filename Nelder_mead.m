@@ -23,6 +23,8 @@ for i = 1:n+1
 end
 idx=1:n+1;
 iter=0;
+
+
 while iter < max_iter
     %------------ordiniamo i punti in ordine crescente:
     [f_val_S, sort_idx] = sort(f_val_S); %vettore con gli indici ordinati per valore della funzione 
@@ -31,8 +33,9 @@ while iter < max_iter
     %S=S(:, idx);
 
     %---------REFLECTION PHASE ----------------------
-    %calcolo del centroide
+    %calcolo del baricentro
     x_bar=mean(S(:, idx(1:n)),2); % 
+
     %calcolo riflesso
     x_r= x_bar + rho*(x_bar - S(:,idx(n+1)));
     f_r=f(x_r);
@@ -74,12 +77,11 @@ while iter < max_iter
     end
 
     %controllo convergenza:
-    if max(abs(f_val_S-f_val_S(1))) <tol
+    if max(abs(f_val_S-f_val_S(1))) < tol   %%|| max(abs( S(:,idx(n+1)) - S(:, idx(1))))<tol
         break;
     end
     iter=iter+1;
 end
-
 
 xk=S(:,idx(1));
 fk=f_val_S(1);
