@@ -1,7 +1,8 @@
-function F=F16(x,n)
-F=0;
-x=[0;x; 0];
-for i = 2:n
-    F = F + ((i-1) * (  (1-cos(x(i)))  +sin(x(i-1))  - sin(x(i+1))    ) );
-end 
+function F1=F16(x,n)
+term1=1-cos(x);
+sin_prec=[0; x(1:end-1)];
+sin_next=[x(2:end); 0];
+term2=sin(sin_prec)-sin(sin_next);
+indici=(1:n)';
+F1=sum(indici.*(term1+term2));
 end
