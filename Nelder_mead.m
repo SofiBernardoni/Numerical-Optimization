@@ -1,4 +1,4 @@
-function [xk, fk, n_iter]=Nelder_mead(x0,f,rho,mu, gamma, sigma, tol, max_iter, x_min)
+function [xk, fk, n_iter]=Nelder_mead(x0,f,rho,mu, gamma, sigma, tol, max_iter)
 n=length(x0);
 %NOTAZIONE
 %n=dimesione vettori
@@ -12,7 +12,7 @@ n=length(x0);
 %rand_mat= 2 * (rand([n, n+1]) - 0.5);
 %S=S+rand_mat;
 
-Delta = 0.1;  % Perturbazione: variazione di ogni componente
+Delta = 1;  % Perturbazione: variazione di ogni componente
 S = [x0, x0 + Delta * eye(n)];
 
 
@@ -95,9 +95,9 @@ while iter < max_iter
     %end
 
     %distanza dal punto ottimale:
-    if max(abs(x_min - S(:,idx(1)))) < tol
-        break;
-    end
+    %if max(abs(x_min - S(:,idx(1)))) < tol
+        %break;
+    %end
 
     iter = iter + 1;
 end
