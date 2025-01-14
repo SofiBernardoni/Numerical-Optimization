@@ -1,4 +1,5 @@
-function F1=F16(x,n)
+function F1=F16(x)
+n=length(x);
 term1=1-cos(x);
 sin_prec=[0; x(1:end-1)];
 sin_next=[x(2:end); 0];
