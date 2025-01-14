@@ -1,4 +1,4 @@
-function [xk, fk, n_iter]=Nelder_mead(x0,f,rho,mu, gamma, sigma, tol, max_iter)
+function [xk, fk, n_iter]=Nelder_mead(x0,f,rho,mu, gamma, sigma, tol, max_iter, x_min)
 n=length(x0);
 %NOTAZIONE
 %n=dimesione vettori
@@ -76,12 +76,35 @@ while iter < max_iter
         end
     end
 
-    %controllo convergenza:
-    if max(abs(f_val_S-f_val_S(1))) < tol   %%|| max(abs( S(:,idx(n+1)) - S(:, idx(1))))<tol
+    % ---------------- CRITERI DI ARRESTO ----------------
+    % 1. Differenza nei valori della funzione obiettivo
+    if max(abs(f_val_S - f_val_S(1))) < tol
+        disp('esco per f_val')
         break;
     end
-    iter=iter+1;
+
+    % 2. Diametro del simplesso: troppo costoso
+    %max_dist = 0;
+    %for i = 1:n+1
+        %for j = i+1:n+1
+           % max_dist = max(max_dist, norm(S(:, idx(i)) - S(:, idx(j))));
+        %end
+    %end
+    %if max_dist < tol
+        %break;
+    %end
+
+    %distanza dal punto ottimale:
+    if max(abs(x_min - S(:,idx(1)))) < tol
+        break;
+    end
+
+    iter = iter + 1;
 end
+
+
+
+
 
 xk=S(:,idx(1));
 fk=f_val_S(1);

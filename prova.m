@@ -13,6 +13,8 @@ sigma = 0.5; % Coefficiente di riduzione
 tol = 1e-16;  % Tolleranza per la convergenza
 max_iter = 1000; % Numero massimo di iterazioni
 
+
+
 % Chiamata alla funzione Nelder-Mead
 [x_0, f_0, n_iter_0] = Nelder_mead(x0, f, rho, mu, gamma, sigma, tol, max_iter);
 
