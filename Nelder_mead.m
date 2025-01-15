@@ -1,4 +1,4 @@
-function [xk, fk, n_iter]=Nelder_mead(x0,f,rho,mu, gamma, sigma, tol, max_iter)
+function [x, f_k, n_iter]=Nelder_mead(x0,f,rho,mu, gamma, sigma, tol, max_iter)
 n=length(x0);
 %NOTAZIONE
 %n=dimesione vettori
@@ -6,7 +6,8 @@ n=length(x0);
 % f_val_S= vettore riga di lunghezza n+1 con i valori assunti dalla
 % funzione nei n+1 del simplesso
 
-
+x=x0;
+f_k=f(x0);
 %create the initial simplex:
 %S=repmat(x0,1,n+1);
 %rand_mat= 2 * (rand([n, n+1]) - 0.5);
@@ -100,14 +101,16 @@ while iter < max_iter
     %end
 
     iter = iter + 1;
+    x=[x;S(:,idx(1))];
+    f_k=[f_k;f_val_S(1)];
 end
 
 
 
 
 
-xk=S(:,idx(1));
-fk=f_val_S(1);
+%x=[x;S(:,idx(1))];
+%f_k=[f_k;f_val_S(1)];
 n_iter=iter;
 
 end
