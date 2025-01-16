@@ -109,9 +109,8 @@ while k < kmax && gradfk_norm > tolgrad
     xseq(:, k) = xk; % Store current xk in xseq
     btseq(k)=bt; % Store number of backtracking iterations
     cgiterseq(k)=j; % Store coniugate gradient iterations in pcgiterseq
-    if k>3
-        convergence_order(k)=log(norm(xseq(:, k)-xseq(:, k-1))/norm(xseq(:, k-1)-xseq(:, k-2)))/log(norm(xseq(:, k-1)-xseq(:, k-2))/norm(xseq(:, k-2)-xseq(:, k-3)));
-    end
+    convergence_order(k)=log(norm(xseq(:, k)-xseq(:, k-1))/x1(2:end-1))./log(x1(2:end-1)./x1(1:end-2));
+    q=log(x1(3:end)./x1(2:end-1))./log(x1(2:end-1)./x1(1:end-2));
 end
 
 if isnan(flag)
