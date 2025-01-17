@@ -21,6 +21,7 @@ c1=1e-4;
 rho=0.9;
 btmax=200; % compatible with rho
 
+
 % con x0=[1.2;1.2]
 [x1, f1, gradf1_norm, k1, xseq1, btseq1,cgiterseq1,c1,flag1,v1] = truncated_newton(x0_a, f_Rosen, gradf_Rosen, Hessf_Rosen, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
 % anche con rho=0.9 e btmax=200 termina alla terza iterazione per Armijo (prima avevo messo rho piu piccolo)

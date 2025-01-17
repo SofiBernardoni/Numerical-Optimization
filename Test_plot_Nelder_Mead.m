@@ -2,7 +2,7 @@
 
 %% PROBLEM 16 1.1 2.5 0.8 0.9 sono 664 iterazioni
 format long
-rng(345989);
+%rng(345989);
 %questa potrebbe avere minimi locali e il metodo non è in grado di trovare
 %quelli globali
 n = 10;
@@ -13,6 +13,7 @@ rho = 1.1;          % Parametro di espansione
 mu = 2.5;           % Parametro di contrazione
 gamma = 0.8;      % Parametro di riflessione 
 sigma = 0.9;      % Parametro di riduzione 
+delta=1; % delta del simplesso iniziale
 
 % Definizione della funzione F16 come handle
 F = @(x) F16(x);  % Passa x e n alla funzione F16semilogy
@@ -21,7 +22,7 @@ F = @(x) F16(x);  % Passa x e n alla funzione F16semilogy
 
 options = optimoptions('fminunc', 'Algorithm', 'quasi-newton', 'Display', 'iter', 'TolFun', tol);
 [x_min, F_min] = fminunc(F, x0, options);
-[xk_16_10, fk_16_10, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter);
+[xk_16_10, fk_16_10, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter,delta);
 
 %errore relativo
 %err_rel_16_10=abs(F_min -fk_16_10)/abs(F_min);
@@ -33,10 +34,20 @@ err_rel_16_10=abs(F_min -fk_16_10);
 %plot(1:n_iter+1, fk)
 format long
 disp(['min reale vale', num2str(F_min), 'min trovato da me ', num2str(fk_16_10(end)), 'con ', num2str(n_iter),'iterazioni' ])
-disp(xk_16_10(:,end))
-disp(x_min)
+%disp(xk_16_10(:,end))
+%disp(x_min);
 % problema: non arriva dove deve perchè cade in un minimo locale il
 % simplesso rimae li per come è costriuto l'algoritmo
+disp(fk_16_10(612))
+disp(fk_16_10(end))
+
+
+colors = lines(3); % Tre colori distinti per i tre problemi in ogni grafico
+
+% Grafico per n = 10
+figure;
+%hold on;
+semilogy(1:length(err_rel_16_10), err_rel_16_10, '-', 'Color', colors(1, :), 'LineWidth', 1.5, 'DisplayName', 'Problem 16');
 
 %% PROBLEM 27 n=10 e 0.1 a tutti --> 2020 iter e 10^-5
 rng(345989);
@@ -50,11 +61,12 @@ rho = 1.1;          % Parametro di espansione
 mu = 2.1;           % Parametro di contrazione
 gamma = 0.6;      % Parametro di riflessione
 sigma = 0.6;      % Parametro di riduzione
+delta=1; %delta del simplesso iniziale
 
 %[xk_27_10, fk, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter);
 options = optimoptions('fminunc', 'Algorithm', 'quasi-newton', 'Display', 'iter', 'TolFun', tol);
 [x_min, F_min] = fminunc(F, x0, options);
-[xk_27_10, fk_27_10, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter);
+[xk_27_10, fk_27_10, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter, delta);
 
 %errore relativo
 err_rel_27_10=abs(F_min -fk_27_10);
@@ -77,12 +89,13 @@ rho = 1.1;          % Parametro di espansione
 mu = 2.7;           % Parametro di contrazione
 gamma = 0.8;      % Parametro di riflessione
 sigma = 0.6;      % Parametro di riduzione
+delta=1; % delta del simplesso iniziale
 
 
 
 options = optimoptions('fminunc', 'Algorithm', 'quasi-newton', 'Display', 'iter', 'TolFun', tol);
 [x_min, F_min] = fminunc(F, x0, options);
-[xk_79_10, fk_79_10, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter);
+[xk_79_10, fk_79_10, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter, delta);
 
 %errore relativo
 %err_rel_79_10=abs(F_min -fk_79_10)/abs(F_min);
@@ -104,7 +117,8 @@ max_iter = 1e08;  % Numero massimo di iterazioni
 rho = 1.1;          % Parametro di espansione  
 mu = 1.8;           % Parametro di contrazione
 gamma = 0.8;      % Parametro di riflessione 
-sigma = 0.9;      % Parametro di riduzione 
+sigma = 0.9;      % Parametro di riduzione
+delta=1; %delta del simplesso iniziale
 
 % Definizione della funzione F16 come handle
 F = @(x) F16(x);  % Passa x e n alla funzione F16
@@ -113,7 +127,7 @@ F = @(x) F16(x);  % Passa x e n alla funzione F16
 
 options = optimoptions('fminunc', 'Algorithm', 'quasi-newton', 'Display', 'iter', 'TolFun', tol);
 [x_min, F_min] = fminunc(F, x0, options);
-[xk_16_25, fk_16_25, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter);
+[xk_16_25, fk_16_25, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter, delta);
 
 %errore relativo
 %err_rel_16_25=abs(F_min -fk_16_25)/abs(F_min);
@@ -138,12 +152,13 @@ rho = 1;          % Parametro di espansione
 mu = 2.1;           % Parametro di contrazione
 gamma = 0.6;      % Parametro di riflessione
 sigma = 0.6;      % Parametro di riduzione
+delta=1; %delta del simplesso iniziale
 
 
 options = optimoptions('fminunc', 'Algorithm', 'quasi-newton', 'Display', 'iter', 'TolFun', tol);
 [x_min, F_min] = fminunc(F, x0, options);
 
-[xk_27_25, fk_27_25, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter);
+[xk_27_25, fk_27_25, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter,delta);
 
 %errore relativo
 %err_rel_27_25=abs(F_min -fk_27_25)/abs(F_min);
@@ -165,12 +180,13 @@ rho = 1.1;          % Parametro di espansione
 mu = 2.7;           % Parametro di contrazione
 gamma = 0.8;      % Parametro di riflessione
 sigma = 0.6;      % Parametro di riduzione
+delta=1; %delta del simplesso iniziale
 
 
 
 options = optimoptions('fminunc', 'Algorithm', 'quasi-newton', 'Display', 'iter', 'TolFun', tol);
 [x_min, F_min] = fminunc(F, x0, options);
-[xk_79_25, fk_79_25, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter);
+[xk_79_25, fk_79_25, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter, delta);
 
 %errore relativo
 %err_rel_79_25=abs(F_min -fk_79_25)/abs(F_min);
@@ -192,7 +208,7 @@ rho = 1.1;          % Parametro di espansione
 mu = 1.8;           % Parametro di contrazione
 gamma = 0.8;      % Parametro di riflessione 
 sigma = 0.9;      % Parametro di riduzione 
-
+delta=1; %delta del simplesso iniziale
 % Definizione della funzione F16 come handle
 F = @(x) F16(x);  % Passa x e n alla funzione F16
 
@@ -200,7 +216,7 @@ F = @(x) F16(x);  % Passa x e n alla funzione F16
 
 options = optimoptions('fminunc', 'Algorithm', 'quasi-newton', 'Display', 'iter', 'TolFun', tol);
 [x_min, F_min] = fminunc(F, x0, options);
-[xk_16_50, fk_16_50, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter);
+[xk_16_50, fk_16_50, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter, delta);
 
 %errore relativo
 %err_rel_16_50=abs(F_min -fk_16_50)/abs(F_min);
@@ -225,11 +241,12 @@ rho = 1;          % Parametro di espansione
 mu = 2.1;           % Parametro di contrazione
 gamma = 0.6;      % Parametro di riflessione
 sigma = 0.6;      % Parametro di riduzione
+delta=1; %delta del simplesso iniziale
 
 options = optimoptions('fminunc', 'Algorithm', 'quasi-newton', 'Display', 'iter', 'TolFun', tol);
 [x_min, F_min] = fminunc(F, x0, options);
 
-[xk_27_50, fk_27_50, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter);
+[xk_27_50, fk_27_50, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter, delta);
 %errore relativo
 %err_rel_27_50=abs(F_min -fk_27_50)/abs(F_min);
 err_rel_27_50=abs(F_min -fk_27_50);
@@ -251,12 +268,13 @@ rho = 1 ;          % Parametro di espansione
 mu = 2;           % Parametro di contrazione
 gamma = 0.5;      % Parametro di riflessione
 sigma = 0.5;      % Parametro di riduzione
+delta=1; % delta del simplesso iniziale
 
 
 
 options = optimoptions('fminunc', 'Algorithm', 'quasi-newton', 'Display', 'iter', 'TolFun', tol);
 [x_min, F_min] = fminunc(F, x0, options);
-[xk_79_50, fk_79_50, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter);
+[xk_79_50, fk_79_50, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter, delta);
 
 %errore relativo
 %err_rel_79_50=abs(F_min -fk_79_50)/abs(F_min);
