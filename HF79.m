@@ -1,4 +1,4 @@
-function H=H79(x)
+function H=HF79(x)
 % Function that computes the Hessian of function 79
 
 x_next=[x(2:end);0];

@@ -1,4 +1,4 @@
-function J=J79(x)
+function J=JF79(x)
 % Function that computes the gradient of function 79
 x_next=[x(2:end);0];
 x_prev=[0;x(1:end-1)];
