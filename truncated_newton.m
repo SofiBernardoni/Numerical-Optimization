@@ -89,7 +89,7 @@ while k < kmax && gradfk_norm > tolgrad
     bt=0;
     alpha=1; % initial steplenght=1
     xnew = xk + alpha * pk; % Compute the new value for x with alpha
-    while bt<btmax && f(xnew)>(f(xk)+c1*alpha*(gradk'*pk)) % Armijo condition
+    while bt<btmax && (f(xnew)>(f(xk)+c1*alpha*(gradk'*pk))) % Armijo condition
         alpha=rho*alpha;
         xnew = xk + alpha * pk; % Compute the new value for x with alpha
         bt = bt +1;
@@ -127,7 +127,7 @@ xseq = xseq(:, 1:k); % "Cut" xseq to the correct size
 xseq = [x0, xseq]; % "Add" x0 at the beginning of xseq (otherwise the first el. is x1)
 btseq = btseq(1:k); % "Cut" btseq to the correct size
 cgiterseq = cgiterseq(1:k); % "Cut" cgiterseq to the correct size
-
+convergence_order=convergence_order(1:k) % "Cut" convergence order
 
 
 end
