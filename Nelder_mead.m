@@ -1,4 +1,4 @@
-function [x, f_k, n_iter]=Nelder_mead(x0,f,rho,mu, gamma, sigma, tol, max_iter)
+function [x, f_k, n_iter]=Nelder_mead(x0,f,rho,mu, gamma, sigma, tol, max_iter, Delta)
 n=length(x0);
 %NOTAZIONE
 %n=dimesione vettori
@@ -9,29 +9,25 @@ n=length(x0);
 x=x0;
 f_k=f(x0);
 
-%create the initial simplex:
-%S=repmat(x0,1,n+1);
-%rand_mat= 2 * (rand([n, n+1]) - 0.5);
-%S=S+rand_mat;
-
-Delta = 1;  % Perturbazione: variazione di ogni componente
 S = [x0, x0 + Delta * eye(n)];
 
 
 %f_values in the vertices of the simplex
 f_val_S=zeros(1,n+1);
 for i = 1:n+1
-    f_val_S(i) = f(S(:,i));
+   f_val_S(i) = f(S(:,i));
 end
+
 
 idx=1:n+1;
 iter=0;
 
+[f_val_S, sort_idx] = sort(f_val_S); %vettore con gli indici ordinati per valore della funzione 
+idx=idx(sort_idx); % sono le posizioni dei punti nel simplesso
 
 while iter < max_iter
     %------------ordiniamo i punti in ordine crescente:
-    [f_val_S, sort_idx] = sort(f_val_S); %vettore con gli indici ordinati per valore della funzione 
-    idx=idx(sort_idx);
+
     %risistemiamo il simplesso:
     %S=S(:, idx);
 
@@ -50,15 +46,27 @@ while iter < max_iter
         if f_e < f_r
             S(:,idx(n+1))=x_e;
             f_val_S(n+1)=f_e;
+            %disp(['numero iterazione ',num2str(iter), 'espansione migliore 1'])
         else
             % rimani con reflecion
             S(:, idx(n+1)) = x_r;
             f_val_S(n+1) = f_r;
+            %disp(['numero iterazione ',num2str(iter), 'riflesso migliore 1'])
+            
         end
+
+        [f_val_S, sort_idx] = sort(f_val_S); %vettore con gli indici ordinati per valore della funzione 
+        idx=idx(sort_idx); % sono le posizioni dei punti nel simplesso
+
     elseif f_r < f_val_S(n)
         %se sta in mezzo accetti il punto x_r
         S(:, idx(n+1)) = x_r;
         f_val_S(n+1) = f_r;
+        %disp(['numero iterazione ',num2str(iter), 'riflesso  tra 1 e n'])
+
+        [f_val_S, sort_idx] = sort(f_val_S); %vettore con gli indici ordinati per valore della funzione 
+        idx=idx(sort_idx); % sono le posizioni dei punti nel simplesso
+
     else
         %-------------------CONTRACTION------------
         if f_r < f_val_S(n+1)
@@ -70,8 +78,10 @@ while iter < max_iter
         if f_c < f_val_S(n+1)
             S(:, idx(n+1)) = x_c;
             f_val_S(n+1) = f_c;
+            %disp(['numero iterazione ',num2str(iter), 'contraction'])
         else
             %----------------------SHRINKAGE------------
+            %disp(['numero iterazione ',num2str(iter), 'shrink'])
             for i = 2:n+1
                     S(:, idx(i)) = S(:, idx(1)) + sigma * (S(:, idx(i)) - S(:,idx(1) ));
                     f_val_S(i) = f(S(:, idx(i)));
@@ -79,11 +89,14 @@ while iter < max_iter
             % controllo su grandezza simplesso
 
         end
+        [f_val_S, sort_idx] = sort(f_val_S); %vettore con gli indici ordinati per valore della funzione 
+        idx=idx(sort_idx); % sono le posizioni dei punti nel simplesso
+
     end
 
     % ---------------- CRITERI DI ARRESTO ----------------
     % 1. Differenza nei valori della funzione obiettivo
-    if max(abs(f_val_S - f_val_S(1))) < tol
+    if max(abs(f_val_S(n+1) - f_val_S(1))) < tol
         disp('esco per f_val')
         break;
     end
@@ -91,7 +104,7 @@ while iter < max_iter
     
     iter = iter + 1;
     %%%%% errore qua
-    x=[x S(:,idx(1))];
+    x=[x, S(:,idx(1))];
     f_k=[f_k;f_val_S(1)];
 end
 
