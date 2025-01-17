@@ -8,6 +8,7 @@ n=length(x0);
 
 x=x0;
 f_k=f(x0);
+
 %create the initial simplex:
 %S=repmat(x0,1,n+1);
 %rand_mat= 2 * (rand([n, n+1]) - 0.5);
@@ -22,6 +23,7 @@ f_val_S=zeros(1,n+1);
 for i = 1:n+1
     f_val_S(i) = f(S(:,i));
 end
+
 idx=1:n+1;
 iter=0;
 
@@ -74,6 +76,8 @@ while iter < max_iter
                     S(:, idx(i)) = S(:, idx(1)) + sigma * (S(:, idx(i)) - S(:,idx(1) ));
                     f_val_S(i) = f(S(:, idx(i)));
             end
+            % controllo su grandezza simplesso
+
         end
     end
 
@@ -84,33 +88,13 @@ while iter < max_iter
         break;
     end
 
-    % 2. Diametro del simplesso: troppo costoso
-    %max_dist = 0;
-    %for i = 1:n+1
-        %for j = i+1:n+1
-           % max_dist = max(max_dist, norm(S(:, idx(i)) - S(:, idx(j))));
-        %end
-    %end
-    %if max_dist < tol
-        %break;
-    %end
-
-    %distanza dal punto ottimale:
-    %if max(abs(x_min - S(:,idx(1)))) < tol
-        %break;
-    %end
-
+    
     iter = iter + 1;
-    x=[x;S(:,idx(1))];
+    %%%%% errore qua
+    x=[x S(:,idx(1))];
     f_k=[f_k;f_val_S(1)];
 end
 
-
-
-
-
-%x=[x;S(:,idx(1))];
-%f_k=[f_k;f_val_S(1)];
 n_iter=iter;
 
 end

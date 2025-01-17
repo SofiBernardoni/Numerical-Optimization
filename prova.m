@@ -22,9 +22,9 @@ max_iter = 1000; % Numero massimo di iterazioni
 
 disp('-------------NELDER-MEAD CON VALORI STANDARD---------------')
 disp('Punto ottimale da x0 = [1.2, 1.2]:');
-disp(x_0);
+disp(x_0(end));
 disp('Valore della funzione ottimizzata:');
-disp(f_0);
+disp(f_0(end));
 disp('Numero di iterazioni:');
 disp(n_iter_0);
 
@@ -37,15 +37,16 @@ x1 = [-1.2; 1];
 
 % Visualizzare il risultato
 disp('Punto ottimale da x1=[-1.2,1]:');
-disp(x_1);
+disp(x_1(end));
 disp('Valore della funzione ottimizzata:');
-disp(f_1);
+disp(f_1(end));
 disp('Numero di iterazioni:');
 disp(n_iter_1);
 
 
 
-%% CAMBIO PARANTRI
+%% CAMBIO PARANTRI vittoriaaaaaaaa
+format long
 disp('change dei parametri:');
 disp('rho=1.1, gamma=0.6, sigma=0.4,mu=3')
 
@@ -63,21 +64,21 @@ sigma = 0.4; % Coefficiente di riduzione
 disp('----------------- NEALDER-MEAD CON NUOVI VALORI')
 % Visualizzare il risultato
 disp('Punto ottimale da x1=[-1.2,1]:');
-disp(x_1c);
+disp(x_1c(:,end));
 disp('Valore della funzione ottimizzata:');
-disp(f_1c);
+disp(f_1c(end));
 disp('Numero di iterazioni:');
 disp(n_iter_1c);
 
 % Visualizzare il risultato
 disp('Punto ottimale da x0=[1.2,1.2]:');
-disp(x_0c);
+disp(x_0c(:,end));
 disp('Valore della funzione ottimizzata:');
-disp(f_0c);
+disp(f_0c(end));
 disp('Numero di iterazioni:');
 disp(n_iter_0c);
 
-%% CAMBIO PARAMETRI
+p%% CAMBIO PARAMETRI
 disp('change dei parametri:');
 disp('rho=1.2, gamma=0.7, sigma=0.3,mu=4')
 
@@ -95,17 +96,17 @@ sigma = 0.3; % Coefficiente di riduzione
 disp('----------------- NEALDER-MEAD CON NUOVI VALORI')
 % Visualizzare il risultato
 disp('Punto ottimale da x1=[-1.2,1]:');
-disp(x_1_1);
+disp(x_1_1(end));
 disp('Valore della funzione ottimizzata:');
-disp(f_1_1);
+disp(f_1_1(end));
 disp('Numero di iterazioni:');
 disp(n_iter_1_1);
 
 % Visualizzare il risultato
 disp('Punto ottimale da x0=[1.2,1.2]:');
-disp(x_0_1);
+disp(x_0_1(end));
 disp('Valore della funzione ottimizzata:');
-disp(f_0_1);
+disp(f_0_1(end));
 disp('Numero di iterazioni:');
 disp(n_iter_0_1);
 
@@ -127,17 +128,17 @@ sigma = 0.2; % Coefficiente di riduzione
 disp('----------------- NEALDER-MEAD CON NUOVI VALORI')
 % Visualizzare il risultato
 disp('Punto ottimale da x1=[-1.2,1]:');
-disp(x_1_1);
+disp(x_1_1(end));
 disp('Valore della funzione ottimizzata:');
-disp(f_1_1);
+disp(f_1_1(end));
 disp('Numero di iterazioni:');
 disp(n_iter_1_1);
 
 % Visualizzare il risultato
 disp('Punto ottimale da x0=[1.2,1.2]:');
-disp(x_0_1);
+disp(x_0_1(end));
 disp('Valore della funzione ottimizzata:');
-disp(f_0_1);
+disp(f_0_1(end));
 disp('Numero di iterazioni:');
 disp(n_iter_0_1);
 
@@ -159,17 +160,17 @@ sigma = 0.1; % Coefficiente di riduzione
 disp('----------------- NEALDER-MEAD CON NUOVI VALORI')
 % Visualizzare il risultato
 disp('Punto ottimale da x1=[-1.2,1]:');
-disp(x_1_1);
+disp(x_1_1(end));
 disp('Valore della funzione ottimizzata:');
-disp(f_1_1);
+disp(f_1_1(end));
 disp('Numero di iterazioni:');
 disp(n_iter_1_1);
 
 % Visualizzare il risultato
 disp('Punto ottimale da x0=[1.2,1.2]:');
-disp(x_0_1);
+disp(x_0_1(end));
 disp('Valore della funzione ottimizzata:');
-disp(f_0_1);
+disp(f_0_1(end));
 disp('Numero di iterazioni:');
 disp(n_iter_0_1);
 
@@ -192,17 +193,17 @@ sigma = 0.1; % Coefficiente di riduzione
 disp('----------------- NEALDER-MEAD CON NUOVI VALORI')
 % Visualizzare il risultato
 disp('Punto ottimale da x1=[-1.2,1]:');
-disp(x_1_1);
+disp(x_1_1(end));
 disp('Valore della funzione ottimizzata:');
-disp(f_1_1);
+disp(f_1_1(end));
 disp('Numero di iterazioni:');
 disp(n_iter_1_1);
 
 % Visualizzare il risultato
 disp('Punto ottimale da x0=[1.2,1.2]:');
-disp(x_0_1);
+disp(x_0_1(end));
 disp('Valore della funzione ottimizzata:');
-disp(f_0_1);
+disp(f_0_1(end));
 disp('Numero di iterazioni:');
 disp(n_iter_0_1);
 
@@ -224,16 +225,16 @@ sigma = 0.15; % Coefficiente di riduzione
 disp('----------------- NEALDER-MEAD CON NUOVI VALORI')
 % Visualizzare il risultato
 disp('Punto ottimale da x1=[-1.2,1]:');
-disp(x_1_1);
+disp(x_1_1(:,end));
 disp('Valore della funzione ottimizzata:');
-disp(f_1_1);
+disp(f_1_1(end));
 disp('Numero di iterazioni:');
 disp(n_iter_1_1);
 
 % Visualizzare il risultato
 disp('Punto ottimale da x0=[1.2,1.2]:');
-disp(x_0_1);
+disp(x_0_1(end));
 disp('Valore della funzione ottimizzata:');
-disp(f_0_1);
+disp(f_0_1(end));
 disp('Numero di iterazioni:');
 disp(n_iter_0_1);
