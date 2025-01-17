@@ -2,13 +2,8 @@ function HF=HF27(x)
 n=length(x);
 s=sum(x.^2);
 HF=4*x*x';
-HF=diag((2/100000 -1+ 4*s + 8*x.^2)/2);
+HF(1:n+1:end)=(2/100000 -1+ 4*s + 8*x.^2)/2;
 
-for i=1:n
-    for j=i+1:n
-        HF(i,j)=4*x(i)*x(j);
-        HF(j,i)=H(i,j);
-    end
 end
 
 
