@@ -1,6 +1,7 @@
 %% FILE CON N=10, arrivano tutti a convergenza
-rng(345989);
+
 %% PROBLEM 16 1.1 2.5 0.8 0.9 sono 664 iterazioni
+format long
 rng(345989);
 %questa potrebbe avere minimi locali e il metodo non è in grado di trovare
 %quelli globali
@@ -14,7 +15,7 @@ gamma = 0.8;      % Parametro di riflessione
 sigma = 0.9;      % Parametro di riduzione 
 
 % Definizione della funzione F16 come handle
-F = @(x) F16(x);  % Passa x e n alla funzione F16
+F = @(x) F16(x);  % Passa x e n alla funzione F16semilogy
 
 % Chiamata del metodo Nelder_mead
 
@@ -23,15 +24,17 @@ options = optimoptions('fminunc', 'Algorithm', 'quasi-newton', 'Display', 'iter'
 [xk_16_10, fk_16_10, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter);
 
 %errore relativo
-err_rel_16_10=abs(F_min -fk_16_10)/abs(F_min);
+%err_rel_16_10=abs(F_min -fk_16_10)/abs(F_min);
+err_rel_16_10=abs(F_min -fk_16_10);
 %semilogy(1:n_iter+1, err_rel_16_10)
 %hold on
 
 
 %plot(1:n_iter+1, fk)
-%disp(['min reale vale', num2str(F_min), 'min trovato da me ', num2str(fk), 'con ', num2str(n_iter),'iterazioni' ])
-
-
+format long
+disp(['min reale vale', num2str(F_min), 'min trovato da me ', num2str(fk_16_10(end)), 'con ', num2str(n_iter),'iterazioni' ])
+disp(xk_16_10(:,end))
+disp(x_min)
 % problema: non arriva dove deve perchè cade in un minimo locale il
 % simplesso rimae li per come è costriuto l'algoritmo
 
@@ -54,10 +57,11 @@ options = optimoptions('fminunc', 'Algorithm', 'quasi-newton', 'Display', 'iter'
 [xk_27_10, fk_27_10, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter);
 
 %errore relativo
-err_rel_27_10=abs(F_min -fk_27_10)/abs(F_min);
+err_rel_27_10=abs(F_min -fk_27_10);
+%err_rel_27_10=abs(F_min -fk_27_10)/abs(F_min);
 %semilogy(1:n_iter+1, err_rel_27_10)
 %hold on
-%disp(['min reale vale', num2str(F_min), 'min trovato da me ', num2str(fk), 'con', num2str(n_iter), 'iterazioni' ])
+disp(['min reale vale ', num2str(F_min), ' min trovato da me ', num2str(fk_27_10(end)), ' con', num2str(n_iter), 'iterazioni' ])
 
 
 %% PROBLEM 79 NON MODIFICARE PARAMETRI!!!! con n=10 rho=1.1, mu=2.7, gamma=0.8, sigma=0.6
@@ -81,10 +85,12 @@ options = optimoptions('fminunc', 'Algorithm', 'quasi-newton', 'Display', 'iter'
 [xk_79_10, fk_79_10, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter);
 
 %errore relativo
-err_rel_79_10=abs(F_min -fk_79_10)/abs(F_min);
+%err_rel_79_10=abs(F_min -fk_79_10)/abs(F_min);
+err_rel_79_10=abs(F_min -fk_79_10);
 %semilogy(1:n_iter+1, err_rel_79_10)
 %hold on
 
+disp(['min reale vale ', num2str(F_min), ' min trovato da me ', num2str(fk_79_10(end)), ' con', num2str(n_iter), 'iterazioni' ])
 
 
 %% PROBLEM 16 1.1 1.8 0.8 0.9 sono 2152 iterazioni
@@ -110,10 +116,12 @@ options = optimoptions('fminunc', 'Algorithm', 'quasi-newton', 'Display', 'iter'
 [xk_16_25, fk_16_25, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter);
 
 %errore relativo
-err_rel_16_25=abs(F_min -fk_16_25)/abs(F_min);
+%err_rel_16_25=abs(F_min -fk_16_25)/abs(F_min);
+err_rel_16_25=abs(F_min -fk_16_25);
 %semilogy(1:n_iter+1, err_rel_16_25)
 %hold on
 
+disp(['min reale vale ', num2str(F_min), ' min trovato da me ', num2str(fk_16_25(end)), ' con', num2str(n_iter), 'iterazioni' ])
 
 % problema: non arriva dove deve perchè cade in un minimo locale il
 % simplesso rimae li per come è costriuto l'algoritmo
@@ -138,9 +146,12 @@ options = optimoptions('fminunc', 'Algorithm', 'quasi-newton', 'Display', 'iter'
 [xk_27_25, fk_27_25, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter);
 
 %errore relativo
-err_rel_27_25=abs(F_min -fk_27_25)/abs(F_min);
+%err_rel_27_25=abs(F_min -fk_27_25)/abs(F_min);
+err_rel_27_25=abs(F_min -fk_27_25);
 %semilogy(1:n_iter+1, err_rel_27_25)
 %hold on
+disp(['min reale vale ', num2str(F_min), ' min trovato da me ', num2str(fk_27_25(end)), ' con ', num2str(n_iter), 'iterazioni' ])
+
 
 %% PROBLEM 79 confusa... 1.1, 2.7,0.8,0.6 trovo un valore minore che lalgoritmo con 14058
 rng(345989);
@@ -162,9 +173,11 @@ options = optimoptions('fminunc', 'Algorithm', 'quasi-newton', 'Display', 'iter'
 [xk_79_25, fk_79_25, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter);
 
 %errore relativo
-err_rel_79_25=abs(F_min -fk_79_25)/abs(F_min);
+%err_rel_79_25=abs(F_min -fk_79_25)/abs(F_min);
+err_rel_79_25=abs(F_min -fk_79_25);
 %semilogy(1:n_iter+1, err_rel_79_25)
 %hold on
+disp(['min reale vale ', num2str(F_min), ' min trovato da me ', num2str(fk_79_25(end)), ' con', num2str(n_iter), 'iterazioni' ])
 
 
 %% PROBLEM 16 1.1 1.8 0.8 0.9 sono 152 iterazioni
@@ -190,9 +203,12 @@ options = optimoptions('fminunc', 'Algorithm', 'quasi-newton', 'Display', 'iter'
 [xk_16_50, fk_16_50, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter);
 
 %errore relativo
-err_rel_16_50=abs(F_min -fk_16_50)/abs(F_min);
+%err_rel_16_50=abs(F_min -fk_16_50)/abs(F_min);
+err_rel_16_50=abs(F_min -fk_16_50);
 %semilogy(1:n_iter+1, err_rel_16_50)
 %hold on
+
+disp(['min reale vale ', num2str(F_min), ' min trovato da me ', num2str(fk_16_50(end)), ' con', num2str(n_iter), 'iterazioni' ])
 
 % problema: non arriva dove deve perchè cade in un minimo locale il
 % simplesso rimae li per come è costriuto l'algoritmo
@@ -215,9 +231,11 @@ options = optimoptions('fminunc', 'Algorithm', 'quasi-newton', 'Display', 'iter'
 
 [xk_27_50, fk_27_50, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter);
 %errore relativo
-err_rel_27_50=abs(F_min -fk_27_50)/abs(F_min);
+%err_rel_27_50=abs(F_min -fk_27_50)/abs(F_min);
+err_rel_27_50=abs(F_min -fk_27_50);
 %semilogy(1:n_iter+1, err_rel_27_50)
 %hold  on
+disp(['min reale vale ', num2str(F_min), ' min trovato da me ', num2str(fk_27_50(end)), ' con ', num2str(n_iter), 'iterazioni' ])
 
 
 %% PROBLEM 79 confusa... 1.1, 2.7,0.8,0.6 trovo un valore minore che lalgoritmo con 14058
@@ -241,19 +259,24 @@ options = optimoptions('fminunc', 'Algorithm', 'quasi-newton', 'Display', 'iter'
 [xk_79_50, fk_79_50, n_iter] = Nelder_mead(x0, F, rho, mu, gamma, sigma, tol, max_iter);
 
 %errore relativo
-err_rel_79_50=abs(F_min -fk_79_50)/abs(F_min);
+%err_rel_79_50=abs(F_min -fk_79_50)/abs(F_min);
+err_rel_79_50=abs(F_min -fk_79_50);
 %semilogy(1:n_iter+1, err_rel_79_50)
 %hold on
+disp(['min reale vale ', num2str(F_min), ' min trovato da me ', num2str(fk_79_50(end)), ' con', num2str(n_iter), 'iterazioni' ])
 
-%% plot
+
+%% plot 
 % Prepara i colori per ogni serie
 colors = lines(3); % Tre colori distinti per i tre problemi in ogni grafico
 
 % Grafico per n = 10
 figure;
-hold on;
+%hold on;
 semilogy(1:length(err_rel_16_10), err_rel_16_10, '-', 'Color', colors(1, :), 'LineWidth', 1.5, 'DisplayName', 'Problem 16');
+figure;
 semilogy(1:length(err_rel_27_10), err_rel_27_10, '--', 'Color', colors(2, :), 'LineWidth', 1.5, 'DisplayName', 'Problem 27');
+figure;
 semilogy(1:length(err_rel_79_10), err_rel_79_10, '-.', 'Color', colors(3, :), 'LineWidth', 1.5, 'DisplayName', 'Problem 79');
 xlabel('Numero di Iterazioni', 'FontSize', 14, 'FontWeight', 'bold');
 ylabel('Errore Relativo (Scala Log)', 'FontSize', 14, 'FontWeight', 'bold');
@@ -264,12 +287,16 @@ set(gca, 'FontSize', 12, 'LineWidth', 1.2);
 set(gcf, 'Color', 'w');
 box on;
 saveas(gcf, 'convergence_n10.png');
+hold off;
 
+%%
 % Grafico per n = 25
 figure;
-hold on;
+%hold on;
 semilogy(1:length(err_rel_16_25), err_rel_16_25, '-', 'Color', colors(1, :), 'LineWidth', 1.5, 'DisplayName', 'Problem 16');
+figure;
 semilogy(1:length(err_rel_27_25), err_rel_27_25, '--', 'Color', colors(2, :), 'LineWidth', 1.5, 'DisplayName', 'Problem 27');
+figure;
 semilogy(1:length(err_rel_79_25), err_rel_79_25, '-.', 'Color', colors(3, :), 'LineWidth', 1.5, 'DisplayName', 'Problem 79');
 xlabel('Numero di Iterazioni', 'FontSize', 14, 'FontWeight', 'bold');
 ylabel('Errore Relativo (Scala Log)', 'FontSize', 14, 'FontWeight', 'bold');
@@ -280,12 +307,17 @@ set(gca, 'FontSize', 12, 'LineWidth', 1.2);
 set(gcf, 'Color', 'w');
 box on;
 saveas(gcf, 'convergence_n25.png');
+hold off;
 
+
+%%
 % Grafico per n = 50
 figure;
-hold on;
+%hold on;
 semilogy(1:length(err_rel_16_50), err_rel_16_50, '-', 'Color', colors(1, :), 'LineWidth', 1.5, 'DisplayName', 'Problem 16');
+figure;
 semilogy(1:length(err_rel_27_50), err_rel_27_50, '--', 'Color', colors(2, :), 'LineWidth', 1.5, 'DisplayName', 'Problem 27');
+figure;
 semilogy(1:length(err_rel_79_50), err_rel_79_50, '-.', 'Color', colors(3, :), 'LineWidth', 1.5, 'DisplayName', 'Problem 79');
 xlabel('Numero di Iterazioni', 'FontSize', 14, 'FontWeight', 'bold');
 ylabel('Errore Relativo (Scala Log)', 'FontSize', 14, 'FontWeight', 'bold');
@@ -296,6 +328,7 @@ set(gca, 'FontSize', 12, 'LineWidth', 1.2);
 set(gcf, 'Color', 'w');
 box on;
 %saveas(gcf, 'convergence_n50.png');
+hold off;
 
 
 %%
