@@ -97,7 +97,7 @@ while iter < max_iter
     % ---------------- CRITERI DI ARRESTO ----------------
     % 1. Differenza nei valori della funzione obiettivo
     if max(abs(f_val_S(n+1) - f_val_S(1))) < tol
-        disp('esco per f_val')
+        %disp('esco per f_val')
         break;
     end
 

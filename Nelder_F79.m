@@ -1,4 +1,4 @@
-%% FUNZIONE F16
+%% FUNZIONE F79
 % partiamo da n=10
 %inserisco tutti i parametri
 format long
@@ -12,8 +12,8 @@ gamma = 0.8;      % Parametro di riflessione
 sigma = 0.9;      % Parametro di riduzione 
 delta = 1; % delta del simplesso iniziale
 
-% Definizione della funzione F16 come handle
-F = @(x) F16(x);  % Passa x e n alla funzione F16semilogy
+% Definizione della funzione F79 come handle
+F = @(x) F79(x);  % Passa x e n alla funzione F79semilogy
 
 N=10; %numero di punti iniziali da generare
 x0 = ones(n, 1);  % Punto iniziale
@@ -29,9 +29,9 @@ vec_iter_10=zeros(1,N+1);
 
 for j =1:N+1
     tic;
-    [xk_16_10, fk_16_10, n_iter] = Nelder_mead(Mat_points(:,j), F, rho, mu, gamma, sigma, tol, max_iter,delta);
+    [xk_79_10, fk_79_10, n_iter] = Nelder_mead(Mat_points(:,j), F, rho, mu, gamma, sigma, tol, max_iter,delta);
     times_10(j)=toc;
-    vec_10(j)=fk_16_10(end);
+    vec_10(j)=fk_79_10(end);
     vec_iter_10(j)=n_iter;
 end
 
@@ -56,18 +56,18 @@ results_n10 = {
 disp('Risultati per n = 10:');
 disp(results_n10);
 
+
+
 subplot(3, 3, 1);
-plot(1:length(times_10), times_10, '-.', 'Color', 'r', 'LineWidth', 1.5, 'DisplayName', 'Tempo F16 e n=10');
+plot(1:length(times_10), times_10, '-.', 'Color', 'r', 'LineWidth', 1.5, 'DisplayName', 'Tempo F79 e n=10');
 subplot(3,3,2);
-plot(1:length(vec_10), vec_10, '-.', 'Color','b', 'LineWidth', 1.5, 'DisplayName', 'Valore minimo F16 e n=10');
+plot(1:length(vec_10), vec_10, '-.', 'Color', 'b', 'LineWidth', 1.5, 'DisplayName', 'Valore minimo F79 e n=10');
 subplot(3,3,3);
-plot(1:length(vec_iter_10), vec_iter_10, '-.', 'Color', 'g', 'LineWidth', 1.5, 'DisplayName', 'Numero iterazioni F16 e n=10');
+plot(1:length(vec_iter_10), vec_iter_10, '-.', 'Color', 'g', 'LineWidth', 1.5, 'DisplayName', 'Numero iterazioni F79 e n=10');
 
 
 
-
-
-%% FUNZIONE F16 n=25
+%% FUNZIONE F79 n=25
 % partiamo da n=25
 %inserisco tutti i parametri
 format long
@@ -81,8 +81,8 @@ gamma = 0.8;      % Parametro di riflessione
 sigma = 0.9;      % Parametro di riduzione 
 delta = 0.1; % delta del simplesso iniziale
 
-% Definizione della funzione F16 come handle
-F = @(x) F16(x);  % Passa x e n alla funzione F16semilogy
+% Definizione della funzione F79 come handle
+F = @(x) F79(x);  % Passa x e n alla funzione F79semilogy
 
 
 
@@ -101,9 +101,9 @@ vec_iter_25=zeros(1,N+1);
 
 for j =1:N+1
     tic;
-    [xk_16_25, fk_16_25, n_iter] = Nelder_mead(Mat_points(:,j), F, rho, mu, gamma, sigma, tol, max_iter,delta);
+    [xk_79_25, fk_79_25, n_iter] = Nelder_mead(Mat_points(:,j), F, rho, mu, gamma, sigma, tol, max_iter,delta);
     times_25(j)=toc;
-    vec_25(j)=fk_16_25(end);
+    vec_25(j)=fk_79_25(end);
     vec_iter_25(j)=n_iter;
 end
 
@@ -127,15 +127,16 @@ results_n25 = {
 % Visualizzazione delle tabelle
 disp('Risultati per n = 25:');
 disp(results_n25);
-subplot(3,3,4);
-plot(1:length(times_25), times_25, '-.', 'Color', 'r', 'LineWidth', 1.5, 'DisplayName', 'Tempo F16 e n=25');
+
+subplot(3, 3, 4);
+plot(1:length(times_25), times_25, '-.', 'Color', 'r', 'LineWidth', 1.5, 'DisplayName', 'Tempo F16 e n=10');
 subplot(3,3,5);
-plot(1:length(vec_25), vec_25, '-.', 'Color', 'b', 'LineWidth', 1.5, 'DisplayName', 'Valore minimo F16 e n=25');
+plot(1:length(vec_25), vec_25, '-.', 'Color', 'b', 'LineWidth', 1.5, 'DisplayName', 'Valore minimo F16 e n=10');
 subplot(3,3,6);
-plot(1:length(vec_iter_25), vec_iter_25, '-.', 'Color', 'g', 'LineWidth', 1.5, 'DisplayName', 'Numero iterazioni F16 e n=25');
+plot(1:length(vec_iter_25), vec_iter_25, '-.', 'Color', 'g', 'LineWidth', 1.5, 'DisplayName', 'Numero iterazioni F16 e n=10');
 
 
-%% FUNZIONE F16 n=50
+%% FUNZIONE F79 n=50
 % partiamo da n=50
 %inserisco tutti i parametri
 format long
@@ -149,8 +150,8 @@ gamma = 0.8;      % Parametro di riflessione
 sigma = 0.9;      % Parametro di riduzione 
 delta = 0.1; % delta del simplesso iniziale
 
-% Definizione della funzione F16 come handle
-F = @(x) F16(x);  % Passa x e n alla funzione F16semilogy
+% Definizione della funzione F79 come handle
+F = @(x) F79(x);  % Passa x e n alla funzione F79semilogy
 
 
 
@@ -169,9 +170,9 @@ vec_iter_50=zeros(1,N+1);
 
 for j =1:N+1
     tic;
-    [xk_16_50, fk_16_50, n_iter] = Nelder_mead(Mat_points(:,j), F, rho, mu, gamma, sigma, tol, max_iter,delta);
+    [xk_79_50, fk_79_50, n_iter] = Nelder_mead(Mat_points(:,j), F, rho, mu, gamma, sigma, tol, max_iter,delta);
     times_50(j)=toc;
-    vec_50(j)=fk_16_50(end);
+    vec_50(j)=fk_79_50(end);
     vec_iter_50(j)=n_iter;
 end
 
@@ -196,9 +197,9 @@ results_n50 = {
 disp('Risultati per n = 50:');
 disp(results_n50);
 
-subplot(3,3,7);
-plot(1:length(times_50), times_50, '-.', 'Color', 'r', 'LineWidth', 1.5, 'DisplayName', 'Tempo F16 e n=50');
+subplot(3, 3, 7);
+plot(1:length(times_50), times_50, '-.', 'Color', 'r', 'LineWidth', 1.5, 'DisplayName', 'Tempo F16 e n=10');
 subplot(3,3,8);
-plot(1:length(vec_50), vec_50, '-.', 'Color', 'b', 'LineWidth', 1.5, 'DisplayName', 'Valore minimo F16 e n=50');
+plot(1:length(vec_50), vec_50, '-.', 'Color', 'b', 'LineWidth', 1.5, 'DisplayName', 'Valore minimo F16 e n=10');
 subplot(3,3,9);
-plot(1:length(vec_iter_50), vec_iter_50, '-.', 'Color', 'g', 'LineWidth', 1.5, 'DisplayName', 'Numero iterazioni F16 e n=50');
+plot(1:length(vec_iter_50), vec_iter_50, '-.', 'Color', 'g', 'LineWidth', 1.5, 'DisplayName', 'Numero iterazioni F16 e n=10');
