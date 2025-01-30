@@ -4,7 +4,7 @@ rng(345989);
 
 F = @(x) F16(x);  % Definizione della funzione F16 come handle
 JF = @(x) JF16(x); % Definizione della funzione JF16 come handle
-HF= @(x) HF16(x); % Definizione della funzione HF16 come handle
+HF= @(x) HF16(x,true); % Definizione della funzione HF16 come handle % check if sparsity is ok
 
 load forcing_terms.mat % termini per tolleranza adattiva
 
@@ -90,8 +90,6 @@ last_cg=cgiterseq2(k2-10:k2)
 
 %% n=10^5 (1e5)
 
-%%% SERVE USARE MATRICE SPARSA
-
 rng(345989);
 
 n=1e5; 
@@ -99,7 +97,7 @@ x0 = ones(n, 1);  % Punto iniziale
 
 kmax=1e3;
 tolgrad=1e-5;
-cg_maxit=50;
+cg_maxit=50; %prima era 50 e poi 80. ATTENZIONE
 
 z0=zeros(n,1);
 c1=1e-4;
@@ -107,10 +105,37 @@ rho=0.5;
 btmax=50; % compatible with rho (with alpha0=1 you get min_step 8.8e-16)
 
 [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3,flag3, violations3] = truncated_newton(x0, F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
-flag3 
+flag3 % fa 2000 iterazione almeno (fermo dalla 1000 almeno: provo ad aumentare cg_maxit)
+%ATTENZIONE ARRIVA A MAX IT FISSANDOSI NELLO STESSO PUNTO DOVE VA A cg_maxit PER OGNI ITERAZ
 f3
 gradf_norm3
-last_bt=btseq3(k3-10:k3) 
-last_cg=cgiterseq3(k3-10:k3) 
+last_bt=btseq3(k3-10:k3);
+last_cg=cgiterseq3(k3-10:k3); %sempre max (vedi se aumentare)
 %conv_ord3(k3-10:k3) %%% sistema
-%violations3 
+%violations3 % no violazione
+
+%% abbasso tolgrad=1e-3
+tolgrad=1e-3;
+% CANCELLA GLI ALTRI PARAMETRI
+
+rng(345989);
+
+n=1e5; 
+x0 = ones(n, 1);  % Punto iniziale
+
+kmax=1e3;
+cg_maxit=50; %prima era 50 e poi 80. ATTENZIONE
+
+z0=zeros(n,1);
+c1=1e-4;
+rho=0.5;
+btmax=50; % compatible with rho (with alpha0=1 you get min_step 8.8e-16)
+
+[x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3,flag3, violations3] = truncated_newton(x0, F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+flag3 % Finisce in 105 stap
+f3
+gradf_norm3
+last_bt=btseq3(k3-10:k3);
+last_cg=cgiterseq3(k3-10:k3); %sempre max (vedi se aumentare)
+%conv_ord3(k3-10:k3) %%% sistema (oscilla tra 0.7 e 1.3)
+%violations3 % no violazione

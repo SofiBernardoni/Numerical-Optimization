@@ -4,7 +4,7 @@ rng(345989);
 
 F = @(x) F79(x);  % Definizione della funzione F79 come handle
 JF = @(x) JF79(x); % Definizione della funzione JF79 come handle
-HF= @(x) HF79(x); % Definizione della funzione HF79 come handle
+HF= @(x) HF79(x,true); % Definizione della funzione HF79 come handle  % check if sparsity is ok
 
 load forcing_terms.mat % termini per tolleranza adattiva
 
@@ -114,3 +114,41 @@ f2
 gradf_norm2 
 last_bt=btseq2(k2-10:k2) % sempre max 
 last_cg=cgiterseq2(k2-10:k2) %% è 2 inizialmente
+
+%% n=10^5 (1e5)
+
+rng(345989);
+
+n=1e5;
+x0=-1*ones(n,1);
+
+kmax=1500;
+tolgrad=1e-3;
+cg_maxit=50;
+
+z0=zeros(n,1);
+c1=1e-4;
+rho=0.5;
+btmax=50; %  compatible with rho (with alpha0=1 you get min_step 8.8e-16)
+
+[x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3,flag3, violations3] = truncated_newton(x0, F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+flag3 % armijo non soddisfatto con param standard. (all'iteraz 1043)
+f3
+gradf_norm3 
+last_bt=btseq3(end-10:end) % si arriva al max dei bt
+last_cg=cgiterseq3(end-10:end)
+%conv_ord3(end-10:end)
+%violations3
+
+%% cambio param backtracking rho=0.8
+rho=0.8;
+btmax=158; %  compatible with rho (with alpha0=1 you get min_step 4.878e-16)
+
+[x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3,flag3, violations3] = truncated_newton(x0, F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+flag3 % armijo non soddisfatto (all'iteraz 1348). gradiente ancora alto (57). Nello stesso punto di prima
+f3
+gradf_norm3 
+last_bt=btseq3(end-10:end) % si arriva a 154
+last_cg=cgiterseq3(end-10:end)
+%conv_ord3(end-10:end)
+%violations3
