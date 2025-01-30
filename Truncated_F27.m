@@ -4,7 +4,7 @@ rng(345989);
 
 F = @(x) F27(x);  % Definizione della funzione F27 come handle
 JF = @(x) JF27(x); % Definizione della funzione JF27 come handle
-HF= @(x) HF27(x); % Definizione della funzione HF27 come handle
+HF= @(x) HF27(x,true); % Definizione della funzione HF27 come handle  % check if sparsity is ok
 
 load forcing_terms.mat % termini per tolleranza adattiva
 
@@ -84,6 +84,7 @@ last_cg=cgiterseq2(k2-10:k2)
 
 
 %%  n=10^5 (1e5)
+%v ATTENZIONE: ANCORA PROBLEMA SPARSITà
 
 rng(345989);
 
@@ -100,10 +101,10 @@ rho=0.5;
 btmax=50; % compatible with rho (with alpha0=1 you get min_step 8.8e-16)
 
 [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3,flag3, violations3] = truncated_newton(x0, F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
-flag3 %  CONVERGE IN 46 ITERAZIONI
+flag3 
 f3
 gradf_norm3
 last_bt=btseq3(end-10:end) 
 last_cg=cgiterseq3(end-10:end)
 %conv_ord3(end-10:end)
-%violations3  % non ce ne sono
+%violations3  

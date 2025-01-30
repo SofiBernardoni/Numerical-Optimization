@@ -49,13 +49,13 @@ while k < kmax && gradfk_norm > tolgrad
     
     %%% Compute pk solving Hessf(xk)pk=-gradk with Coniugate Gradient method. %%%
     % Hessf(xk)=A, pk=z, -gradk=b
-    A=Hessf(xk); % computing Hessian
+    A=Hessf(xk); % computing Hessian (if A sparse products with dense vectors will be dense)
     % Initialization of zj and j
     zj = z0; 
     j= 0; 
     
     % Inizializzazione del residuo relativo e della direzione di discesa
-    res = -gradk - A*zj; % initialize relative residual res=b-Ax
+    res = -gradk - A*zj; % initialize relative residual res=b-Ax 
     p = res; % initialize descent direction
     norm_b = gradfk_norm; % norm(b) where b=-gradk
     norm_r = norm(res); % norm of the residual
@@ -127,7 +127,7 @@ xseq = xseq(:, 1:k); % "Cut" xseq to the correct size
 xseq = [x0, xseq]; % "Add" x0 at the beginning of xseq (otherwise the first el. is x1)
 btseq = btseq(1:k); % "Cut" btseq to the correct size
 cgiterseq = cgiterseq(1:k); % "Cut" cgiterseq to the correct size
-convergence_order=convergence_order(1:k) % "Cut" convergence order
+convergence_order=convergence_order(1:k); % "Cut" convergence order
 
 
 end
