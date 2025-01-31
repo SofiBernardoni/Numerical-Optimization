@@ -23,7 +23,7 @@ btmax=50; % compatible with rho
 
 
 % con x0=[1.2;1.2]
-[x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,c1,flag1,v1] = truncated_newton(x0_a, f_Rosen, gradf_Rosen, Hessf_Rosen, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+[x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,c1,flag1,converged1,v1] = truncated_newton(x0_a, f_Rosen, gradf_Rosen, Hessf_Rosen, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
 flag1 %max num it 
 f1
 gradf_norm1
@@ -34,7 +34,7 @@ last_cg=cgiterseq1(k1-10:k1)% violato sempre curvature condition (tranne in 1), 
 
 %%
 
-[x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,c2,flag2,v2] = truncated_newton(x0_a, f_Rosen, gradf_Rosen, Hessf_Rosen, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
+[x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,c2,flag2,converged2,v2] = truncated_newton(x0_a, f_Rosen, gradf_Rosen, Hessf_Rosen, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
 flag2
 f2
 gradf_norm2
@@ -56,7 +56,7 @@ btmax=50;
 % rho=0.8;
 % btmax=130;
 
-[x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,c3,flag3,v3] = truncated_newton(x0_b, f_Rosen, gradf_Rosen, Hessf_Rosen, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+[x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,c3,flag3,converged3,v3] = truncated_newton(x0_b, f_Rosen, gradf_Rosen, Hessf_Rosen, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
 flag3 %armijo non soddsfatto a k3=1
 f3
 gradf_norm3
@@ -65,7 +65,7 @@ last_cg=cgiterseq3(end-10:end)
 %conv_ord3(end-10:end) 
 %violations3
 
-%[x4, f4, gradf4_norm, k4, xseq4, btseq4,cgiterseq4,c4,flag4,v4] = truncated_newton(x0_b, f_Rosen, gradf_Rosen, Hessf_Rosen, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
+%[x4, f4, gradf4_norm, k4, xseq4, btseq4,cgiterseq4,c4,flag4,converged4,v4] = truncated_newton(x0_b, f_Rosen, gradf_Rosen, Hessf_Rosen, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
 
 % con c1=1e-4
 % in entrambe con kmax=100 fa tutte le iterazioni e cg in 2 passi circa, mentre backtracking si assesta su 43/ 44 iter con rho=0.9
@@ -81,7 +81,7 @@ flag4
 kmax=1500;
 rho=0.85;
 btmax=220;
-[x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,c3,flag3,v3] = truncated_newton(x0_b, f_Rosen, gradf_Rosen, Hessf_Rosen, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+[x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,c3,flag3,converged3,v3] = truncated_newton(x0_b, f_Rosen, gradf_Rosen, Hessf_Rosen, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
 flag3 % CONVERGE in 868 step
 f3
 gradf_norm3
@@ -92,7 +92,7 @@ last_cg=cgiterseq3(end-10:end) % sempre tra 0 e 2
 
 %plot_iterative_optimization_results(f_Rosen,xseq3, btseq3);
 
-[x4, f4, gradf_norm4, k4, xseq4, btseq4,cgiterseq4,c4,flag4,v4] = truncated_newton(x0_b, f_Rosen, gradf_Rosen, Hessf_Rosen, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
+[x4, f4, gradf_norm4, k4, xseq4, btseq4,cgiterseq4,c4,flag4,converged4,v4] = truncated_newton(x0_b, f_Rosen, gradf_Rosen, Hessf_Rosen, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
 flag4 % CONVERGE in 1018 step
 f4
 gradf_norm4

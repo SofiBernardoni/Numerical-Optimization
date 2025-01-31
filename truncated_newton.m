@@ -1,4 +1,4 @@
-function [xk, fk, gradfk_norm, k, xseq, btseq,cgiterseq,convergence_order,flag, violations] = truncated_newton(x0, f, gradf, Hessf, kmax, tolgrad, ftol, cg_maxit,z0, c1, rho, btmax)
+function [xk, fk, gradfk_norm, k, xseq, btseq,cgiterseq,convergence_order,flag, converged, violations] = truncated_newton(x0, f, gradf, Hessf, kmax, tolgrad, ftol, cg_maxit,z0, c1, rho, btmax)
 % Function that performs the truncated Newton optimization method, for a
 % given function f, with backtracking. This version uses the exact derivatives.
 %
@@ -97,6 +97,7 @@ while k < kmax && gradfk_norm > tolgrad
      
     if bt==btmax && f(xnew)>(f(xk)+c1*alpha*(gradk'*pk))  % Break if armijo not satisfied
         flag='Procedure stopped because the Armijo condition was NOT satisfied';
+        converged=false;
         break;
     else 
         xk=xnew;
@@ -117,8 +118,10 @@ end
 if isnan(flag)
     if k==kmax && gradfk_norm > tolgrad 
         flag='Procedure stopped because the maximum number of iterations was reached';
+        converged=false;
     else
         flag=['Procedure stopped in ',num2str(k), ' steps, with gradient norm ', num2str(gradfk_norm)];
+        converged=true;
     end
 end
 fk = f(xk); % Compute f(xk)
