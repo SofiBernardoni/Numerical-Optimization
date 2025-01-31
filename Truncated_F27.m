@@ -3,8 +3,8 @@
 rng(345989);
 
 F = @(x) F27(x);  % Definizione della funzione F27 come handle
-JF = @(x) JF27(x); % Definizione della funzione JF27 come handle
-HF= @(x) HF27(x,true); % Definizione della funzione HF27 come handle  % check if sparsity is ok
+JF = @(x) JF27(x,true,0); % Definizione della funzione JF27 come handle (derivata esatta)
+HF= @(x) HF27(x,false,true,0); % Definizione della funzione HF27 come handle (derivata esatta)  % check if sparsity is ok (per ora non sparsa)
 
 load forcing_terms.mat % termini per tolleranza adattiva
 
@@ -24,7 +24,7 @@ c1=1e-4;
 rho=0.5;
 btmax=50; % compatible with rho (with alpha0=1 you get min_step 8.8e-16)
 
-[x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1,flag1, violations1] = truncated_newton(x0, F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+[x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1,flag1,converged1, violations1] = truncated_newton(x0, F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
 flag1 %  CONVERGE IN 39 ITERAZIONI
 f1 
 gradf_norm1 
@@ -37,7 +37,7 @@ last_cg=cgiterseq1(k1-10:k1)
 
 tolgrad=5e-7;
 
-[x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1,flag1, violations1] = truncated_newton(x0, F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+[x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1,flag1,converged1, violations1] = truncated_newton(x0, F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
 flag1 %  CONVERGE IN 41 ITERAZIONI
 f1
 gradf_norm1
@@ -61,7 +61,7 @@ c1=1e-4;
 rho=0.5;
 btmax=50; % compatible with rho (with alpha0=1 you get min_step 8.8e-16)
 
-[x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2,flag2, violations2] = truncated_newton(x0, F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+[x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2,flag2,converged2, violations2] = truncated_newton(x0, F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
 flag2 %  CONVERGE IN 46 ITERAZIONI
 f2
 gradf_norm2 
@@ -73,7 +73,7 @@ last_cg=cgiterseq2(k2-10:k2)
 %% cambio tolgrad
 
 tolgrad=5e-7;
-[x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2,flag2, violations2] = truncated_newton(x0, F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+[x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2,flag2,converged2, violations2] = truncated_newton(x0, F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
 flag2 %  CONVERGE IN 47 ITERAZIONI
 f2
 gradf_norm2 
@@ -84,7 +84,7 @@ last_cg=cgiterseq2(k2-10:k2)
 
 
 %%  n=10^5 (1e5)
-%v ATTENZIONE: ANCORA PROBLEMA SPARSITà
+% ATTENZIONE: ANCORA PROBLEMA SPARSITà
 
 rng(345989);
 
@@ -100,7 +100,7 @@ c1=1e-4;
 rho=0.5;
 btmax=50; % compatible with rho (with alpha0=1 you get min_step 8.8e-16)
 
-[x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3,flag3, violations3] = truncated_newton(x0, F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+[x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3,flag3, converged3, violations3] = truncated_newton(x0, F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
 flag3 
 f3
 gradf_norm3
