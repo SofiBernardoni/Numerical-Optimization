@@ -1,12 +1,11 @@
-function [xk, fk, gradfk_norm, k, xseq, btseq,cgiterseq,convergence_order,flag, converged, violations] = truncated_newton(x0, f, gradf, Hessf, kmax, tolgrad, ftol, cg_maxit,z0, c1, rho, btmax)
-% Function that performs the truncated Newton optimization method, for a
-% given function f, with backtracking. This version can use both the exact derivatives and the approximated version.
-%
+function [xk, fk, gradfk_norm, k, xseq, btseq,cgiterseq,convergence_order,flag, converged, violations] = truncated_newton_27(x0, f, gradf,exact, h, kmax, tolgrad, ftol, cg_maxit,z0, c1, rho, btmax)
+% Function that performs the truncated Newton optimization method, for for function F27, with backtracking. 
 % INPUTS:
 % x0 = n-dimensional column vector. Initial point;
 % f = function handle that describes a function R^n->R;
 % gradf = function handle that describes the gradient of f;
-% Hessf= function handle that describes the Hessian of f;
+% exact = bool. True if exact version of the hessian. False= approximated version with finite differences
+% h= increment for finite differences. if exact=true put h=0.
 % kmax = maximum number of iterations permitted;
 % tolgrad = value used as stopping criterion w.r.t. the norm of the gradient
 % ftol= function handle of relative tolerance depending on the norm of the gradient (for coniugate gradient method)
@@ -30,7 +29,6 @@ function [xk, fk, gradfk_norm, k, xseq, btseq,cgiterseq,convergence_order,flag, 
 % converged= bool. True if the method has converged
 % violations=number of violations of positive curvature condition
 
-
 % Initializations
 xseq = zeros(length(x0), kmax);
 cgiterseq = zeros(1, kmax); 
@@ -51,13 +49,26 @@ while k < kmax && gradfk_norm > tolgrad
     
     %%% Compute pk solving Hessf(xk)pk=-gradk with Coniugate Gradient method. %%%
     % Hessf(xk)=A, pk=z, -gradk=b
-    A=Hessf(xk); % computing Hessian (if A sparse products with dense vectors will be dense)
+    % Hessf27(x)(i,j)= 4*x_i*x_j
+    % Hessf27(x)(i,i)= (2/100000 -1+ 4*(sum(x.^2)) + 8*x_i^2)/2
+    % with finite differences to each element is added 2*h^2
+    % the matrix is NOT sparse BUT with large n cannot be stored. So we
+    % compute directly the matrix vector products.
+    % EXACT VERSION: Hessf27(x)*z= 4*s*v1 -4*v2 +v3   with s=sum(x), v1=x.*z, v2= (x.^2).*z, v3=diag(Hessf27(x)).*z
+    % diag(Hessf27(x))= (2/100000 -1+ 4*s + 8*x.^2)/2;
+    % APPROXIMATED VERSION:  Hessf27_approx(x,h)*z= Hessf27(x)*z + 2*n*(h^2)*z
+    diagA=(2/100000 -1+ 4*sum(xk.^2) + 8*xk.^2)/2;
+    
     % Initialization of zj and j
     zj = z0; 
     j= 0; 
     
-    % Inizializzazione del residuo relativo e della direzione di discesa
-    res = -gradk - A*zj; % initialize relative residual res=b-Ax 
+    % Initialization of relative residual and of descent direction
+    Azj= 4*sum(xk)*xk.*zj-4*(xk.^2).*zj+diagA.*zj; % A*zj
+    if ~exact %approximation with finite difference (not exact)
+        Azj= Azj+2*n*(h^2)*zj;
+    end
+    res = -gradk - Azj; % initialize relative residual res=b-Ax 
     p = res; % initialize descent direction
     norm_b = gradfk_norm; % norm(b) where b=-gradk
     norm_r = norm(res); % norm of the residual
@@ -65,7 +76,10 @@ while k < kmax && gradfk_norm > tolgrad
     %neg_curv= false; % boolean checking negative curvature condition
     
     while (j<cg_maxit && norm_r>ftol(j,norm_b)*norm_b ) %adaptive tolerance based on the norm of the gradient
-       z = A*p; %product of A and descent direction 
+       z= 4*sum(xk)*xk.*p-4*(xk.^2).*p+diagA.*p; % A*p : product of A and descent direction 
+       if ~exact %approximation with finite difference (not exact)
+           z= z+2*n*(h^2)*p;
+       end
        a = (res'*p)/(p'*z); % update exact step along the direction
        zj = zj+ a*p; % update solution 
        res = res - a*z; %update residual
@@ -73,7 +87,11 @@ while k < kmax && gradfk_norm > tolgrad
        p = res + beta*p; % update descent direction
        
        % se vuoi sposta qui calcolo z per usarlo in condizione %%%%%%%%%%%%%%%%%%%%%%%%%
-       sign_curve=sign(p'*A*p);
+       z_new=4*sum(xk)*(xk.*p)'-4*((xk.^2).*p)'+(diagA.*p)'; % p'*A (as A*p because A symmetric but as a row vector)  --> needed for curvature condition
+       if ~exact %approximation with finite difference (not exact)
+           z_new= z_new+2*n*(h^2)*p';
+       end
+       sign_curve=sign(z_new*p); %%%%%%%%%%%%%% CONTROLLA (forse rimettere A*p)
        if sign_curve ~= 1 % negative curvature condition  p'*A*p <= 0
            violations =violations+1; %%%%%%%% togli
            break;

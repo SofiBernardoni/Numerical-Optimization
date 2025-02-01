@@ -4,7 +4,7 @@ rng(345989);
 
 F = @(x) F27(x);  % Definizione della funzione F27 come handle
 JF = @(x) JF27(x,true,0); % Definizione della funzione JF27 come handle (derivata esatta)
-HF= @(x) HF27(x,false,true,0); % Definizione della funzione HF27 come handle (derivata esatta)  % check if sparsity is ok (per ora non sparsa)
+HF= @(x) HF27(x,false,true,0); % Definizione della funzione HF27 come handle (derivata esatta)  % check if sparsity is ok (per ora non sparsa) 
 
 load forcing_terms.mat % termini per tolleranza adattiva
 
