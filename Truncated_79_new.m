@@ -3,8 +3,8 @@
 rng(345989);
 
 F = @(x) F79(x);  % Definizione della funzione F79 come handle
-JF = @(x) JF79(x,true,0); % Definizione della funzione JF79 come handle (derivata esatta)
-HF= @(x) HF79(x,true,true,0); % Definizione della funzione HF79 come handle (derivata esatta)  % check if sparsity is ok
+JF = @(x) JF79(x,true,false,0); % Definizione della funzione JF79 come handle (derivata esatta)
+HF= @(x) HF79(x,true,true,false,0); % Definizione della funzione HF79 come handle (derivata esatta)  % check if sparsity is ok
 
 load forcing_terms.mat % termini per tolleranza adattiva
 
@@ -72,7 +72,7 @@ rng(345989);
 n=1e4; 
 
 kmax=1.5e3; 
-tolgrad=1e-5; % ABBASSATA DA tolgrad=5e-7
+tolgrad=5e-7; %1e-5 funziona in meno step  % ABBASSATA DA tolgrad=5e-7
 cg_maxit=100;
 
 z0=zeros(n,1);
@@ -128,9 +128,9 @@ rng(345989);
 
 n=1e5; 
 
-kmax=1500;
-tolgrad=1e-3;
-cg_maxit=50;
+kmax=1.5e3; 
+tolgrad=5e-7; %con 1e-5 funziona bene ma anche cosi ok
+cg_maxit=100; %con 50 va ugualmente
 
 z0=zeros(n,1);
 c1=1e-4;

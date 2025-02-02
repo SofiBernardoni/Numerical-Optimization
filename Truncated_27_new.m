@@ -44,7 +44,7 @@ vec_violations1=zeros(1,N+1); % per vedere quante violazioni in gradiente coniug
 for j =1:N+1
     
     tic;
-    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1,flag1,converged1, violations1] = truncated_newton_27(x0, F, JF, true, 0, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1,flag1,converged1, violations1] = truncated_newton_27(Mat_points(:,j), F, JF, true, 0, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
     vec_times1(j)=toc;
 
     disp(['Tentativo n. ',num2str(j),': ',flag1]) % introdurre conteggio fallimenti/successi
@@ -75,7 +75,7 @@ n=1e4;
 
 kmax=1.5e3;
 tolgrad=5e-7;
-cg_maxit=50;
+cg_maxit=100; %50 uguale
 
 z0=zeros(n,1);
 c1=1e-4;
@@ -103,7 +103,7 @@ vec_violations2=zeros(1,N+1); % per vedere quante violazioni in gradiente coniug
 for j =1:N+1
     
     tic;
-    [x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2,flag2, converged2, violations2] = truncated_newton_27(x0, F, JF, true, 0, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    [x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2,flag2, converged2, violations2] = truncated_newton_27(Mat_points(:,j), F, JF, true, 0, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
     vec_times2(j)=toc;
 
     disp(['Tentativo n. ',num2str(j),': ',flag2]) % introdurre conteggio fallimenti/successi
@@ -131,8 +131,8 @@ rng(345989);
 n=1e5; 
 
 kmax=1.5e3; 
-tolgrad= 1e-5; 
-cg_maxit=50;
+tolgrad= 5e-7; % 1e-5 1 iterazione in più
+cg_maxit=100; % 50 uguale
 
 z0=zeros(n,1);
 c1=1e-4;
@@ -160,7 +160,7 @@ vec_violations3=zeros(1,N+1); % per vedere quante violazioni in gradiente coniug
 for j =1:N+1 
     
     tic;
-    [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3,flag3, converged3, violations3] = truncated_newton_27(x0, F, JF, true, 0, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3,flag3, converged3, violations3] = truncated_newton_27(Mat_points(:,j), F, JF, true, 0, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
     vec_times3(j)=toc;
 
     disp(['Tentativo n. ',num2str(j),': ',flag3]) % introdurre conteggio fallimenti/successi
