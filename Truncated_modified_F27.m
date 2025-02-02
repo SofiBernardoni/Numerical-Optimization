@@ -90,8 +90,8 @@ n=1e5;
 x0=(1:n)';  % Punto iniziale
 
 kmax=1.5e3;
-tolgrad=1e-5;
-cg_maxit=50;
+tolgrad= 5e-7 %1e-5;
+cg_maxit=100; % 50 uguale
 
 z0=zeros(n,1);
 c1=1e-4;

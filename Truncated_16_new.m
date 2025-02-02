@@ -1,7 +1,5 @@
 %% FUNCTION 16 - BANDED TRIGONOMETRIC PROBLEM (with different initial points)
 
-% Utilizza un unico file alla fine
-
 rng(345989);
 
 F = @(x) F16(x);  % Definizione della funzione F16 come handle
@@ -74,7 +72,7 @@ rng(345989);
 n=1e4; 
 
 kmax=1.5e3; 
-tolgrad=1e-5; % ABBASSATA DA tolgrad=5e-7
+tolgrad=5e-7; % con 1e-5 ne convergono 7, mentre così solo 3
 cg_maxit=100;
 
 z0=zeros(n,1);
@@ -131,7 +129,7 @@ rng(345989);
 n=1e5; 
 
 kmax=1.5e3; 
-tolgrad= 1e-5; %1e-3; % TOLLERANZA ABBASSATA oppure 1e-4; % TOLLERANZA intermedia??
+tolgrad= 5e-4; %convergono 10 (TOLLERANZA ABBASSATA) oppure 1e-4 ne convergono 3. CON 1e-5 neanche una convergenza
 cg_maxit=100;
 
 z0=zeros(n,1);

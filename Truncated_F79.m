@@ -3,8 +3,8 @@
 rng(345989);
 
 F = @(x) F79(x);  % Definizione della funzione F79 come handle
-JF = @(x) JF79(x,true,0); % Definizione della funzione JF79 come handle (derivata esatta)
-HF= @(x) HF79(x,true,true,0); % Definizione della funzione HF79 come handle (derivata esatta)  % check if sparsity is ok
+JF = @(x) JF79(x,true,false,0); % Definizione della funzione JF79 come handle (derivata esatta)
+HF= @(x) HF79(x,true,true,false,0); % Definizione della funzione HF79 come handle (derivata esatta)  % check if sparsity is ok
 
 load forcing_terms.mat % termini per tolleranza adattiva
 
