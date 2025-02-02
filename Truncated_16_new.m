@@ -131,8 +131,8 @@ rng(345989);
 n=1e5; 
 
 kmax=1.5e3; 
-tolgrad= 1e-5; %1e-3; % TOLLERANZA ABBASSATA
-cg_maxit=150;
+tolgrad= 1e-5; %1e-3; % TOLLERANZA ABBASSATA oppure 1e-4; % TOLLERANZA intermedia??
+cg_maxit=100;
 
 z0=zeros(n,1);
 c1=1e-4;
@@ -181,7 +181,7 @@ end
 % INSERIRE TABELLA
 % INSERIRE GRAFICI
 
-%% n=10^5 (1e5) -tol intermedia tolgrad=1e-4
+%% n=10^5 (1e5) -tol intermedia tolgrad=1e-4 TOGLIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
 
 rng(345989);
 
