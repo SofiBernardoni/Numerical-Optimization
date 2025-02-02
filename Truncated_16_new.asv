@@ -17,7 +17,7 @@ rng(345989);
 n=1e3; 
 
 kmax=1.5e3;
-tolgrad=5e-7; 
+tolgrad=1e-8; %5e-7
 cg_maxit=50;
 
 z0=zeros(n,1);
@@ -75,7 +75,7 @@ n=1e4;
 
 kmax=1.5e3; 
 tolgrad=1e-5; % ABBASSATA DA tolgrad=5e-7
-cg_maxit=100;
+cg_maxit=50;
 
 z0=zeros(n,1);
 c1=1e-4;
@@ -131,8 +131,8 @@ rng(345989);
 n=1e5; 
 
 kmax=1.5e3; 
-tolgrad= 1e-5; %1e-3; % TOLLERANZA ABBASSATA
-cg_maxit=150;
+tolgrad=1e-3; % TOLLERANZA ABBASSATA
+cg_maxit=50;
 
 z0=zeros(n,1);
 c1=1e-4;
