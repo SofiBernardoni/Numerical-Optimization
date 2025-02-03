@@ -4,7 +4,7 @@ function HF=HF27(x,sparse,exact,h)
 % exact= bool. True= computes the exact version, False= computes the approximated version with finite differences
 % h= increment for the approximated version (if exact=true put h=0)
 
-%%%%% PROBLEMA: matrice non sparsa
+%%%%% PROBLEMA: matrice non sparsa. 
 
 n=length(x);
 s=sum(x.^2);

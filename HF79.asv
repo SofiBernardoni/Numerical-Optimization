@@ -20,16 +20,16 @@ if sparse % sparse
         if fin_dif_2 % version of finite differences with abs(xj)
             HF= HF + (h^2)*spdiags(x.^2,0,n,n)/100 ;
             vec_diag= abs(x(1:end-1))/5 + abs(x(2:end))/10;
-            HF= HF + spdiags(h*[0;vec_diag],1,n,n) +spdiags(h*[vec_diag;0],-1,n,n);
+            &HF= HF + spdiags(h*[0;vec_diag],1,n,n) +spdiags(h*[vec_diag;0],-1,n,n);
             d_0=diag(HF,0);
             mult_diag=abs(x(1:end-1)).*abs(x(2:end));
             d_1=mult_diag.*diag(HF,1);
-            HF= spdiags(d_0,0,n,n)+spdiags([0;d_1],1,n,n)+spdiags([d_1;0],-1,n,n);
+            HF= spdiags(d_0,0,n,n)+spdiags(d_1,1,n,n)+spdiags(d_1,-1,n,n);
             
         else % classic version of finite differences
             HF= HF + spdiags((h^2)*ones(n,1)/100,0,n,n);
             new_coef=3*h/10;
-            HF= HF + spdiags(new_coef*ones(n,1),1,n,n) +spdiags(new_coef*ones(n,1),-1,n,n); 
+            HF= HF + spdiags(new_coef*ones(n,1),1,n,n) +spdiags(new_coef*ones(n,1),-1,n,n); % SE NON VA RIMETTI ones(n-1,1)
         end
         
     end
