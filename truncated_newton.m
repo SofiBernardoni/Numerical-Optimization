@@ -61,9 +61,7 @@ while k < kmax && gradfk_norm > tolgrad
     p = res; % initialize descent direction
     norm_b = gradfk_norm; % norm(b) where b=-gradk
     norm_r = norm(res); % norm of the residual
-    
-    %neg_curv= false; % boolean checking negative curvature condition
-    
+        
     while (j<cg_maxit && norm_r>ftol(j,norm_b)*norm_b ) %adaptive tolerance based on the norm of the gradient
        z = A*p; %product of A and descent direction 
        a = (res'*p)/(p'*z); % update exact step along the direction
