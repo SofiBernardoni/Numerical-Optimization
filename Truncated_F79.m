@@ -17,28 +17,65 @@ x0=-1*ones(n,1);
 
 kmax=1e3;
 tolgrad=1e-5;
-cg_maxit=50;
+cg_maxit=80;
 
 z0=zeros(n,1);
 c1=1e-4;
 rho=0.50;
 btmax=50; % compatible with rho (with alpha0=1 you get min_step 8.8e-16)
 
-[x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1,flag1,converged1, violations1] = truncated_newton(x0, F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
-flag1 %CONVERGE IN 928 STEP
-f1 
-gradf_norm1 
-last_bt=btseq1(end-10:end) %alla fine sempre passo unitarrio. IN REALTA LO FA SEMPRE (lo vedo con max(btseq1)=0)
-last_cg=cgiterseq1(end-10:end) % fa sempre steepest descent max(cgiterseq1)=0. vedi violazione da ogni passo
-conv_ord1(end-10:end) % ORDINE DI CONVERGENZA 1(ci oscilla intorno alla fine)
-%violations1 % VIOLAZIONI AD OGNI PASSO (steepest)
+N=10; % number of initial points to be generated
+
+% Initial points:
+Mat_points=repmat(x0,1,N+1); 
+rand_mat=2*rand(n, N)-1;
+Mat_points(:,2:end)=Mat_points(:,2:end) + rand_mat; % matrix with columns=initial points
+
+vec_times1=zeros(1,N+1); % vector with execution times
+vec_val1=zeros(1,N+1); %vector with minimal values found
+vec_grad1=zeros(1,N+1); %vector with final gradient
+vec_iter1=zeros(1,N+1); %vector with number of iterations 
+
+% INSERIRE ORDINE CONVERGENZA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+vec_converged1=zeros(1,N+1); %vector of booleans (true if it has converged) 
+
+vec_violations1=zeros(1,N+1); % per vedere quante violazioni in gradiente coniugato
+
+
+for j =1:N+1
+    
+    tic;
+    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1,flag1, converged1, violations1] = truncated_newton_precond_79(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    vec_times1(j)=toc;
+
+    disp(['Tentativo n. ',num2str(j),': ',flag1]) % introdurre conteggio fallimenti/successi
+    vec_converged1(j)=converged1;
+    %last_bt=btseq1(end-10:end); % salvare??
+    %last_cg=cgiterseq1(end-10:end); % salvare??
+    %conv_ord1(end-10:end) %aggiustare
+    vec_val1(j)=f1;
+    vec_grad1(j)=gradf_norm1;
+    vec_iter1(j)=k1;
+    vec_violations1(j)=violations1;
+end
+
+
+
+%[x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1,flag1,converged1, violations1] = truncated_newton(x0, F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+%flag1 %CONVERGE IN 928 STEP
+%f1 
+% gradf_norm1 
+% last_bt=btseq1(end-10:end) %alla fine sempre passo unitarrio. IN REALTA LO FA SEMPRE (lo vedo con max(btseq1)=0)
+% last_cg=cgiterseq1(end-10:end) % fa sempre steepest descent max(cgiterseq1)=0. vedi violazione da ogni passo
+% conv_ord1(end-10:end) % ORDINE DI CONVERGENZA 1(ci oscilla intorno alla fine)
+% %violations1 % VIOLAZIONI AD OGNI PASSO (steepest)
 
 %% abbasso tolgrad=5e-7 e kmax=1500
 
 kmax=1500;
 tolgrad=5e-7;
 
-[x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1,flag1, converged1, violations1] = truncated_newton(x0, F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+[x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1,flag1, converged1, violations1] = truncated_newton_precond_79(x0, F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
 flag1 %CONVERGE IN 1095 STEP
 f1 
 gradf_norm1 

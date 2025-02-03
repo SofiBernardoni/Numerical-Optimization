@@ -58,7 +58,7 @@ while k < kmax && gradfk_norm > tolgrad
 
     % M da definire:
     % ci sono 2 opzioni:
-    % M=ichol(A); % se è simmetrica e definita positiva
+    %M=ichol(A); % se è simmetrica e definita positiva
     % M=(D+L); % D diag L triangolarew iferiore
 
     D = diag(diag(A));  % Matrice diagonale (D)
@@ -82,6 +82,7 @@ while k < kmax && gradfk_norm > tolgrad
 
        %risolvere il sistema Myk+1=rk+1
        y1=M\res1;
+       %disp('sitema risolto');
 
        beta = (res1'*y)/(res'*y);
        p = -y1 + beta*p; % update descent direction
