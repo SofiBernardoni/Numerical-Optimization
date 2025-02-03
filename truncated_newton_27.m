@@ -64,9 +64,9 @@ while k < kmax && gradfk_norm > tolgrad
     j= 0; 
     
     % Initialization of relative residual and of descent direction
-    Azj= 4*sum(xk)*xk.*zj-4*(xk.^2).*zj+diagA.*zj; % A*zj
+    Azj= 4*(xk'*zj)*xk-4*(xk.^2).*zj+diagA.*zj; % A*zj
     if ~exact %approximation with finite difference (not exact)
-        Azj= Azj+2*n*(h^2)*zj;
+        Azj= Azj+2*(h^2)*sum(zj)*ones(n,1);
     end
     res = -gradk - Azj; % initialize relative residual res=b-Ax 
     p = res; % initialize descent direction
@@ -76,9 +76,9 @@ while k < kmax && gradfk_norm > tolgrad
     %neg_curv= false; % boolean checking negative curvature condition
     
     while (j<cg_maxit && norm_r>ftol(j,norm_b)*norm_b ) %adaptive tolerance based on the norm of the gradient
-       z= 4*sum(xk)*xk.*p-4*(xk.^2).*p+diagA.*p; % A*p : product of A and descent direction 
+       z= 4*(xk'*p)*xk-4*(xk.^2).*p+diagA.*p; % A*p : product of A and descent direction 
        if ~exact %approximation with finite difference (not exact)
-           z= z+2*n*(h^2)*p;
+           z= z+2*(h^2)*sum(p)*ones(n,1);
        end
        a = (res'*p)/(p'*z); % update exact step along the direction
        zj = zj+ a*p; % update solution 
@@ -87,9 +87,9 @@ while k < kmax && gradfk_norm > tolgrad
        p = res + beta*p; % update descent direction
        
        % se vuoi sposta qui calcolo z per usarlo in condizione %%%%%%%%%%%%%%%%%%%%%%%%%
-       z_new=4*sum(xk)*(xk.*p)'-4*((xk.^2).*p)'+(diagA.*p)'; % p'*A (as A*p because A symmetric but as a row vector)  --> needed for curvature condition
+       z_new=4*(xk'*p)*xk'-4*((xk.^2).*p)'+(diagA.*p)'; % p'*A (as A*p because A symmetric but as a row vector)  --> needed for curvature condition
        if ~exact %approximation with finite difference (not exact)
-           z_new= z_new+2*n*(h^2)*p';
+           z_new= z_new+2*(h^2)*sum(p)*ones(1,n);
        end
        sign_curve=sign(z_new*p); %%%%%%%%%%%%%% CONTROLLA (forse rimettere A*p)
        if sign_curve ~= 1 % negative curvature condition  p'*A*p <= 0
