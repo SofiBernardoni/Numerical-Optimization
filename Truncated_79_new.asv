@@ -1,4 +1,4 @@
-%% FUNCTION 79  (with different initial points)- only with exact derivatives
+%% FUNCTION 79  (with different initial points)
 
 rng(345989);
 
