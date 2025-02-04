@@ -21,7 +21,7 @@ cg_maxit=50; % maximum number of iterations of coniugate gradient method (for th
 z0=zeros(n,1); % initial point of coniugate gradient method (for the linear system)
 
 % Backtracking parameters
-c1=1e-4;
+c1=1e-3;
 rho=0.50;
 btmax=50; % compatible with rho (with alpha0=1 you get min_step 8.8e-16)
 
@@ -38,7 +38,7 @@ vec_times1_ex=zeros(1,N+1); % vector with execution times
 vec_val1_ex=zeros(1,N+1); %vector with minimal values found
 vec_grad1_ex=zeros(1,N+1); %vector with final gradient
 vec_iter1_ex=zeros(1,N+1); %vector with number of iterations 
-% INSERIRE ORDINE CONVERGENZA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+mat_conv_ex=zeros(15, N+1);
 vec_converged1_ex=zeros(1,N+1); % vector of booleans (true if it has converged) 
 vec_violations1_ex=zeros(1,N+1); % vector with number of violations of curvature condition in Newton method
 
@@ -50,7 +50,7 @@ mat_times1_fd1=zeros(6,N+1); % matrix with execution times
 mat_val1_fd1=zeros(6,N+1); %matrix with minimal values found
 mat_grad1_fd1=zeros(6,N+1); %matrix with final gradient
 mat_iter1_fd1=zeros(6,N+1); %matrix with number of iterations 
-% INSERIRE ORDINE CONVERGENZA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+mat_conv_fd1=cell(6, N+1);
 mat_converged1_fd1=zeros(6,N+1); % matrix of booleans (true if it has converged) 
 mat_violations1_fd1=zeros(6,N+1); % matrix with number of violations of curvature condition in Newton method
 
@@ -62,7 +62,7 @@ mat_times1_fd2=zeros(6,N+1); % matrix with execution times
 mat_val1_fd2=zeros(6,N+1); %matrix with minimal values found
 mat_grad1_fd2=zeros(6,N+1); %matrix with final gradient
 mat_iter1_fd2=zeros(6,N+1); %matrix with number of iterations 
-% INSERIRE ORDINE CONVERGENZA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+mat_conv_fd2=cell(6,N+1);
 mat_converged1_fd2=zeros(6,N+1); % matrix of booleans (true if it has converged) 
 mat_violations1_fd2=zeros(6,N+1); % matrix with number of violations of curvature condition in Newton method
 
@@ -74,7 +74,7 @@ for j =1:N+1
 
     % EXACT DERIVATIVES
     tic;
-    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1,flag1, converged1, violations1] = truncated_newton(Mat_points(:,j), F, JF_ex, HF_ex, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1_ex,flag1, converged1, violations1] = truncated_newton(Mat_points(:,j), F, JF_ex, HF_ex, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
     vec_times1_ex(j)=toc;
 
     disp(['Exact derivatives: ',flag1]) 
@@ -84,6 +84,8 @@ for j =1:N+1
     vec_grad1_ex(j)=gradf_norm1;
     vec_iter1_ex(j)=k1;
     vec_violations1_ex(j)=violations1;
+    last_vals = conv_ord1_ex(max(end-14,1):end);
+    mat_conv_ex(:, j) = last_vals;
     
     for i=2:2:12
     h=10^(-i);
@@ -92,7 +94,7 @@ for j =1:N+1
     JF=@(x)JF_fd1(x,h);
     HF=@(x)HF_fd1(x,h);
     tic;
-    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1,flag1, converged1, violations1] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1_df1,flag1, converged1, violations1] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
     mat_times1_fd1(i/2,j)=toc;
 
     disp(['Finite differences (classical version) with h=1e-',num2str(i),' : ',flag1]) 
@@ -103,12 +105,16 @@ for j =1:N+1
     mat_iter1_fd1(i/2,j)=k1;
     mat_violations1_fd1(i/2,j)=violations1;
 
+    last_vals = conv_ord1_df1(max(end-14,1):end);
+    mat_conv_fd1(i/2, j) = {last_vals};
+
+
 
     % FINITE DIFFERENCES 2
     JF=@(x) JF_fd2(x,h);
     HF=@(x) HF_fd2(x,h);
     tic;
-    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1,flag1, converged1, violations1] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1_df2,flag1, converged1, violations1] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
     mat_times1_fd2(i/2,j)=toc;
 
     disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag1]) 
@@ -118,6 +124,9 @@ for j =1:N+1
     mat_grad1_fd2(i/2,j)=gradf_norm1;
     mat_iter1_fd2(i/2,j)=k1;
     mat_violations1_fd2(i/2,j)=violations1;
+    last_vals = conv_ord1_df2(max(end-14,1):end);
+    mat_conv_fd2(i/2, j) = {last_vals};
+
 
     end
 end
@@ -129,6 +138,46 @@ end
 % INSERIRE TABELLA
 % INSERIRE GRAFICI
 
+
+
+
+%%
+num_initial_points = N + 1;
+
+% Crea una figura
+figure;
+hold on;
+
+
+% Plot per ciascuna condizione iniziale
+for j = 1:num_initial_points
+    % Estrai l'ordine di convergenza per la j-esima condizione iniziale
+    conv_ord_ex = mat_conv_ex(:,j); % Derivate esatte
+
+    plot(1:15,conv_ord_ex, 'Color', 'b', 'LineWidth', 1.5);
+    hold on;
+    for i =1:6 
+        conv_ord_fd1 = mat_conv_fd1{i, j}; % Differenze finite classiche
+
+       
+        conv_ord_fd2 = mat_conv_fd2{i, j}; % Differenze finite adattative
+        plot(1:15,conv_ord_fd1, '-', 'Color', 'r', 'LineWidth', 1.5);
+
+        hold on;
+        plot(1:15,conv_ord_fd2, '-o', 'Color', 'g', 'LineWidth', 1.5);
+        hold on;
+    end
+
+   
+end
+
+% Aggiungi titolo e legenda
+title('Ordine di Convergenza per Tutte le Condizioni Iniziali');
+xlabel('Iterazione');
+ylabel('Ordine di Convergenza');
+legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
+grid on;
+hold off;
 %% n=10^4 (1e4)
 
 rng(345989);
