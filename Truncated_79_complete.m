@@ -105,19 +105,19 @@ for j =1:N+1
 
 
     % FINITE DIFFERENCES 2
-%     JF=@(x) JF_fd2(x,h);
-%     HF=@(x) HF_fd2(x,h);
-%     tic;
-%     [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1,flag1, converged1, violations1] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
-%     mat_times1_fd2(i/2,j)=toc;
-% 
-%     disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag1]) 
-%     mat_converged1_fd2(i/2,j)=converged1;
-%     %conv_ord1(end-10:end) %aggiustare
-%     mat_val1_fd2(i/2,j)=f1;
-%     mat_grad1_fd2(i/2,j)=gradf_norm1;
-%     mat_iter1_fd2(i/2,j)=k1;
-%     mat_violations1_fd2(i/2,j)=violations1;
+    JF=@(x) JF_fd2(x,h);
+    HF=@(x) HF_fd2(x,h);
+    tic;
+    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1,flag1, converged1, violations1] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    mat_times1_fd2(i/2,j)=toc;
+
+    disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag1]) 
+    mat_converged1_fd2(i/2,j)=converged1;
+    %conv_ord1(end-10:end) %aggiustare
+    mat_val1_fd2(i/2,j)=f1;
+    mat_grad1_fd2(i/2,j)=gradf_norm1;
+    mat_iter1_fd2(i/2,j)=k1;
+    mat_violations1_fd2(i/2,j)=violations1;
 
     end
 end
@@ -226,19 +226,19 @@ for j =1:N+1
 
 
     % FINITE DIFFERENCES 2
-%     JF=@(x) JF_fd2(x,h);
-%     HF=@(x) HF_fd2(x,h);
-%     tic;
-%     [x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2,flag2, converged2, violations2] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
-%     vec_times2_fd2(i/2,j)=toc;
-% 
-%     disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag2]) 
-%     vec_converged2_fd2(i/2,j)=converged2;
-%     %conv_ord2(end-10:end) %aggiustare
-%     vec_val2_fd2(i/2,j)=f2;
-%     vec_grad2_fd2(i/2,j)=gradf_norm2;
-%     vec_iter2_fd2(i/2,j)=k2;
-%     vec_violations2_fd2(i/2,j)=violations2;
+    JF=@(x) JF_fd2(x,h);
+    HF=@(x) HF_fd2(x,h);
+    tic;
+    [x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2,flag2, converged2, violations2] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    vec_times2_fd2(i/2,j)=toc;
+
+    disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag2]) 
+    vec_converged2_fd2(i/2,j)=converged2;
+    %conv_ord2(end-10:end) %aggiustare
+    vec_val2_fd2(i/2,j)=f2;
+    vec_grad2_fd2(i/2,j)=gradf_norm2;
+    vec_iter2_fd2(i/2,j)=k2;
+    vec_violations2_fd2(i/2,j)=violations2;
 
     end
 end
@@ -348,19 +348,19 @@ for j =1:N+1
 
 
     % FINITE DIFFERENCES 2
-%     JF=@(x) JF_fd2(x,h);
-%     HF=@(x) HF_fd2(x,h);
-%     tic;
-%     [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3,flag3, converged3, violations3] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
-%     vec_times3_fd2(i,j)=toc;
-% 
-%     disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag3]) 
-%     vec_converged3_fd2(i,j)=converged3;
-%     %conv_ord3(end-10:end) %aggiustare
-%     vec_val3_fd2(i,j)=f3;
-%     vec_grad3_fd2(i,j)=gradf_norm3;
-%     vec_iter3_fd2(i,j)=k3;
-%     vec_violations3_fd2(i,j)=violations3;
+    JF=@(x) JF_fd2(x,h);
+    HF=@(x) HF_fd2(x,h);
+    tic;
+    [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3,flag3, converged3, violations3] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    vec_times3_fd2(i,j)=toc;
+
+    disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag3]) 
+    vec_converged3_fd2(i,j)=converged3;
+    %conv_ord3(end-10:end) %aggiustare
+    vec_val3_fd2(i,j)=f3;
+    vec_grad3_fd2(i,j)=gradf_norm3;
+    vec_iter3_fd2(i,j)=k3;
+    vec_violations3_fd2(i,j)=violations3;
 
     end
 end

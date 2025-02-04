@@ -21,10 +21,11 @@ if sparse % sparse
             HF= HF + (h^2)*spdiags(x.^2,0,n,n)/100 ;
             vec_diag= abs(x(1:end-1))/5 + abs(x(2:end))/10;
             HF= HF + spdiags(h*[0;vec_diag],1,n,n) +spdiags(h*[vec_diag;0],-1,n,n);
-            d_0=diag(HF,0);
-            mult_diag=abs(x(1:end-1)).*abs(x(2:end));
-            d_1=mult_diag.*diag(HF,1);
-            HF= spdiags(d_0,0,n,n)+spdiags([0;d_1],1,n,n)+spdiags([d_1;0],-1,n,n);
+            % SE NON SERVONO LE RIGHE SOTTO ELIMINA
+%             d_0=diag(HF,0);
+%             mult_diag=abs(x(1:end-1)).*abs(x(2:end));
+%             d_1=mult_diag.*diag(HF,1);
+%             HF= spdiags(d_0,0,n,n)+spdiags([0;d_1],1,n,n)+spdiags([d_1;0],-1,n,n);
             
         else % classic version of finite differences
             HF= HF + spdiags((h^2)*ones(n,1)/100,0,n,n);
@@ -42,10 +43,11 @@ else % NOT sparse
            HF= HF + (h^2)*diag(x.^2)/100 ;
            vec_diag= abs(x(1:end-1))/5 + abs(x(2:end))/10;
            HF= HF + diag(h*vec_diag,1) +diag(h*vec_diag,-1);
-           d_0=diag(HF);
-           mult_diag=abs(x(1:end-1)).*abs(x(2:end));
-           d_1=mult_diag.*diag(HF,1);
-           HF= diag(d_0)+diag(d_1,1)+diag(d_1,-1);
+           % SE NON SERVONO LE RIGHE SOTTO ELIMINA
+%            d_0=diag(HF);
+%            mult_diag=abs(x(1:end-1)).*abs(x(2:end));
+%            d_1=mult_diag.*diag(HF,1);
+%            HF= diag(d_0)+diag(d_1,1)+diag(d_1,-1);
            
        else % classic version of finite differences
            HF= HF + (h^2)*eye(n)/100 ;
