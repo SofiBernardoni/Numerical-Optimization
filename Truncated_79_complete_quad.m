@@ -1,10 +1,10 @@
-%% FUNCTION 16  (with different initial points)- with exact derivatives and finite differences
+%% FUNCTION 79  (with different initial points)- with exact derivatives and finite differences- QUADRATIC TERM OF CONVERGENCE
 
 sparse=true;
 
-F = @(x) F16(x);  % Defining F16 as function handle
-JF_gen = @(x,exact,fin_dif2,h) JF16(x,exact,fin_dif2,h); % Defining JF16 as function handle 
-HF_gen= @(x,exact,fin_dif2,h) HF16(x,sparse,exact,fin_dif2,h); % Defining HF16 as function handle (sparse version)
+F = @(x) F79(x);  % Defining F79 as function handle
+JF_gen = @(x,exact,fin_dif2,h) JF79(x,exact,fin_dif2,h); % Defining JF79 as function handle 
+HF_gen= @(x,exact,fin_dif2,h) HF79(x,sparse,exact,fin_dif2,h); % Defining HF79 as function handle (sparse version)
 
 load forcing_terms.mat % possible terms for adaptive tolerance 
 
@@ -25,7 +25,7 @@ c1=1e-4;
 rho=0.50;
 btmax=50; % compatible with rho (with alpha0=1 you get min_step 8.8e-16)
 
-x0 = ones(n, 1); % initial point
+x0=-1*ones(n,1);  % initial point
 N=10; % number of initial points to be generated
 
 % Initial points:
@@ -74,7 +74,7 @@ for j =1:N+1
 
     % EXACT DERIVATIVES
     tic;
-    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1,flag1, converged1, violations1] = truncated_newton(Mat_points(:,j), F, JF_ex, HF_ex, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1,flag1, converged1, violations1] = truncated_newton(Mat_points(:,j), F, JF_ex, HF_ex, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
     vec_times1_ex(j)=toc;
 
     disp(['Exact derivatives: ',flag1]) 
@@ -92,7 +92,7 @@ for j =1:N+1
     JF=@(x)JF_fd1(x,h);
     HF=@(x)HF_fd1(x,h);
     tic;
-    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1,flag1, converged1, violations1] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1,flag1, converged1, violations1] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
     mat_times1_fd1(i/2,j)=toc;
 
     disp(['Finite differences (classical version) with h=1e-',num2str(i),' : ',flag1]) 
@@ -108,7 +108,7 @@ for j =1:N+1
     JF=@(x) JF_fd2(x,h);
     HF=@(x) HF_fd2(x,h);
     tic;
-    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1,flag1, converged1, violations1] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1,flag1, converged1, violations1] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
     mat_times1_fd2(i/2,j)=toc;
 
     disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag1]) 
@@ -136,7 +136,7 @@ rng(345989);
 n=1e4; 
 
 kmax=1.5e3; % maximum number of iterations of Newton method
-tolgrad=1e-5; % tolerance on gradient norm %%%%%%%%%%%%%%%%%%%% decide if we want to keep the tolerance 5e-7
+tolgrad=5e-7; % tolerance on gradient norm
 
 cg_maxit=100; % maximum number of iterations of coniugate gradient method (for the linear system)
 z0=zeros(n,1); % initial point of coniugate gradient method (for the linear system)
@@ -146,7 +146,7 @@ c1=1e-4;
 rho=0.50;
 btmax=50; % compatible with rho (with alpha0=1 you get min_step 8.8e-16)
 
-x0 = ones(n, 1);  % initial point
+x0=-1*ones(n,1);  % initial point
 N=10; % number of initial points to be generated
 
 % Initial points:
@@ -195,7 +195,7 @@ for j =1:N+1
 
     % EXACT DERIVATIVES
     tic;
-    [x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2,flag2, converged2, violations2] = truncated_newton(Mat_points(:,j), F, JF_ex, HF_ex, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    [x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2,flag2, converged2, violations2] = truncated_newton(Mat_points(:,j), F, JF_ex, HF_ex, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
     vec_times2_ex(j)=toc;
 
     disp(['Exact derivatives: ',flag2]) 
@@ -213,7 +213,7 @@ for j =1:N+1
     JF=@(x)JF_fd1(x,h);
     HF=@(x)HF_fd1(x,h);
     tic;
-    [x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2,flag2, converged2, violations2] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    [x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2,flag2, converged2, violations2] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
     mat_times2_fd1(i/2,j)=toc;
 
     disp(['Finite differences (classical version) with h=1e-',num2str(i),' : ',flag2]) 
@@ -229,7 +229,7 @@ for j =1:N+1
     JF=@(x) JF_fd2(x,h);
     HF=@(x) HF_fd2(x,h);
     tic;
-    [x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2,flag2, converged2, violations2] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    [x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2,flag2, converged2, violations2] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
     vec_times2_fd2(i/2,j)=toc;
 
     disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag2]) 
@@ -258,7 +258,7 @@ rng(345989);
 n=1e5; 
 
 kmax=1.5e3; % maximum number of iterations of Newton method
-tolgrad=5e-4; % tolerance on gradient norm
+tolgrad=5e-7; % tolerance on gradient norm
 
 cg_maxit=100; % maximum number of iterations of coniugate gradient method (for the linear system)
 z0=zeros(n,1); % initial point of coniugate gradient method (for the linear system)
@@ -268,7 +268,7 @@ c1=1e-4;
 rho=0.50;
 btmax=50; % compatible with rho (with alpha0=1 you get min_step 8.8e-16)
 
-x0 = ones(n, 1);  % initial point
+x0=-1*ones(n,1);  % initial point
 N=10; % number of initial points to be generated
 
 % Initial points:
@@ -317,7 +317,7 @@ for j =1:N+1
 
     % EXACT DERIVATIVES
     tic;
-    [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3,flag3, converged3, violations3] = truncated_newton(Mat_points(:,j), F, JF_ex, HF_ex, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3,flag3, converged3, violations3] = truncated_newton(Mat_points(:,j), F, JF_ex, HF_ex, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
     vec_times3_ex(j)=toc;
 
     disp(['Exact derivatives: ',flag3]) 
@@ -335,7 +335,7 @@ for j =1:N+1
     JF=@(x)JF_fd1(x,h);
     HF=@(x)HF_fd1(x,h);
     tic;
-    [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3,flag3, converged3, violations3] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3,flag3, converged3, violations3] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
     mat_times2_fd1(i/2,j)=toc;
 
     disp(['Finite differences (classical version) with h=1e-',num2str(i),' : ',flag3]) 
@@ -351,16 +351,16 @@ for j =1:N+1
     JF=@(x) JF_fd2(x,h);
     HF=@(x) HF_fd2(x,h);
     tic;
-    [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3,flag3, converged3, violations3] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
-    vec_times3_fd2(i/2,j)=toc;
+    [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3,flag3, converged3, violations3] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
+    vec_times3_fd2(i,j)=toc;
 
     disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag3]) 
-    vec_converged3_fd2(i/2,j)=converged3;
+    vec_converged3_fd2(i,j)=converged3;
     %conv_ord3(end-10:end) %aggiustare
-    vec_val3_fd2(i/2,j)=f3;
-    vec_grad3_fd2(i/2,j)=gradf_norm3;
-    vec_iter3_fd2(i/2,j)=k3;
-    vec_violations3_fd2(i/2,j)=violations3;
+    vec_val3_fd2(i,j)=f3;
+    vec_grad3_fd2(i,j)=gradf_norm3;
+    vec_iter3_fd2(i,j)=k3;
+    vec_violations3_fd2(i,j)=violations3;
 
     end
 end

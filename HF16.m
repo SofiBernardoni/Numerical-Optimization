@@ -12,7 +12,8 @@ if sparse %sparse version
      HF=spdiags(D,0,n,n);%exact version
     if ~exact %approximation with finite difference (not exact)
         if fin_dif_2 % version of finite differences with abs(xj)
-           vec_diag=((1-cos(h*abs(x)))./(x.^2))/(h^2);
+           %vec_diag=((1-cos(h*abs(x)))./(x.^2))/(h^2); % no taylor expansion
+           vec_diag= 1-(h^2)*(x.^2)/12 ; % with taylor expansion
            new_diag=vec_diag.*diag(HF,0);
            HF=spdiags(new_diag,0,n,n); 
         else % classic version of finite differences
@@ -24,7 +25,8 @@ else % NOT sparse version
     HF=diag(D); %exact version
     if ~exact %approximation with finite difference (not exact)
        if fin_dif_2 % version of finite differences with abs(xj)
-           vec_diag=((1-cos(h*abs(x)))./(x.^2))/(h^2);
+           % vec_diag=((1-cos(h*abs(x)))./(x.^2))/(h^2); % no taylor expansion
+           vec_diag= 1-(h^2)*(x.^2)/12 ; % with taylor expansion
            HF=diag(vec_diag.*diag(HF)); 
        else % classic version of finite differences
            HF=(1-(h^2)/12)*HF; % as h is small i use cos(h) taylor expansion to avoid numerical cancellation
