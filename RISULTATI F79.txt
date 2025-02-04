@@ -1,0 +1,982 @@
+RISULTATI F79
+
+CASO CON FTERMS_SUPLIN
+
+Condizione iniziale n. 1
+Exact derivatives: Procedure stopped in 1095 steps, with gradient norm 4.9902e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1095 steps, with gradient norm 4.9987e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1096 steps, with gradient norm 4.9149e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1095 steps, with gradient norm 4.9902e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1095 steps, with gradient norm 4.9902e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1095 steps, with gradient norm 4.9902e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1095 steps, with gradient norm 4.9902e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1095 steps, with gradient norm 4.9902e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1095 steps, with gradient norm 4.9902e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1095 steps, with gradient norm 4.9902e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1095 steps, with gradient norm 4.9902e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1095 steps, with gradient norm 4.9902e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1095 steps, with gradient norm 4.9902e-07
+Condizione iniziale n. 2
+Exact derivatives: Procedure stopped in 1063 steps, with gradient norm 4.917e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1064 steps, with gradient norm 4.9476e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1063 steps, with gradient norm 4.9846e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1063 steps, with gradient norm 4.9179e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1063 steps, with gradient norm 4.9174e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1063 steps, with gradient norm 4.917e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1063 steps, with gradient norm 4.917e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1063 steps, with gradient norm 4.917e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1063 steps, with gradient norm 4.917e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1063 steps, with gradient norm 4.917e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1063 steps, with gradient norm 4.917e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1063 steps, with gradient norm 4.917e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1063 steps, with gradient norm 4.917e-07
+Condizione iniziale n. 3
+Exact derivatives: Procedure stopped in 1037 steps, with gradient norm 4.9602e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1062 steps, with gradient norm 4.9797e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1062 steps, with gradient norm 4.9717e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1052 steps, with gradient norm 4.9408e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1034 steps, with gradient norm 4.9505e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1037 steps, with gradient norm 4.9712e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1037 steps, with gradient norm 4.966e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1037 steps, with gradient norm 4.9603e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1037 steps, with gradient norm 4.9602e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1037 steps, with gradient norm 4.9602e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1037 steps, with gradient norm 4.9602e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1037 steps, with gradient norm 4.9602e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1037 steps, with gradient norm 4.9602e-07
+Condizione iniziale n. 4
+Exact derivatives: Procedure stopped in 1063 steps, with gradient norm 4.9298e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1064 steps, with gradient norm 4.9897e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1064 steps, with gradient norm 4.986e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1063 steps, with gradient norm 4.9341e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1063 steps, with gradient norm 4.9319e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1063 steps, with gradient norm 4.9299e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1063 steps, with gradient norm 4.9298e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1063 steps, with gradient norm 4.9298e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1063 steps, with gradient norm 4.9298e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1063 steps, with gradient norm 4.9298e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1063 steps, with gradient norm 4.9298e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1063 steps, with gradient norm 4.9298e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1063 steps, with gradient norm 4.9298e-07
+Condizione iniziale n. 5
+Exact derivatives: Procedure stopped in 1077 steps, with gradient norm 4.9561e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1077 steps, with gradient norm 4.936e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1077 steps, with gradient norm 4.9514e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1077 steps, with gradient norm 4.9558e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1077 steps, with gradient norm 4.9559e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1077 steps, with gradient norm 4.9561e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1077 steps, with gradient norm 4.9561e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1077 steps, with gradient norm 4.9561e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1077 steps, with gradient norm 4.9561e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1077 steps, with gradient norm 4.9561e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1077 steps, with gradient norm 4.9561e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1077 steps, with gradient norm 4.9561e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1077 steps, with gradient norm 4.9561e-07
+Condizione iniziale n. 6
+Exact derivatives: Procedure stopped in 1080 steps, with gradient norm 4.9405e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1080 steps, with gradient norm 4.9429e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1080 steps, with gradient norm 4.948e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1080 steps, with gradient norm 4.9405e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1080 steps, with gradient norm 4.9405e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1080 steps, with gradient norm 4.9405e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1080 steps, with gradient norm 4.9405e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1080 steps, with gradient norm 4.9405e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1080 steps, with gradient norm 4.9405e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1080 steps, with gradient norm 4.9405e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1080 steps, with gradient norm 4.9405e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1080 steps, with gradient norm 4.9405e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1080 steps, with gradient norm 4.9405e-07
+Condizione iniziale n. 7
+Exact derivatives: Procedure stopped in 1081 steps, with gradient norm 4.9136e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1080 steps, with gradient norm 4.9772e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1080 steps, with gradient norm 4.9918e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1081 steps, with gradient norm 4.9133e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1081 steps, with gradient norm 4.9134e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1081 steps, with gradient norm 4.9135e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1081 steps, with gradient norm 4.9136e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1081 steps, with gradient norm 4.9136e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1081 steps, with gradient norm 4.9136e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1081 steps, with gradient norm 4.9136e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1081 steps, with gradient norm 4.9136e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1081 steps, with gradient norm 4.9136e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1081 steps, with gradient norm 4.9136e-07
+Condizione iniziale n. 8
+Exact derivatives: Procedure stopped in 1086 steps, with gradient norm 4.976e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1086 steps, with gradient norm 4.991e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1086 steps, with gradient norm 4.991e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1086 steps, with gradient norm 4.976e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1086 steps, with gradient norm 4.976e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1086 steps, with gradient norm 4.976e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1086 steps, with gradient norm 4.976e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1086 steps, with gradient norm 4.976e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1086 steps, with gradient norm 4.976e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1086 steps, with gradient norm 4.976e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1086 steps, with gradient norm 4.976e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1086 steps, with gradient norm 4.976e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1086 steps, with gradient norm 4.976e-07
+Condizione iniziale n. 9
+Exact derivatives: Procedure stopped in 1078 steps, with gradient norm 4.9239e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1078 steps, with gradient norm 4.9182e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1078 steps, with gradient norm 4.9298e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1078 steps, with gradient norm 4.9239e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1078 steps, with gradient norm 4.9239e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1078 steps, with gradient norm 4.9239e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1078 steps, with gradient norm 4.9239e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1078 steps, with gradient norm 4.9239e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1078 steps, with gradient norm 4.9239e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1078 steps, with gradient norm 4.9239e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1078 steps, with gradient norm 4.9239e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1078 steps, with gradient norm 4.9239e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1078 steps, with gradient norm 4.9239e-07
+Condizione iniziale n. 10
+Exact derivatives: Procedure stopped in 1072 steps, with gradient norm 4.97e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1073 steps, with gradient norm 4.9598e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1073 steps, with gradient norm 4.9307e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1072 steps, with gradient norm 4.9706e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1072 steps, with gradient norm 4.9703e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1072 steps, with gradient norm 4.97e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1072 steps, with gradient norm 4.97e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1072 steps, with gradient norm 4.97e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1072 steps, with gradient norm 4.97e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1072 steps, with gradient norm 4.97e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1072 steps, with gradient norm 4.97e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1072 steps, with gradient norm 4.97e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1072 steps, with gradient norm 4.97e-07
+Condizione iniziale n. 11
+Exact derivatives: Procedure stopped in 1063 steps, with gradient norm 4.9615e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1052 steps, with gradient norm 4.9622e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1025 steps, with gradient norm 4.9425e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1063 steps, with gradient norm 4.9638e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1063 steps, with gradient norm 4.9628e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1063 steps, with gradient norm 4.9615e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1063 steps, with gradient norm 4.9615e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1063 steps, with gradient norm 4.9615e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1063 steps, with gradient norm 4.9615e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1063 steps, with gradient norm 4.9615e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1063 steps, with gradient norm 4.9615e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1063 steps, with gradient norm 4.9615e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1063 steps, with gradient norm 4.9615e-07
+>> 
+>> conv_ord1(end-10:end)
+
+ans =
+
+    0.9996    1.0003    0.9996    1.0003    0.9996    1.0003    0.9996    1.0003    0.9996    1.0003    0.9996
+
+
+
+Condizione iniziale n. 1
+Exact derivatives: Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-2 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-2 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-4 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-4 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-6 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-6 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-8 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-8 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-10 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-10 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-12 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-12 : Procedure stopped because the Armijo condition was NOT satisfied
+Condizione iniziale n. 2
+Exact derivatives: Procedure stopped in 1128 steps, with gradient norm 4.9841e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1137 steps, with gradient norm 4.9695e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1094 steps, with gradient norm 4.9323e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1128 steps, with gradient norm 4.9759e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1128 steps, with gradient norm 4.98e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1128 steps, with gradient norm 4.984e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1128 steps, with gradient norm 4.984e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1128 steps, with gradient norm 4.9841e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1128 steps, with gradient norm 4.9841e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1128 steps, with gradient norm 4.9841e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1128 steps, with gradient norm 4.9841e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1128 steps, with gradient norm 4.9841e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1128 steps, with gradient norm 4.9841e-07
+Condizione iniziale n. 3
+Exact derivatives: Procedure stopped in 1134 steps, with gradient norm 4.9879e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1134 steps, with gradient norm 4.9766e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1134 steps, with gradient norm 4.9896e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1134 steps, with gradient norm 4.9878e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1134 steps, with gradient norm 4.9879e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1134 steps, with gradient norm 4.9879e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1134 steps, with gradient norm 4.9879e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1134 steps, with gradient norm 4.9879e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1134 steps, with gradient norm 4.9879e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1134 steps, with gradient norm 4.9879e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1134 steps, with gradient norm 4.9879e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1134 steps, with gradient norm 4.9879e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1134 steps, with gradient norm 4.9879e-07
+Condizione iniziale n. 4
+Exact derivatives: Procedure stopped in 1133 steps, with gradient norm 4.9182e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1132 steps, with gradient norm 4.9904e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1133 steps, with gradient norm 4.9183e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1133 steps, with gradient norm 4.918e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1133 steps, with gradient norm 4.9181e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1133 steps, with gradient norm 4.9182e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1133 steps, with gradient norm 4.9182e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1133 steps, with gradient norm 4.9182e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1133 steps, with gradient norm 4.9182e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1133 steps, with gradient norm 4.9182e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1133 steps, with gradient norm 4.9182e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1133 steps, with gradient norm 4.9182e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1133 steps, with gradient norm 4.9182e-07
+Condizione iniziale n. 5
+Exact derivatives: Procedure stopped in 1135 steps, with gradient norm 4.9812e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1135 steps, with gradient norm 4.9879e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1135 steps, with gradient norm 4.9931e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1135 steps, with gradient norm 4.9812e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1135 steps, with gradient norm 4.9812e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1135 steps, with gradient norm 4.9812e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1135 steps, with gradient norm 4.9812e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1135 steps, with gradient norm 4.9812e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1135 steps, with gradient norm 4.9812e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1135 steps, with gradient norm 4.9812e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1135 steps, with gradient norm 4.9812e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1135 steps, with gradient norm 4.9812e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1135 steps, with gradient norm 4.9812e-07
+Condizione iniziale n. 6
+Exact derivatives: Procedure stopped in 1136 steps, with gradient norm 4.9361e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1136 steps, with gradient norm 4.9324e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1136 steps, with gradient norm 4.9422e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1136 steps, with gradient norm 4.936e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1136 steps, with gradient norm 4.936e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1136 steps, with gradient norm 4.9361e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1136 steps, with gradient norm 4.9361e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1136 steps, with gradient norm 4.9361e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1136 steps, with gradient norm 4.9361e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1136 steps, with gradient norm 4.9361e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1136 steps, with gradient norm 4.9361e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1136 steps, with gradient norm 4.9361e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1136 steps, with gradient norm 4.9361e-07
+Condizione iniziale n. 7
+Exact derivatives: Procedure stopped in 1135 steps, with gradient norm 4.9306e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1135 steps, with gradient norm 4.9374e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1135 steps, with gradient norm 4.9426e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1135 steps, with gradient norm 4.9306e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1135 steps, with gradient norm 4.9306e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1135 steps, with gradient norm 4.9306e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1135 steps, with gradient norm 4.9306e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1135 steps, with gradient norm 4.9306e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1135 steps, with gradient norm 4.9306e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1135 steps, with gradient norm 4.9306e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1135 steps, with gradient norm 4.9306e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1135 steps, with gradient norm 4.9306e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1135 steps, with gradient norm 4.9306e-07
+Condizione iniziale n. 8
+Exact derivatives: Procedure stopped in 1134 steps, with gradient norm 4.931e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1134 steps, with gradient norm 4.916e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1134 steps, with gradient norm 4.931e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1134 steps, with gradient norm 4.9308e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1134 steps, with gradient norm 4.9309e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1134 steps, with gradient norm 4.931e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1134 steps, with gradient norm 4.931e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1134 steps, with gradient norm 4.931e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1134 steps, with gradient norm 4.931e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1134 steps, with gradient norm 4.931e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1134 steps, with gradient norm 4.931e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1134 steps, with gradient norm 4.931e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1134 steps, with gradient norm 4.931e-07
+Condizione iniziale n. 9
+Exact derivatives: Procedure stopped in 1135 steps, with gradient norm 4.9874e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1135 steps, with gradient norm 4.9887e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1135 steps, with gradient norm 4.9966e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1135 steps, with gradient norm 4.9873e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1135 steps, with gradient norm 4.9873e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1135 steps, with gradient norm 4.9874e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1135 steps, with gradient norm 4.9874e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1135 steps, with gradient norm 4.9874e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1135 steps, with gradient norm 4.9874e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1135 steps, with gradient norm 4.9874e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1135 steps, with gradient norm 4.9874e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1135 steps, with gradient norm 4.9874e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1135 steps, with gradient norm 4.9874e-07
+Condizione iniziale n. 10
+Exact derivatives: Procedure stopped in 1136 steps, with gradient norm 4.9765e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1136 steps, with gradient norm 4.9677e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1136 steps, with gradient norm 4.9792e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1136 steps, with gradient norm 4.9764e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1136 steps, with gradient norm 4.9764e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1136 steps, with gradient norm 4.9765e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1136 steps, with gradient norm 4.9765e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1136 steps, with gradient norm 4.9765e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1136 steps, with gradient norm 4.9765e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1136 steps, with gradient norm 4.9765e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1136 steps, with gradient norm 4.9765e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1136 steps, with gradient norm 4.9765e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1136 steps, with gradient norm 4.9765e-07
+Condizione iniziale n. 11
+Exact derivatives: Procedure stopped in 1134 steps, with gradient norm 4.9692e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1134 steps, with gradient norm 4.9546e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1134 steps, with gradient norm 4.9687e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1134 steps, with gradient norm 4.969e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1134 steps, with gradient norm 4.9691e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1134 steps, with gradient norm 4.9692e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1134 steps, with gradient norm 4.9692e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1134 steps, with gradient norm 4.9692e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1134 steps, with gradient norm 4.9692e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1134 steps, with gradient norm 4.9692e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1134 steps, with gradient norm 4.9692e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1134 steps, with gradient norm 4.9692e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1134 steps, with gradient norm 4.9692e-07
+
+
+
+
+
+
+Condizione iniziale n. 1
+Exact derivatives: Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-2 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-2 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-4 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-4 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-6 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-6 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-8 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-8 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-10 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-10 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-12 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-12 : Procedure stopped because the Armijo condition was NOT satisfied
+Condizione iniziale n. 2
+Exact derivatives: Procedure stopped in 1198 steps, with gradient norm 4.9428e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1198 steps, with gradient norm 4.9378e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1198 steps, with gradient norm 4.9492e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1198 steps, with gradient norm 4.9427e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1198 steps, with gradient norm 4.9427e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1198 steps, with gradient norm 4.9428e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1198 steps, with gradient norm 4.9428e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1198 steps, with gradient norm 4.9428e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1198 steps, with gradient norm 4.9428e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1198 steps, with gradient norm 4.9428e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1198 steps, with gradient norm 4.9428e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1198 steps, with gradient norm 4.9428e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1198 steps, with gradient norm 4.9428e-07
+Condizione iniziale n. 3
+Exact derivatives: Procedure stopped in 1198 steps, with gradient norm 4.9325e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1198 steps, with gradient norm 4.9291e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1198 steps, with gradient norm 4.9395e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1198 steps, with gradient norm 4.9324e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1198 steps, with gradient norm 4.9325e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1198 steps, with gradient norm 4.9325e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1198 steps, with gradient norm 4.9325e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1198 steps, with gradient norm 4.9325e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1198 steps, with gradient norm 4.9325e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1198 steps, with gradient norm 4.9325e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1198 steps, with gradient norm 4.9325e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1198 steps, with gradient norm 4.9325e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1198 steps, with gradient norm 4.9325e-07
+Condizione iniziale n. 4
+Exact derivatives: Procedure stopped in 1198 steps, with gradient norm 4.934e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1198 steps, with gradient norm 4.9256e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1198 steps, with gradient norm 4.9385e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1198 steps, with gradient norm 4.9339e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1198 steps, with gradient norm 4.934e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1198 steps, with gradient norm 4.934e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1198 steps, with gradient norm 4.934e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1198 steps, with gradient norm 4.934e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1198 steps, with gradient norm 4.934e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1198 steps, with gradient norm 4.934e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1198 steps, with gradient norm 4.934e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1198 steps, with gradient norm 4.934e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1198 steps, with gradient norm 4.934e-07
+Condizione iniziale n. 5
+Exact derivatives: Procedure stopped in 1198 steps, with gradient norm 4.9452e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1198 steps, with gradient norm 4.9469e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1198 steps, with gradient norm 4.9552e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1198 steps, with gradient norm 4.9451e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1198 steps, with gradient norm 4.9451e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1198 steps, with gradient norm 4.9452e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1198 steps, with gradient norm 4.9452e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1198 steps, with gradient norm 4.9452e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1198 steps, with gradient norm 4.9452e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1198 steps, with gradient norm 4.9452e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1198 steps, with gradient norm 4.9452e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1198 steps, with gradient norm 4.9452e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1198 steps, with gradient norm 4.9452e-07
+Condizione iniziale n. 6
+Exact derivatives: Procedure stopped in 1197 steps, with gradient norm 4.9177e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1196 steps, with gradient norm 4.9954e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1197 steps, with gradient norm 4.9197e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1197 steps, with gradient norm 4.9175e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1197 steps, with gradient norm 4.9176e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1197 steps, with gradient norm 4.9177e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1197 steps, with gradient norm 4.9177e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1197 steps, with gradient norm 4.9177e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1197 steps, with gradient norm 4.9177e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1197 steps, with gradient norm 4.9177e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1197 steps, with gradient norm 4.9177e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1197 steps, with gradient norm 4.9177e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1197 steps, with gradient norm 4.9177e-07
+Condizione iniziale n. 7
+Exact derivatives: Procedure stopped in 1197 steps, with gradient norm 4.9217e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1196 steps, with gradient norm 4.9971e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1197 steps, with gradient norm 4.9223e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1197 steps, with gradient norm 4.9215e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1197 steps, with gradient norm 4.9216e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1197 steps, with gradient norm 4.9217e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1197 steps, with gradient norm 4.9217e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1197 steps, with gradient norm 4.9217e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1197 steps, with gradient norm 4.9217e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1197 steps, with gradient norm 4.9217e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1197 steps, with gradient norm 4.9217e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1197 steps, with gradient norm 4.9217e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1197 steps, with gradient norm 4.9217e-07
+Condizione iniziale n. 8
+Exact derivatives: Procedure stopped in 1197 steps, with gradient norm 4.9709e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1197 steps, with gradient norm 4.9626e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1197 steps, with gradient norm 4.9753e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1197 steps, with gradient norm 4.9708e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1197 steps, with gradient norm 4.9708e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1197 steps, with gradient norm 4.9709e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1197 steps, with gradient norm 4.9709e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1197 steps, with gradient norm 4.9709e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1197 steps, with gradient norm 4.9709e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1197 steps, with gradient norm 4.9709e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1197 steps, with gradient norm 4.9709e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1197 steps, with gradient norm 4.9709e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1197 steps, with gradient norm 4.9709e-07
+Condizione iniziale n. 9
+Exact derivatives: Procedure stopped in 1197 steps, with gradient norm 4.9737e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1197 steps, with gradient norm 4.9691e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1197 steps, with gradient norm 4.9802e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1197 steps, with gradient norm 4.9736e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1197 steps, with gradient norm 4.9737e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1197 steps, with gradient norm 4.9737e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1197 steps, with gradient norm 4.9737e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1197 steps, with gradient norm 4.9737e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1197 steps, with gradient norm 4.9737e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1197 steps, with gradient norm 4.9737e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1197 steps, with gradient norm 4.9737e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1197 steps, with gradient norm 4.9737e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1197 steps, with gradient norm 4.9737e-07
+Condizione iniziale n. 10
+Exact derivatives: Procedure stopped in 1197 steps, with gradient norm 4.9498e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1197 steps, with gradient norm 4.9388e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1197 steps, with gradient norm 4.9529e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1197 steps, with gradient norm 4.9496e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1197 steps, with gradient norm 4.9497e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1197 steps, with gradient norm 4.9498e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1197 steps, with gradient norm 4.9498e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1197 steps, with gradient norm 4.9498e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1197 steps, with gradient norm 4.9498e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1197 steps, with gradient norm 4.9498e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1197 steps, with gradient norm 4.9498e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1197 steps, with gradient norm 4.9498e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1197 steps, with gradient norm 4.9498e-07
+Condizione iniziale n. 11
+Exact derivatives: Procedure stopped in 1198 steps, with gradient norm 4.95e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1198 steps, with gradient norm 4.9483e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1198 steps, with gradient norm 4.9583e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1198 steps, with gradient norm 4.9499e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1198 steps, with gradient norm 4.9499e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1198 steps, with gradient norm 4.95e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1198 steps, with gradient norm 4.95e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1198 steps, with gradient norm 4.95e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1198 steps, with gradient norm 4.95e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1198 steps, with gradient norm 4.95e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1198 steps, with gradient norm 4.95e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1198 steps, with gradient norm 4.95e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1198 steps, with gradient norm 4.95e-07
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CASO CON FTERMS_QUAD
+
+Condizione iniziale n. 1
+Exact derivatives: Procedure stopped in 1095 steps, with gradient norm 4.9902e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1095 steps, with gradient norm 4.9987e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1096 steps, with gradient norm 4.9149e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1095 steps, with gradient norm 4.9902e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1095 steps, with gradient norm 4.9902e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1095 steps, with gradient norm 4.9902e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1095 steps, with gradient norm 4.9902e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1095 steps, with gradient norm 4.9902e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1095 steps, with gradient norm 4.9902e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1095 steps, with gradient norm 4.9902e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1095 steps, with gradient norm 4.9902e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1095 steps, with gradient norm 4.9902e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1095 steps, with gradient norm 4.9902e-07
+Condizione iniziale n. 2
+Exact derivatives: Procedure stopped in 1063 steps, with gradient norm 4.917e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1064 steps, with gradient norm 4.9476e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1063 steps, with gradient norm 4.9846e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1063 steps, with gradient norm 4.9179e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1063 steps, with gradient norm 4.9174e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1063 steps, with gradient norm 4.917e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1063 steps, with gradient norm 4.917e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1063 steps, with gradient norm 4.917e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1063 steps, with gradient norm 4.917e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1063 steps, with gradient norm 4.917e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1063 steps, with gradient norm 4.917e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1063 steps, with gradient norm 4.917e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1063 steps, with gradient norm 4.917e-07
+Condizione iniziale n. 3
+Exact derivatives: Procedure stopped in 1037 steps, with gradient norm 4.9602e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1062 steps, with gradient norm 4.9797e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1062 steps, with gradient norm 4.9717e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1052 steps, with gradient norm 4.9408e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1034 steps, with gradient norm 4.9505e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1037 steps, with gradient norm 4.9712e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1037 steps, with gradient norm 4.966e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1037 steps, with gradient norm 4.9603e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1037 steps, with gradient norm 4.9602e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1037 steps, with gradient norm 4.9602e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1037 steps, with gradient norm 4.9602e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1037 steps, with gradient norm 4.9602e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1037 steps, with gradient norm 4.9602e-07
+Condizione iniziale n. 4
+Exact derivatives: Procedure stopped in 1063 steps, with gradient norm 4.9298e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1064 steps, with gradient norm 4.9897e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1064 steps, with gradient norm 4.986e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1063 steps, with gradient norm 4.9341e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1063 steps, with gradient norm 4.9319e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1063 steps, with gradient norm 4.9299e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1063 steps, with gradient norm 4.9298e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1063 steps, with gradient norm 4.9298e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1063 steps, with gradient norm 4.9298e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1063 steps, with gradient norm 4.9298e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1063 steps, with gradient norm 4.9298e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1063 steps, with gradient norm 4.9298e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1063 steps, with gradient norm 4.9298e-07
+Condizione iniziale n. 5
+Exact derivatives: Procedure stopped in 1077 steps, with gradient norm 4.9561e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1077 steps, with gradient norm 4.936e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1077 steps, with gradient norm 4.9514e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1077 steps, with gradient norm 4.9558e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1077 steps, with gradient norm 4.9559e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1077 steps, with gradient norm 4.9561e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1077 steps, with gradient norm 4.9561e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1077 steps, with gradient norm 4.9561e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1077 steps, with gradient norm 4.9561e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1077 steps, with gradient norm 4.9561e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1077 steps, with gradient norm 4.9561e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1077 steps, with gradient norm 4.9561e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1077 steps, with gradient norm 4.9561e-07
+Condizione iniziale n. 6
+Exact derivatives: Procedure stopped in 1080 steps, with gradient norm 4.9405e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1080 steps, with gradient norm 4.9429e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1080 steps, with gradient norm 4.948e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1080 steps, with gradient norm 4.9405e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1080 steps, with gradient norm 4.9405e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1080 steps, with gradient norm 4.9405e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1080 steps, with gradient norm 4.9405e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1080 steps, with gradient norm 4.9405e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1080 steps, with gradient norm 4.9405e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1080 steps, with gradient norm 4.9405e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1080 steps, with gradient norm 4.9405e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1080 steps, with gradient norm 4.9405e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1080 steps, with gradient norm 4.9405e-07
+Condizione iniziale n. 7
+Exact derivatives: Procedure stopped in 1081 steps, with gradient norm 4.9136e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1080 steps, with gradient norm 4.9772e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1080 steps, with gradient norm 4.9918e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1081 steps, with gradient norm 4.9133e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1081 steps, with gradient norm 4.9134e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1081 steps, with gradient norm 4.9135e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1081 steps, with gradient norm 4.9136e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1081 steps, with gradient norm 4.9136e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1081 steps, with gradient norm 4.9136e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1081 steps, with gradient norm 4.9136e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1081 steps, with gradient norm 4.9136e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1081 steps, with gradient norm 4.9136e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1081 steps, with gradient norm 4.9136e-07
+Condizione iniziale n. 8
+Exact derivatives: Procedure stopped in 1086 steps, with gradient norm 4.976e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1086 steps, with gradient norm 4.991e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1086 steps, with gradient norm 4.991e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1086 steps, with gradient norm 4.976e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1086 steps, with gradient norm 4.976e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1086 steps, with gradient norm 4.976e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1086 steps, with gradient norm 4.976e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1086 steps, with gradient norm 4.976e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1086 steps, with gradient norm 4.976e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1086 steps, with gradient norm 4.976e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1086 steps, with gradient norm 4.976e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1086 steps, with gradient norm 4.976e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1086 steps, with gradient norm 4.976e-07
+Condizione iniziale n. 9
+Exact derivatives: Procedure stopped in 1078 steps, with gradient norm 4.9239e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1078 steps, with gradient norm 4.9182e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1078 steps, with gradient norm 4.9298e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1078 steps, with gradient norm 4.9239e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1078 steps, with gradient norm 4.9239e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1078 steps, with gradient norm 4.9239e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1078 steps, with gradient norm 4.9239e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1078 steps, with gradient norm 4.9239e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1078 steps, with gradient norm 4.9239e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1078 steps, with gradient norm 4.9239e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1078 steps, with gradient norm 4.9239e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1078 steps, with gradient norm 4.9239e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1078 steps, with gradient norm 4.9239e-07
+Condizione iniziale n. 10
+Exact derivatives: Procedure stopped in 1072 steps, with gradient norm 4.97e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1073 steps, with gradient norm 4.9598e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1073 steps, with gradient norm 4.9307e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1072 steps, with gradient norm 4.9706e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1072 steps, with gradient norm 4.9703e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1072 steps, with gradient norm 4.97e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1072 steps, with gradient norm 4.97e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1072 steps, with gradient norm 4.97e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1072 steps, with gradient norm 4.97e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1072 steps, with gradient norm 4.97e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1072 steps, with gradient norm 4.97e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1072 steps, with gradient norm 4.97e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1072 steps, with gradient norm 4.97e-07
+Condizione iniziale n. 11
+Exact derivatives: Procedure stopped in 1063 steps, with gradient norm 4.9615e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1052 steps, with gradient norm 4.9622e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1025 steps, with gradient norm 4.9425e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1063 steps, with gradient norm 4.9638e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1063 steps, with gradient norm 4.9628e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1063 steps, with gradient norm 4.9615e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1063 steps, with gradient norm 4.9615e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1063 steps, with gradient norm 4.9615e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1063 steps, with gradient norm 4.9615e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1063 steps, with gradient norm 4.9615e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1063 steps, with gradient norm 4.9615e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1063 steps, with gradient norm 4.9615e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1063 steps, with gradient norm 4.9615e-07
+>> 
+>> 
+Condizione iniziale n. 1
+Exact derivatives: Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-2 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-2 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-4 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-4 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-6 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-6 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-8 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-8 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-10 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-10 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-12 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-12 : Procedure stopped because the Armijo condition was NOT satisfied
+Condizione iniziale n. 2
+Exact derivatives: Procedure stopped in 1128 steps, with gradient norm 4.9841e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1137 steps, with gradient norm 4.9695e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1094 steps, with gradient norm 4.9323e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1128 steps, with gradient norm 4.9759e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1128 steps, with gradient norm 4.98e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1128 steps, with gradient norm 4.984e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1128 steps, with gradient norm 4.984e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1128 steps, with gradient norm 4.9841e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1128 steps, with gradient norm 4.9841e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1128 steps, with gradient norm 4.9841e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1128 steps, with gradient norm 4.9841e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1128 steps, with gradient norm 4.9841e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1128 steps, with gradient norm 4.9841e-07
+Condizione iniziale n. 3
+Exact derivatives: Procedure stopped in 1134 steps, with gradient norm 4.9879e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1134 steps, with gradient norm 4.9766e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1134 steps, with gradient norm 4.9896e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1134 steps, with gradient norm 4.9878e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1134 steps, with gradient norm 4.9879e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1134 steps, with gradient norm 4.9879e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1134 steps, with gradient norm 4.9879e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1134 steps, with gradient norm 4.9879e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1134 steps, with gradient norm 4.9879e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1134 steps, with gradient norm 4.9879e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1134 steps, with gradient norm 4.9879e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1134 steps, with gradient norm 4.9879e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1134 steps, with gradient norm 4.9879e-07
+Condizione iniziale n. 4
+Exact derivatives: Procedure stopped in 1133 steps, with gradient norm 4.9182e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1132 steps, with gradient norm 4.9904e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1133 steps, with gradient norm 4.9183e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1133 steps, with gradient norm 4.918e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1133 steps, with gradient norm 4.9181e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1133 steps, with gradient norm 4.9182e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1133 steps, with gradient norm 4.9182e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1133 steps, with gradient norm 4.9182e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1133 steps, with gradient norm 4.9182e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1133 steps, with gradient norm 4.9182e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1133 steps, with gradient norm 4.9182e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1133 steps, with gradient norm 4.9182e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1133 steps, with gradient norm 4.9182e-07
+Condizione iniziale n. 5
+Exact derivatives: Procedure stopped in 1135 steps, with gradient norm 4.9812e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1135 steps, with gradient norm 4.9879e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1135 steps, with gradient norm 4.9931e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1135 steps, with gradient norm 4.9812e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1135 steps, with gradient norm 4.9812e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1135 steps, with gradient norm 4.9812e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1135 steps, with gradient norm 4.9812e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1135 steps, with gradient norm 4.9812e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1135 steps, with gradient norm 4.9812e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1135 steps, with gradient norm 4.9812e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1135 steps, with gradient norm 4.9812e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1135 steps, with gradient norm 4.9812e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1135 steps, with gradient norm 4.9812e-07
+Condizione iniziale n. 6
+Exact derivatives: Procedure stopped in 1136 steps, with gradient norm 4.9361e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1136 steps, with gradient norm 4.9324e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1136 steps, with gradient norm 4.9422e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1136 steps, with gradient norm 4.936e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1136 steps, with gradient norm 4.936e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1136 steps, with gradient norm 4.9361e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1136 steps, with gradient norm 4.9361e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1136 steps, with gradient norm 4.9361e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1136 steps, with gradient norm 4.9361e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1136 steps, with gradient norm 4.9361e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1136 steps, with gradient norm 4.9361e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1136 steps, with gradient norm 4.9361e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1136 steps, with gradient norm 4.9361e-07
+Condizione iniziale n. 7
+Exact derivatives: Procedure stopped in 1135 steps, with gradient norm 4.9306e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1135 steps, with gradient norm 4.9374e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1135 steps, with gradient norm 4.9426e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1135 steps, with gradient norm 4.9306e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1135 steps, with gradient norm 4.9306e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1135 steps, with gradient norm 4.9306e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1135 steps, with gradient norm 4.9306e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1135 steps, with gradient norm 4.9306e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1135 steps, with gradient norm 4.9306e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1135 steps, with gradient norm 4.9306e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1135 steps, with gradient norm 4.9306e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1135 steps, with gradient norm 4.9306e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1135 steps, with gradient norm 4.9306e-07
+Condizione iniziale n. 8
+Exact derivatives: Procedure stopped in 1134 steps, with gradient norm 4.931e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1134 steps, with gradient norm 4.916e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1134 steps, with gradient norm 4.931e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1134 steps, with gradient norm 4.9308e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1134 steps, with gradient norm 4.9309e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1134 steps, with gradient norm 4.931e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1134 steps, with gradient norm 4.931e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1134 steps, with gradient norm 4.931e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1134 steps, with gradient norm 4.931e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1134 steps, with gradient norm 4.931e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1134 steps, with gradient norm 4.931e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1134 steps, with gradient norm 4.931e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1134 steps, with gradient norm 4.931e-07
+Condizione iniziale n. 9
+Exact derivatives: Procedure stopped in 1135 steps, with gradient norm 4.9874e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1135 steps, with gradient norm 4.9887e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1135 steps, with gradient norm 4.9966e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1135 steps, with gradient norm 4.9873e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1135 steps, with gradient norm 4.9873e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1135 steps, with gradient norm 4.9874e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1135 steps, with gradient norm 4.9874e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1135 steps, with gradient norm 4.9874e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1135 steps, with gradient norm 4.9874e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1135 steps, with gradient norm 4.9874e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1135 steps, with gradient norm 4.9874e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1135 steps, with gradient norm 4.9874e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1135 steps, with gradient norm 4.9874e-07
+Condizione iniziale n. 10
+Exact derivatives: Procedure stopped in 1136 steps, with gradient norm 4.9765e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1136 steps, with gradient norm 4.9677e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1136 steps, with gradient norm 4.9792e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1136 steps, with gradient norm 4.9764e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1136 steps, with gradient norm 4.9764e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1136 steps, with gradient norm 4.9765e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1136 steps, with gradient norm 4.9765e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1136 steps, with gradient norm 4.9765e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1136 steps, with gradient norm 4.9765e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1136 steps, with gradient norm 4.9765e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1136 steps, with gradient norm 4.9765e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1136 steps, with gradient norm 4.9765e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1136 steps, with gradient norm 4.9765e-07
+Condizione iniziale n. 11
+Exact derivatives: Procedure stopped in 1134 steps, with gradient norm 4.9692e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1134 steps, with gradient norm 4.9546e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1134 steps, with gradient norm 4.9687e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1134 steps, with gradient norm 4.969e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1134 steps, with gradient norm 4.9691e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1134 steps, with gradient norm 4.9692e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1134 steps, with gradient norm 4.9692e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1134 steps, with gradient norm 4.9692e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1134 steps, with gradient norm 4.9692e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1134 steps, with gradient norm 4.9692e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1134 steps, with gradient norm 4.9692e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1134 steps, with gradient norm 4.9692e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1134 steps, with gradient norm 4.9692e-07
+>> conv_ord1(end-10:end)
+
+ans =
+
+    0.9996    1.0003    0.9996    1.0003    0.9996    1.0003    0.9996    1.0003    0.9996    1.0003    0.9996
+
+>> conv_ord2(end-10:end)
+
+ans =
+
+    1.0000    1.0000    1.0000    1.0000    1.0000    1.0000    1.0000    1.0000    1.0000    1.0000    1.0000
+
+Condizione iniziale n. 1
+Exact derivatives: Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-2 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-2 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-4 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-4 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-6 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-6 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-8 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-8 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-10 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-10 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (classical version) with h=1e-12 : Procedure stopped because the Armijo condition was NOT satisfied
+Finite differences (new version) with h=1e-12 : Procedure stopped because the Armijo condition was NOT satisfied
+Condizione iniziale n. 2
+Exact derivatives: Procedure stopped in 1198 steps, with gradient norm 4.9428e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1198 steps, with gradient norm 4.9378e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1198 steps, with gradient norm 4.9492e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1198 steps, with gradient norm 4.9427e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1198 steps, with gradient norm 4.9427e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1198 steps, with gradient norm 4.9428e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1198 steps, with gradient norm 4.9428e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1198 steps, with gradient norm 4.9428e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1198 steps, with gradient norm 4.9428e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1198 steps, with gradient norm 4.9428e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1198 steps, with gradient norm 4.9428e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1198 steps, with gradient norm 4.9428e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1198 steps, with gradient norm 4.9428e-07
+Condizione iniziale n. 3
+Exact derivatives: Procedure stopped in 1198 steps, with gradient norm 4.9325e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1198 steps, with gradient norm 4.9291e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1198 steps, with gradient norm 4.9395e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1198 steps, with gradient norm 4.9324e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1198 steps, with gradient norm 4.9325e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1198 steps, with gradient norm 4.9325e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1198 steps, with gradient norm 4.9325e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1198 steps, with gradient norm 4.9325e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1198 steps, with gradient norm 4.9325e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1198 steps, with gradient norm 4.9325e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1198 steps, with gradient norm 4.9325e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1198 steps, with gradient norm 4.9325e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1198 steps, with gradient norm 4.9325e-07
+Condizione iniziale n. 4
+Exact derivatives: Procedure stopped in 1198 steps, with gradient norm 4.934e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1198 steps, with gradient norm 4.9256e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1198 steps, with gradient norm 4.9385e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1198 steps, with gradient norm 4.9339e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1198 steps, with gradient norm 4.934e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1198 steps, with gradient norm 4.934e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1198 steps, with gradient norm 4.934e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1198 steps, with gradient norm 4.934e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1198 steps, with gradient norm 4.934e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1198 steps, with gradient norm 4.934e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1198 steps, with gradient norm 4.934e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1198 steps, with gradient norm 4.934e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1198 steps, with gradient norm 4.934e-07
+Condizione iniziale n. 5
+Exact derivatives: Procedure stopped in 1198 steps, with gradient norm 4.9452e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1198 steps, with gradient norm 4.9469e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1198 steps, with gradient norm 4.9552e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1198 steps, with gradient norm 4.9451e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1198 steps, with gradient norm 4.9451e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1198 steps, with gradient norm 4.9452e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1198 steps, with gradient norm 4.9452e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1198 steps, with gradient norm 4.9452e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1198 steps, with gradient norm 4.9452e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1198 steps, with gradient norm 4.9452e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1198 steps, with gradient norm 4.9452e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1198 steps, with gradient norm 4.9452e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1198 steps, with gradient norm 4.9452e-07
+Condizione iniziale n. 6
+Exact derivatives: Procedure stopped in 1197 steps, with gradient norm 4.9177e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1196 steps, with gradient norm 4.9954e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1197 steps, with gradient norm 4.9197e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1197 steps, with gradient norm 4.9175e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1197 steps, with gradient norm 4.9176e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1197 steps, with gradient norm 4.9177e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1197 steps, with gradient norm 4.9177e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1197 steps, with gradient norm 4.9177e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1197 steps, with gradient norm 4.9177e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1197 steps, with gradient norm 4.9177e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1197 steps, with gradient norm 4.9177e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1197 steps, with gradient norm 4.9177e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1197 steps, with gradient norm 4.9177e-07
+Condizione iniziale n. 7
+Exact derivatives: Procedure stopped in 1197 steps, with gradient norm 4.9217e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1196 steps, with gradient norm 4.9971e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1197 steps, with gradient norm 4.9223e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1197 steps, with gradient norm 4.9215e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1197 steps, with gradient norm 4.9216e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1197 steps, with gradient norm 4.9217e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1197 steps, with gradient norm 4.9217e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1197 steps, with gradient norm 4.9217e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1197 steps, with gradient norm 4.9217e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1197 steps, with gradient norm 4.9217e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1197 steps, with gradient norm 4.9217e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1197 steps, with gradient norm 4.9217e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1197 steps, with gradient norm 4.9217e-07
+Condizione iniziale n. 8
+Exact derivatives: Procedure stopped in 1197 steps, with gradient norm 4.9709e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1197 steps, with gradient norm 4.9626e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1197 steps, with gradient norm 4.9753e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1197 steps, with gradient norm 4.9708e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1197 steps, with gradient norm 4.9708e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1197 steps, with gradient norm 4.9709e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1197 steps, with gradient norm 4.9709e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1197 steps, with gradient norm 4.9709e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1197 steps, with gradient norm 4.9709e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1197 steps, with gradient norm 4.9709e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1197 steps, with gradient norm 4.9709e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1197 steps, with gradient norm 4.9709e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1197 steps, with gradient norm 4.9709e-07
+Condizione iniziale n. 9
+Exact derivatives: Procedure stopped in 1197 steps, with gradient norm 4.9737e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1197 steps, with gradient norm 4.9691e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1197 steps, with gradient norm 4.9802e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1197 steps, with gradient norm 4.9736e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1197 steps, with gradient norm 4.9737e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1197 steps, with gradient norm 4.9737e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1197 steps, with gradient norm 4.9737e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1197 steps, with gradient norm 4.9737e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1197 steps, with gradient norm 4.9737e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1197 steps, with gradient norm 4.9737e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1197 steps, with gradient norm 4.9737e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1197 steps, with gradient norm 4.9737e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1197 steps, with gradient norm 4.9737e-07
+Condizione iniziale n. 10
+Exact derivatives: Procedure stopped in 1197 steps, with gradient norm 4.9498e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1197 steps, with gradient norm 4.9388e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1197 steps, with gradient norm 4.9529e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1197 steps, with gradient norm 4.9496e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1197 steps, with gradient norm 4.9497e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1197 steps, with gradient norm 4.9498e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1197 steps, with gradient norm 4.9498e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1197 steps, with gradient norm 4.9498e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1197 steps, with gradient norm 4.9498e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1197 steps, with gradient norm 4.9498e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1197 steps, with gradient norm 4.9498e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1197 steps, with gradient norm 4.9498e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1197 steps, with gradient norm 4.9498e-07
+Condizione iniziale n. 11
+Exact derivatives: Procedure stopped in 1198 steps, with gradient norm 4.95e-07
+Finite differences (classical version) with h=1e-2 : Procedure stopped in 1198 steps, with gradient norm 4.9483e-07
+Finite differences (new version) with h=1e-2 : Procedure stopped in 1198 steps, with gradient norm 4.9583e-07
+Finite differences (classical version) with h=1e-4 : Procedure stopped in 1198 steps, with gradient norm 4.9499e-07
+Finite differences (new version) with h=1e-4 : Procedure stopped in 1198 steps, with gradient norm 4.9499e-07
+Finite differences (classical version) with h=1e-6 : Procedure stopped in 1198 steps, with gradient norm 4.95e-07
+Finite differences (new version) with h=1e-6 : Procedure stopped in 1198 steps, with gradient norm 4.95e-07
+Finite differences (classical version) with h=1e-8 : Procedure stopped in 1198 steps, with gradient norm 4.95e-07
+Finite differences (new version) with h=1e-8 : Procedure stopped in 1198 steps, with gradient norm 4.95e-07
+Finite differences (classical version) with h=1e-10 : Procedure stopped in 1198 steps, with gradient norm 4.95e-07
+Finite differences (new version) with h=1e-10 : Procedure stopped in 1198 steps, with gradient norm 4.95e-07
+Finite differences (classical version) with h=1e-12 : Procedure stopped in 1198 steps, with gradient norm 4.95e-07
+Finite differences (new version) with h=1e-12 : Procedure stopped in 1198 steps, with gradient norm 4.95e-07
+>> 
+>> conv_ord3(end-10:end)
+
+ans =
+
+    1.0000    1.0000    1.0000    1.0000    1.0000    1.0000    1.0000    1.0000    1.0000    1.0000    1.0000
