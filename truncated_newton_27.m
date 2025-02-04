@@ -77,7 +77,7 @@ while k < kmax && gradfk_norm > tolgrad
     sum_z=sum(zj);
     if ~exact %approximation with finite difference (not exact)
         if fin_dif_2
-            Azj= (diagA.*zj +(h^2.*abs(zj).^2)) +( h^2*abs(zj).^2*((abs(xk).^2)'*zj) - h^2*abs(zj).^4.*zj )+(2*h*xk.*abs(xk)*((abs(xk).^2)'*zj) - 2*h*xk.*(abs(xk).^2).*zj) +(2*h*abs(xk).^2*sum(xk.*abs(xk).*zj)-2*h*abs(xk).^3.*xk.*zj ) + (4*xk.*abs(xk)*sum(xk.*abs(xk).*zj)-4*abs(xk).^2.*xk.^2.*zj);
+            Azj= (diagA.*zj +(h^2.*abs(xk).^2)) +( h^2*abs(xk).*(abs(xk)'*zj) - h^2*abs(xk).^2.*zj )+(2*h*xk.*(abs(xk)'*zj) - 4*h*xk.*abs(xk).*zj) +(2*h*abs(xk).*(xk'*zj)) + (4*xk.*(xk'*zj)-4*(xk.^2).*zj);
         else
             %Azj= Azj+2*(h^2)*sum(zj)*ones(n,1);
             Azj=Azj+ (h^2)*sum_z*ones(length(x0),1) - (h^2)*zj + 2*h*sum_z*xk + 2*h*(xk'*zj)-4*h*(xk.*zj);
@@ -99,10 +99,11 @@ while k < kmax && gradfk_norm > tolgrad
        if ~exact %approximation with finite difference (not exact)
            %z= z+2*(h^2)*sum(p)*ones(n,1);
            if fin_dif_2
-                 z= (diagA.*p +(h^2.*abs(p).^2)) +( h^2*abs(p).^2*((abs(xk).^2)'*p) - h^2*abs(p).^4.*p )+(2*h*xk.*abs(xk)*((abs(xk).^2)'*p) - 2*h*xk.*(abs(xk).^2).*p) +(2*h*abs(xk).^2*sum(xk.*abs(xk).*p)-2*h*abs(xk).^3.*xk.*p ) + (4*xk.*abs(xk)*sum(xk.*abs(xk).*p)-4*abs(xk).^2.*xk.^2.*p);
+                z= (diagA.*p +(h^2.*abs(xk).^2)) +( h^2*abs(xk).*(abs(xk)'*p) - h^2*abs(xk).^2.*p )+(2*h*xk.*(abs(xk)'*p) - 4*h*xk.*abs(xk).*p) +(2*h*abs(xk).*(xk'*p)) + (4*xk.*(xk'*p)-4*(xk.^2).*p);
            else
                %%%%%% Da controllare se ci va z o zj
                 z=z+ (h^2)*sum_p*ones(length(x0),1) - (h^2)*p + 2*h*sum_p*xk + 2*h*(xk'*p)-4*h*(xk.*p);
+
            end
        end
        a = (res'*p)/(p'*z); % update exact step along the direction
@@ -116,7 +117,7 @@ while k < kmax && gradfk_norm > tolgrad
        sum_p=sum(p);
        if ~exact %approximation with finite difference (not exact)
             if fin_dif_2  
-                z_new= ((diagA.*p +(h^2.*abs(p).^2)) +( h^2*abs(p).^2*((abs(xk).^2)'*p) - h^2*abs(p).^4.*p )+(2*h*xk.*abs(xk)*((abs(xk).^2)'*p) - 2*h*xk.*(abs(xk).^2).*p) +(2*h*abs(xk).^2*sum(xk.*abs(xk).*p)-2*h*abs(xk).^3.*xk.*p ) + (4*xk.*abs(xk)*sum(xk.*abs(xk).*p)-4*abs(xk).^2.*xk.^2.*p))';
+                z_new= ((diagA.*p +(h^2.*abs(xk).^2)) +( h^2*abs(xk).*(abs(xk)'*p) - h^2*abs(xk).^2.*p )+(2*h*xk.*(abs(xk)'*p) - 4*h*xk.*abs(xk).*p) +(2*h*abs(xk).*(xk'*p)) + (4*xk.*(xk'*p)-4*(xk.^2).*p))';
             else
                 z_new=z_new+ ((h^2)*sum_p*ones(length(x0),1))' - ((h^2)*p+ 2*h*sum_p*xk)' + (2*h*(xk'*p)-4*h*(xk.*p))';
             end
