@@ -1,4 +1,4 @@
-%% FUNCTION 79  PRECONDITIOINING (with different initial points)- with exact derivatives and finite differences
+%% FUNCTION 79  (with different initial points)- with exact derivatives and finite differences
 
 sparse=true;
 

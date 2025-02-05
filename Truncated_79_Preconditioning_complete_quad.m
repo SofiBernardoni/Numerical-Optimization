@@ -1,4 +1,4 @@
-%% FUNCTION 79  PRECONDITIOINING (with different initial points)- with exact derivatives and finite differences
+%% FUNCTION 79 PRECONDITIONING QUAD (with different initial points)- with exact derivatives and finite differences
 
 sparse=true;
 
@@ -77,7 +77,7 @@ for j =1:N+1
     % EXACT DERIVATIVES
     tic;
 
-    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1_ex,flag1, converged1, violations1] = truncated_newton_precond_79(Mat_points(:,j), F, JF_ex, HF_ex, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1_ex,flag1, converged1, violations1] = truncated_newton_precond_79(Mat_points(:,j), F, JF_ex, HF_ex, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
 
     vec_times1_ex(j)=toc;
 
@@ -101,7 +101,7 @@ for j =1:N+1
     HF=@(x)HF_fd1(x,h);
     tic;
 
-    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1_df1,flag1, converged1, violations1] = truncated_newton_precond_79(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1_df1,flag1, converged1, violations1] = truncated_newton_precond_79(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
 
     mat_times1_fd1(i/2,j)=toc;
 
@@ -226,11 +226,11 @@ data = [ fd1_vals, avg_exact_t1; fd2_vals, avg_exact_t1;];
 T1 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation times table (only for successful runs): F79 Preconditioning, n=10^3, superlinear');
+disp('Average computation times table (only for successful runs): F79 Preconditioning, n=10^3, quadratic');
 disp(T1);
 
 % (Opzionale) Salva la tabella in un file CSV
-%writetable(T, 'Time_tabel_f79_3_suplin.csv', 'WriteRowNames', true);
+%writetable(T, 'Time_tabel_f79_3_quad.csv', 'WriteRowNames', true);
 
 
 %% Calcolo delle medie considerando solo le esecuzioni convergenti
@@ -269,11 +269,11 @@ data = [ fd1_vals, avg_exact_i1; fd2_vals, avg_exact_i1;];
 T2 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation iteration table (only for successful runs): F79, n=10^3, superlinear');
+disp('Average computation iteration table (only for successful runs): F79, n=10^3, quadratic');
 disp(T2);
 
 % (Opzionale) Salva la tabella in un file CSV
-%writetable(T, 'Iteration_tabel_f79_3_suplin.csv', 'WriteRowNames', true);
+%writetable(T, 'Iteration_tabel_f79_3_quad.csv', 'WriteRowNames', true);
 
 %% Calcolo delle medie considerando solo le esecuzioni convergenti
 
@@ -311,15 +311,15 @@ data = [ fd1_vals, avg_exact_f1; fd2_vals, avg_exact_f1;];
 T3 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation fmin value table (only for successful runs): F79, n=10^3, superlinear');
+disp('Average computation fmin value table (only for successful runs): F79, n=10^3, quadratic');
 disp(T3);
 
 % (Opzionale) Salva la tabella in un file CSV
-%writetable(T, 'Fminvalue_tabel_f79_3_suplin.csv', 'WriteRowNames', true);
+%writetable(T, 'Fminvalue_tabel_f79_3_quad.csv', 'WriteRowNames', true);
 
-writetable(T1, 'results_f79_suplin.xlsx', 'Sheet', 'time_3','WriteRowNames', true);
-writetable(T2, 'results_f79_suplin.xlsx', 'Sheet', 'niter_3','WriteRowNames', true);
-writetable(T3, 'results_f79_suplin.xlsx', 'Sheet', 'f_val_3','WriteRowNames', true);
+writetable(T1, 'results_f79_quad.xlsx', 'Sheet', 'time_3','WriteRowNames', true);
+writetable(T2, 'results_f79_quad.xlsx', 'Sheet', 'niter_3','WriteRowNames', true);
+writetable(T3, 'results_f79_quad.xlsx', 'Sheet', 'f_val_3','WriteRowNames', true);
 
 
 
@@ -390,7 +390,7 @@ for j =1:N+1
     % EXACT DERIVATIVES
     tic;
 
-    [x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2_ex,flag2, converged2, violations2] = truncated_newton_precond_79(Mat_points(:,j), F, JF_ex, HF_ex, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    [x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2_ex,flag2, converged2, violations2] = truncated_newton_precond_79(Mat_points(:,j), F, JF_ex, HF_ex, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
 
     vec_times2_ex(j)=toc;
 
@@ -413,7 +413,7 @@ for j =1:N+1
     HF=@(x)HF_fd1(x,h);
     tic;
 
-    [x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2_df1,flag2, converged2, violations2] = truncated_newton_precond_79(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    [x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2_df1,flag2, converged2, violations2] = truncated_newton_precond_79(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
 
     mat_times2_fd1(i/2,j)=toc;
 
@@ -435,7 +435,7 @@ for j =1:N+1
     JF=@(x) JF_fd2(x,h);
     HF=@(x) HF_fd2(x,h);
     tic;
-    [x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2_df2,flag2, converged2, violations2] = truncated_newton_precond_79(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    [x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2_df2,flag2, converged2, violations2] = truncated_newton_precond_79(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
     mat_times2_fd2(i/2,j)=toc;
 
     disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag2]) 
@@ -537,11 +537,11 @@ data = [ fd1_vals, avg_exact_t2; fd2_vals, avg_exact_t2;];
 T4 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation times table (only for successful runs): F79, n=10^4, superlinear');
+disp('Average computation times table (only for successful runs): F79, n=10^4, quadratic');
 disp(T4);
 
 % (Opzionale) Salva la tabella in un file CSV
-%writetable(T, 'Time_tabel_f79_3_suplin.csv', 'WriteRowNames', true);
+%writetable(T, 'Time_tabel_f79_3_quad.csv', 'WriteRowNames', true);
 
 
 %% Calcolo delle medie considerando solo le esecuzioni convergenti
@@ -580,11 +580,11 @@ data = [ fd1_vals, avg_exact_i2; fd2_vals, avg_exact_i2;];
 T5 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation iteration table (only for successful runs): F79, n=10^4, superlinear');
+disp('Average computation iteration table (only for successful runs): F79, n=10^4, quadratic');
 disp(T5);
 
 % (Opzionale) Salva la tabella in un file CSV
-%writetable(T, 'Iteration_tabel_f79_3_suplin.csv', 'WriteRowNames', true);
+%writetable(T, 'Iteration_tabel_f79_3_quad.csv', 'WriteRowNames', true);
 
 %% Calcolo delle medie considerando solo le esecuzioni convergenti
 
@@ -622,15 +622,15 @@ data = [ fd1_vals, avg_exact_f2; fd2_vals, avg_exact_f2;];
 T6 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation fmin value table (only for successful runs): F79, n=10^3, superlinear');
+disp('Average computation fmin value table (only for successful runs): F79, n=10^3, quadratic');
 disp(T6);
 
 % (Opzionale) Salva la tabella in un file CSV
-%writetable(T, 'Fminvalue_tabel_f79_3_suplin.csv', 'WriteRowNames', true);
+%writetable(T, 'Fminvalue_tabel_f79_3_quad.csv', 'WriteRowNames', true);
 
-writetable(T4, 'results_f79_suplin.xlsx', 'Sheet', 'time_4','WriteRowNames', true);
-writetable(T5, 'results_f79_suplin.xlsx', 'Sheet', 'niter_4','WriteRowNames', true);
-writetable(T6, 'results_f79_suplin.xlsx', 'Sheet', 'f_val_4','WriteRowNames', true);
+writetable(T4, 'results_f79_quad.xlsx', 'Sheet', 'time_4','WriteRowNames', true);
+writetable(T5, 'results_f79_quad.xlsx', 'Sheet', 'niter_4','WriteRowNames', true);
+writetable(T6, 'results_f79_quad.xlsx', 'Sheet', 'f_val_4','WriteRowNames', true);
 
 
 
@@ -703,7 +703,7 @@ for j =1:N+1
     % EXACT DERIVATIVES
     tic;
 
-    [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3_ex,flag3, converged3, violations3] = truncated_newton_precond_79(Mat_points(:,j), F, JF_ex, HF_ex, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3_ex,flag3, converged3, violations3] = truncated_newton_precond_79(Mat_points(:,j), F, JF_ex, HF_ex, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
 
     vec_times3_ex(j)=toc;
 
@@ -726,7 +726,7 @@ for j =1:N+1
     HF=@(x)HF_fd1(x,h);
     tic;
 
-    [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3_df1,flag3, converged3, violations3] = truncated_newton_precond_79(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3_df1,flag3, converged3, violations3] = truncated_newton_precond_79(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
     mat_times3_fd1(i/2,j)=toc;
 
 
@@ -749,7 +749,7 @@ for j =1:N+1
     HF=@(x) HF_fd2(x,h);
     tic;
 
-    [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3_df2,flag3, converged3, violations3] = truncated_newton_precond_79(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
+    [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3_df2,flag3, converged3, violations3] = truncated_newton_precond_79(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
     mat_times3_fd2(i/2,j)=toc;
 
     disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag3]) 
@@ -843,11 +843,11 @@ data = [ fd1_vals, avg_exact_t3; fd2_vals, avg_exact_t3;];
 T7 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation times table (only for successful runs): F79, n=10^5, superlinear');
+disp('Average computation times table (only for successful runs): F79, n=10^5, quadratic');
 disp(T7);
 
 % (Opzionale) Salva la tabella in un file CSV
-%writetable(T, 'Time_tabel_f79_3_suplin.csv', 'WriteRowNames', true);
+%writetable(T, 'Time_tabel_f79_3_quad.csv', 'WriteRowNames', true);
 
 
 %% Calcolo delle medie considerando solo le esecuzioni convergenti
@@ -886,11 +886,11 @@ data = [ fd1_vals, avg_exact_i3; fd2_vals, avg_exact_i3;];
 T8 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation iteration table (only for successful runs): F79, n=10^5, superlinear');
+disp('Average computation iteration table (only for successful runs): F79, n=10^5, quadratic');
 disp(T8);
 
 % (Opzionale) Salva la tabella in un file CSV
-%writetable(T, 'Iteration_tabel_f79_3_suplin.csv', 'WriteRowNames', true);
+%writetable(T, 'Iteration_tabel_f79_3_quad.csv', 'WriteRowNames', true);
 
 %% Calcolo delle medie considerando solo le esecuzioni convergenti
 
@@ -928,15 +928,15 @@ data = [ fd1_vals, avg_exact_f3; fd2_vals, avg_exact_f3;];
 T9 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation fmin value table (only for successful runs): F79, n=10^5, superlinear');
+disp('Average computation fmin value table (only for successful runs): F79, n=10^5, quadratic');
 disp(T9);
 
 % (Opzionale) Salva la tabella in un file CSV
-%writetable(T, 'Fminvalue_tabel_f79_3_suplin.csv', 'WriteRowNames', true);
+%writetable(T, 'Fminvalue_tabel_f79_3_quad.csv', 'WriteRowNames', true);
 
-writetable(T7, 'results_f79_suplin.xlsx', 'Sheet', 'time5','WriteRowNames', true);
-writetable(T8, 'results_f79_suplin.xlsx', 'Sheet', 'niter_5','WriteRowNames', true);
-writetable(T9, 'results_f79_suplin.xlsx', 'Sheet', 'f_val_5','WriteRowNames', true);
+writetable(T7, 'results_f79_quad.xlsx', 'Sheet', 'time5','WriteRowNames', true);
+writetable(T8, 'results_f79_quad.xlsx', 'Sheet', 'niter_5','WriteRowNames', true);
+writetable(T9, 'results_f79_quad.xlsx', 'Sheet', 'f_val_5','WriteRowNames', true);
 
 
 %%
@@ -956,5 +956,5 @@ T_compare = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames
 disp(T_compare)
 
 % Salvataggio su Excel
-writetable(T_compare, 'results_f79_suplin.xlsx', 'Sheet', 'ExactComparison', 'WriteRowNames', true);
+writetable(T_compare, 'results_f79_quad.xlsx', 'Sheet', 'ExactComparison', 'WriteRowNames', true);
 
