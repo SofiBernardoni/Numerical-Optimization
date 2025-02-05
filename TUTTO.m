@@ -1,3 +1,8 @@
+addpath('\Users\sofia\Documents\Numerical-Optimization\F79_truncated');
+addpath('\Users\sofia\Documents\Numerical-Optimization\F27_truncated');
+addpath('\Users\sofia\Documents\Numerical-Optimization\F16_truncated');
+addpath('\Users\sofia\Documents\Numerical-Optimization\Nelder');
+addpath('\Users\sofia\Documents\Numerical-Optimization\Rosenbrock');
 
 %% FUNCTION 16  (with different initial points)- with exact derivatives and finite differences - QUADRATIC TERM OF CONVERGENCE
 
