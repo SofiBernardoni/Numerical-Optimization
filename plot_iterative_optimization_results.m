@@ -8,7 +8,7 @@ function [flag] = plot_iterative_optimization_results(f,xseq, btseq)
 % xseq = sequence of values generated with the iterative method
 % xseq = sequence of num iterations to get steplength with backtracking
 
-f_meshgrid = @(X,Y)reshape(f([X(:),Y(:)]'),size(X));
+f_meshgrid = @(X, Y) reshape(f([X(:), Y(:)]'), size(X));
 
 % Creation of the meshgrid for the contour-plot
 [X, Y] = meshgrid(linspace(-6, 6, 500), linspace(-6, 6, 500));
