@@ -787,8 +787,8 @@ avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan'); % media per ogni h (6x1)
 %mat_times3_fd2(2:2:end,: )
 
 % Metodo FD2 (Finite Differences nuove)
-mat_times_fd2_clean = mat_times3_fd2;
-mat_times_fd2_clean(mat_converged3_fd2 == 0) = NaN;
+mat_times_fd2_clean = mat_times3_fd2(2:2:end,:);
+mat_times_fd2_clean(mat_converged3_fd2(2:2:end,:) == 0) = NaN;
 avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan'); % media per ogni h (6x1)
 
 % Creazione delle etichette per i valori di h
@@ -831,7 +831,7 @@ avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan'); % media per ogni h (6x1)
 
 % Metodo FD2 (Finite Differences nuove)
 mat_times_fd2_clean = mat_iter3_fd2;
-mat_times_fd2_clean(mat_converged3_fd2 == 0) = NaN;
+mat_times_fd2_clean(mat_converged3_fd2(2:2:end,:) == 0) = NaN;
 avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan'); % media per ogni h (6x1)
 
 % Creazione delle etichette per i valori di h
@@ -920,7 +920,6 @@ columnNames = {'n=10^3', 'n=10^4', 'n=10^5'};
 
 % Creazione tabella MATLAB
 T_compare = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
-disp(T_compare)
 
 % Salvataggio su Excel
 writetable(T_compare, 'results_f27_3_suplin.xlsx', 'Sheet', 'ExactComparison', 'WriteRowNames', true);
