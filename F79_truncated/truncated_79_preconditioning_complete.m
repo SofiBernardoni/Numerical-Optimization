@@ -123,8 +123,7 @@ for j =1:N+1
     JF=@(x) JF_fd2(x,h);
     HF=@(x) HF_fd2(x,h);
     tic;
-
-
+    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1_df2,flag1, converged1, violations1] = truncated_newton_precond_79(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
     mat_times1_fd2(i/2,j)=toc;
 
     disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag1]) 
@@ -162,15 +161,15 @@ hold on;
 % Plot per ciascuna condizione iniziale
 for j = 1:num_initial_points
     % Estrai l'ordine di convergenza per la j-esima condizione iniziale
-    conv_ord_ex = mat_conv_ex(:,j); % Derivate esatte
+    conv_ord_ex = mat_conv1_ex(:,j); % Derivate esatte
 
     plot(1:15,conv_ord_ex, 'Color', 'b', 'LineWidth', 1.5);
     hold on;
     for i =1:6 
-        conv_ord_fd1 = mat_conv_fd1{i, j}; % Differenze finite classiche
+        conv_ord_fd1 = mat_conv1_fd1{i, j}; % Differenze finite classiche
 
        
-        conv_ord_fd2 = mat_conv_fd2{i, j}; % Differenze finite adattative
+        conv_ord_fd2 = mat_conv1_fd2{i, j}; % Differenze finite adattative
         plot(1:15,conv_ord_fd1, '-', 'Color', 'r', 'LineWidth', 1.5);
 
         hold on;
@@ -317,9 +316,9 @@ disp(T3);
 % (Opzionale) Salva la tabella in un file CSV
 %writetable(T, 'Fminvalue_tabel_f79_3_suplin.csv', 'WriteRowNames', true);
 
-writetable(T1, 'results_f79_suplin.xlsx', 'Sheet', 'time_3','WriteRowNames', true);
-writetable(T2, 'results_f79_suplin.xlsx', 'Sheet', 'niter_3','WriteRowNames', true);
-writetable(T3, 'results_f79_suplin.xlsx', 'Sheet', 'f_val_3','WriteRowNames', true);
+writetable(T1, 'results_f79_Precond_suplin.xlsx', 'Sheet', 'time_3','WriteRowNames', true);
+writetable(T2, 'results_f79_Precond_suplin.xlsx', 'Sheet', 'niter_3','WriteRowNames', true);
+writetable(T3, 'results_f79_Precond_suplin.xlsx', 'Sheet', 'f_val_3','WriteRowNames', true);
 
 
 
@@ -628,9 +627,9 @@ disp(T6);
 % (Opzionale) Salva la tabella in un file CSV
 %writetable(T, 'Fminvalue_tabel_f79_3_suplin.csv', 'WriteRowNames', true);
 
-writetable(T4, 'results_f79_suplin.xlsx', 'Sheet', 'time_4','WriteRowNames', true);
-writetable(T5, 'results_f79_suplin.xlsx', 'Sheet', 'niter_4','WriteRowNames', true);
-writetable(T6, 'results_f79_suplin.xlsx', 'Sheet', 'f_val_4','WriteRowNames', true);
+writetable(T4, 'results_f79_Precond_suplin.xlsx', 'Sheet', 'time_4','WriteRowNames', true);
+writetable(T5, 'results_f79_Precond_suplin.xlsx', 'Sheet', 'niter_4','WriteRowNames', true);
+writetable(T6, 'results_f79_Precond_suplin.xlsx', 'Sheet', 'f_val_4','WriteRowNames', true);
 
 
 
@@ -704,7 +703,6 @@ for j =1:N+1
     tic;
 
     [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3_ex,flag3, converged3, violations3] = truncated_newton_precond_79(Mat_points(:,j), F, JF_ex, HF_ex, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
-
     vec_times3_ex(j)=toc;
 
     disp(['Exact derivatives: ',flag3]) 
@@ -755,7 +753,7 @@ for j =1:N+1
     disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag3]) 
     mat_converged3_fd2(i/2,j)=converged2;
     %conv_ord2(end-10:end) %aggiustare
-    mat_val2_fd2(i/2,j)=f3;
+    mat_val3_fd2(i/2,j)=f3;
     mat_grad3_fd2(i/2,j)=gradf_norm3;
     mat_iter3_fd2(i/2,j)=k3;
     mat_violations3_fd2(i/2,j)=violations3;
@@ -934,9 +932,9 @@ disp(T9);
 % (Opzionale) Salva la tabella in un file CSV
 %writetable(T, 'Fminvalue_tabel_f79_3_suplin.csv', 'WriteRowNames', true);
 
-writetable(T7, 'results_f79_suplin.xlsx', 'Sheet', 'time5','WriteRowNames', true);
-writetable(T8, 'results_f79_suplin.xlsx', 'Sheet', 'niter_5','WriteRowNames', true);
-writetable(T9, 'results_f79_suplin.xlsx', 'Sheet', 'f_val_5','WriteRowNames', true);
+writetable(T7, 'results_f79_Precond_suplin.xlsx', 'Sheet', 'time5','WriteRowNames', true);
+writetable(T8, 'results_f79_Precond_suplin.xlsx', 'Sheet', 'niter_5','WriteRowNames', true);
+writetable(T9, 'results_f79_Precond_suplin.xlsx', 'Sheet', 'f_val_5','WriteRowNames', true);
 
 
 %%
@@ -956,5 +954,5 @@ T_compare = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames
 disp(T_compare)
 
 % Salvataggio su Excel
-writetable(T_compare, 'results_f79_suplin.xlsx', 'Sheet', 'ExactComparison', 'WriteRowNames', true);
+writetable(T_compare, 'results_f79_Precond_suplin.xlsx', 'Sheet', 'ExactComparison', 'WriteRowNames', true);
 
