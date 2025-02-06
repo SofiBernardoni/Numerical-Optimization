@@ -177,7 +177,7 @@ for j = 1:num_initial_points
 end
 
 % Aggiungi titolo e legenda
-title('Ordine di Convergenza per Tutte le Condizioni Iniziali');
+title('F79 10^3 suplin');
 xlabel('Iterazione');
 ylabel('Ordine di Convergenza');
 legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
@@ -480,7 +480,7 @@ for j = 1:num_initial_points
 end
 
 % Aggiungi titolo e legenda
-title('Ordine di Convergenza per Tutte le Condizioni Iniziali');
+title('F79 10^4 suplin');
 xlabel('Iterazione');
 ylabel('Ordine di Convergenza');
 legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
@@ -609,7 +609,7 @@ data = [ fd1_vals, avg_exact_f2; fd2_vals, avg_exact_f2;];
 T6 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation fmin value table (only for successful runs): F79, n=10^3, superlinear');
+disp('Average computation fmin value table (only for successful runs): F79, n=10^4, superlinear');
 disp(T6);
 
 % (Opzionale) Salva la tabella in un file CSV
@@ -704,7 +704,7 @@ for j =1:N+1
     for i=2:2:12
     h=10^(-i);
     
-    % FINITE DIFFERENCES 1
+    % FINITE DIFFERENCES 1mat_conv2_fd1
     JF=@(x)JF_fd1(x,h);
     HF=@(x)HF_fd1(x,h);
     tic;
@@ -781,7 +781,7 @@ for j = 1:num_initial_points
 end
 
 % Aggiungi titolo e legenda
-title('Ordine di Convergenza per Tutte le Condizioni Iniziali');
+title('F79 10^5 suplin');
 xlabel('Iterazione');
 ylabel('Ordine di Convergenza');
 legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');

@@ -166,7 +166,7 @@ for j = 1:num_initial_points
 end
 
 % Aggiungi titolo e legenda
-title('Ordine di Convergenza per Tutte le Condizioni Iniziali');
+title('F16, n=10^3, quadratic');
 xlabel('Iterazione');
 ylabel('Ordine di Convergenza');
 legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
@@ -210,7 +210,7 @@ data = [ fd1_vals, avg_exact_t1; fd2_vals, avg_exact_t1;];
 T1 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation times table (only for successful runs): F16, n=10^3, superlienar');
+disp('Average computation times table (only for successful runs): F16, n=10^3, quad');
 disp(T1);
 
 % (Opzionale) Salva la tabella in un file CSV
@@ -468,7 +468,7 @@ for j = 1:num_initial_points
 end
 
 % Aggiungi titolo e legenda
-title('Ordine di Convergenza per Tutte le Condizioni Iniziali');
+title(' F16, n=10^4, quadratic');
 xlabel('Iterazione');
 ylabel('Ordine di Convergenza');
 legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
@@ -512,7 +512,7 @@ data = [ fd1_vals, avg_exact_t2; fd2_vals, avg_exact_t2;];
 T4 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation times table (only for successful runs): F16, n=10^4, quadratic');
+disp('Average computation times table (only for successful runs): F16, n=10^4, quad');
 disp(T4);
 
 % (Opzionale) Salva la tabella in un file CSV
@@ -555,7 +555,7 @@ data = [ fd1_vals, avg_exact_i2; fd2_vals, avg_exact_i2;];
 T5 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation iteration table (only for successful runs): F16, n=10^4, quadratic');
+disp('Average computation iteration table (only for successful runs): F16, n=10^4, quad');
 disp(T5);
 
 % (Opzionale) Salva la tabella in un file CSV
@@ -597,7 +597,7 @@ data = [ fd1_vals, avg_exact_f2; fd2_vals, avg_exact_f2;];
 T6 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation fmin value table (only for successful runs): F16, n=10^3, quadratic');
+disp('Average computation fmin value table (only for successful runs): F16, n=10^4, quad');
 disp(T6);
 
 % (Opzionale) Salva la tabella in un file CSV
@@ -696,7 +696,7 @@ for j =1:N+1
     HF=@(x)HF_fd1(x,h);
     tic;
     [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3_df1,flag3, converged3, violations3] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
-    mat_times2_fd1(i/2,j)=toc;
+    mat_times3_fd1(i/2,j)=toc;
 
     disp(['Finite differences (classical version) with h=1e-',num2str(i),' : ',flag3]) 
     mat_converged3_fd1(i/2,j)=converged3;
@@ -767,7 +767,7 @@ for j = 1:num_initial_points
 end
 
 % Aggiungi titolo e legenda
-title('Ordine di Convergenza per Tutte le Condizioni Iniziali');
+title('F16, n=10^5, quad');
 xlabel('Iterazione');
 ylabel('Ordine di Convergenza');
 legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
@@ -812,7 +812,7 @@ data = [ fd1_vals, avg_exact_t3; fd2_vals, avg_exact_t3;];
 T7 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation times table (only for successful runs): F16, n=10^5, quadratic');
+disp('Average computation times table (only for successful runs): F16, n=10^5, quad');
 disp(T7);
 
 % (Opzionale) Salva la tabella in un file CSV
@@ -855,7 +855,7 @@ data = [ fd1_vals, avg_exact_i3; fd2_vals, avg_exact_i3;];
 T8 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation iteration table (only for successful runs): F16, n=10^5, quadratic');
+disp('Average computation iteration table (only for successful runs): F16, n=10^5, quad');
 disp(T8);
 
 % (Opzionale) Salva la tabella in un file CSV
@@ -897,7 +897,7 @@ data = [ fd1_vals, avg_exact_f3; fd2_vals, avg_exact_f3;];
 T9 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation fmin value table (only for successful runs): F16, n=10^5, quadratic');
+disp('Average computation fmin value table (only for successful runs): F16, n=10^5, quad');
 disp(T9);
 
 % (Opzionale) Salva la tabella in un file CSV

@@ -168,7 +168,7 @@ for j = 1:num_initial_points
 end
 
 % Aggiungi titolo e legenda
-title('Ordine di Convergenza per Tutte le Condizioni Iniziali');
+title('F79 10^3 quad');
 xlabel('Iterazione');
 ylabel('Ordine di Convergenza');
 legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
@@ -466,7 +466,7 @@ for j = 1:num_initial_points
 end
 
 % Aggiungi titolo e legenda
-title('Ordine di Convergenza per Tutte le Condizioni Iniziali');
+title('F79 10^4 quad');
 xlabel('Iterazione');
 ylabel('Ordine di Convergenza');
 legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
@@ -595,7 +595,7 @@ data = [ fd1_vals, avg_exact_f2; fd2_vals, avg_exact_f2;];
 T6 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation fmin value table (only for successful runs): F79, n=10^3, quadratic');
+disp('Average computation fmin value table (only for successful runs): F79, n=10^4, quadratic');
 disp(T6);
 
 % (Opzionale) Salva la tabella in un file CSV
@@ -693,7 +693,7 @@ for j =1:N+1
     HF=@(x)HF_fd1(x,h);
     tic;
     [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3_df1,flag3, converged3, violations3] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
-    mat_times2_fd1(i/2,j)=toc;
+    mat_times3_fd1(i/2,j)=toc;
 
     disp(['Finite differences (classical version) with h=1e-',num2str(i),' : ',flag3]) 
     mat_converged3_fd1(i/2,j)=converged3;
@@ -764,7 +764,7 @@ for j = 1:num_initial_points
 end
 
 % Aggiungi titolo e legenda
-title('Ordine di Convergenza per Tutte le Condizioni Iniziali');
+title('F79 10^5 quad');
 xlabel('Iterazione');
 ylabel('Ordine di Convergenza');
 legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');

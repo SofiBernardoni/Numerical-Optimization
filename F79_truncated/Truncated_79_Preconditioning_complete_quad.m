@@ -182,7 +182,7 @@ for j = 1:num_initial_points
 end
 
 % Aggiungi titolo e legenda
-title('Ordine di Convergenza per Tutte le Condizioni Iniziali');
+title('F79 Preconditioing 10^3 quad');
 xlabel('Iterazione');
 ylabel('Ordine di Convergenza');
 legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
@@ -493,7 +493,7 @@ for j = 1:num_initial_points
 end
 
 % Aggiungi titolo e legenda
-title('Ordine di Convergenza per Tutte le Condizioni Iniziali');
+title('F79 Preconditioing 10^4 quad');
 xlabel('Iterazione');
 ylabel('Ordine di Convergenza');
 legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
@@ -622,7 +622,7 @@ data = [ fd1_vals, avg_exact_f2; fd2_vals, avg_exact_f2;];
 T6 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation fmin value table (only for successful runs): F79,Preconditioning, n=10^3, quadratic');
+disp('Average computation fmin value table (only for successful runs): F79,Preconditioning, n=10^4, quadratic');
 disp(T6);
 
 % (Opzionale) Salva la tabella in un file CSV
@@ -799,7 +799,7 @@ for j = 1:num_initial_points
 end
 
 % Aggiungi titolo e legenda
-title('Ordine di Convergenza per Tutte le Condizioni Iniziali');
+title('F79 Preconditioing 10^4 quad');
 xlabel('Iterazione');
 ylabel('Ordine di Convergenza');
 legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
