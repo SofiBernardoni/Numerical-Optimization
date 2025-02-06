@@ -958,5 +958,5 @@ disp(T_compare)
 % Salvataggio su Excel
 writetable(T_compare, 'results_f79_Precond_quad.xlsx', 'Sheet', 'ExactComparison', 'WriteRowNames', true);
 %%
-save('risultati_convergenza_F79_quad.mat', 'mat_converged1_fd1', 'mat_converged2_fd1', 'mat_converged3_fd1', 'mat_converged1_fd2', 'mat_converged2_fd2', 'mat_converged3_fd2', 'vec_converged1_ex', 'vec_converged2_ex', 'vec_converged3_ex');
+save('risultati_convergenza_F79_quad_precond.mat', 'mat_converged1_fd1', 'mat_converged2_fd1', 'mat_converged3_fd1', 'mat_converged1_fd2', 'mat_converged2_fd2', 'mat_converged3_fd2', 'vec_converged1_ex', 'vec_converged2_ex', 'vec_converged3_ex');
 
