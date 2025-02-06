@@ -1,6 +1,7 @@
 rng(345989);
 
-f=@(x) 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+%f=@(x) 100*(x(2,:)-x(1,:)^2)^2 + (1-x(1,:)).^2;
+f= @(x) 100*(x(2,:)-x(1,:).^2).^2+(1-x(1,:)).^2 ;
 
 % Punto iniziale
 x0 = [1.2; 1.2];  
@@ -12,17 +13,18 @@ gamma = 0.5;  % Coefficiente di espansione
 sigma = 0.5; % Coefficiente di riduzione
 tol = 1e-16;  % Tolleranza per la convergenza
 max_iter = 1000; % Numero massimo di iterazioni
+Delta=0.1;
 
 
 
 % Chiamata alla funzione Nelder-Mead
-[x_0, f_0, n_iter_0] = Nelder_mead(x0, f, rho, mu, gamma, sigma, tol, max_iter);
+[x_0, f_0, n_iter_0] = Nelder_mead(x0, f, rho, mu, gamma, sigma, tol, max_iter,Delta);
 
 % Visualizzare il risultato
 
 disp('-------------NELDER-MEAD CON VALORI STANDARD---------------')
 disp('Punto ottimale da x0 = [1.2, 1.2]:');
-disp(x_0(end));
+disp(x_0(:,end));
 disp('Valore della funzione ottimizzata:');
 disp(f_0(end));
 disp('Numero di iterazioni:');
@@ -33,11 +35,11 @@ x1 = [-1.2; 1];
 
 
 % Chiamata alla funzione Nelder-Mead
-[x_1, f_1, n_iter_1] = Nelder_mead(x1, f, rho, mu, gamma, sigma, tol, max_iter);
+[x_1, f_1, n_iter_1] = Nelder_mead(x1, f, rho, mu, gamma, sigma, tol, max_iter,Delta);
 
 % Visualizzare il risultato
 disp('Punto ottimale da x1=[-1.2,1]:');
-disp(x_1(end));
+disp(x_1(:,end));
 disp('Valore della funzione ottimizzata:');
 disp(f_1(end));
 disp('Numero di iterazioni:');
@@ -57,8 +59,8 @@ gamma = 0.6;  % Coefficiente di espansione
 sigma = 0.4; % Coefficiente di riduzione
 
 % Chiamata alla funzione Nelder-Mead
-[x_1c, f_1c, n_iter_1c] = Nelder_mead(x1, f, rho, mu, gamma, sigma, tol, max_iter);
-[x_0c, f_0c, n_iter_0c] = Nelder_mead(x0, f, rho, mu, gamma, sigma, tol, max_iter);
+[x_1c, f_1c, n_iter_1c] = Nelder_mead(x1, f, rho, mu, gamma, sigma, tol, max_iter,Delta);
+[x_0c, f_0c, n_iter_0c] = Nelder_mead(x0, f, rho, mu, gamma, sigma, tol, max_iter,Delta);
 
 % Visualizzare il risultato
 disp('----------------- NEALDER-MEAD CON NUOVI VALORI')
@@ -78,7 +80,7 @@ disp(f_0c(end));
 disp('Numero di iterazioni:');
 disp(n_iter_0c);
 
-p%% CAMBIO PARAMETRI
+%% CAMBIO PARAMETRI
 disp('change dei parametri:');
 disp('rho=1.2, gamma=0.7, sigma=0.3,mu=4')
 
@@ -89,14 +91,14 @@ mu = 4;   % Coefficiente di contrazione
 gamma = 0.7;  % Coefficiente di espansione
 sigma = 0.3; % Coefficiente di riduzione
 
-[x_1_1, f_1_1, n_iter_1_1] = Nelder_mead(x1, f, rho, mu, gamma, sigma, tol, max_iter);
-[x_0_1, f_0_1, n_iter_0_1] = Nelder_mead(x0, f, rho, mu, gamma, sigma, tol, max_iter);
+[x_1_1, f_1_1, n_iter_1_1] = Nelder_mead(x1, f, rho, mu, gamma, sigma, tol, max_iter,Delta);
+[x_0_1, f_0_1, n_iter_0_1] = Nelder_mead(x0, f, rho, mu, gamma, sigma, tol, max_iter,Delta);
 
 
 disp('----------------- NEALDER-MEAD CON NUOVI VALORI')
 % Visualizzare il risultato
 disp('Punto ottimale da x1=[-1.2,1]:');
-disp(x_1_1(end));
+disp(x_1_1(:,end));
 disp('Valore della funzione ottimizzata:');
 disp(f_1_1(end));
 disp('Numero di iterazioni:');
@@ -104,7 +106,7 @@ disp(n_iter_1_1);
 
 % Visualizzare il risultato
 disp('Punto ottimale da x0=[1.2,1.2]:');
-disp(x_0_1(end));
+disp(x_0_1(:,end));
 disp('Valore della funzione ottimizzata:');
 disp(f_0_1(end));
 disp('Numero di iterazioni:');
@@ -121,14 +123,14 @@ mu = 5;   % Coefficiente di contrazione
 gamma = 0.8;  % Coefficiente di espansione
 sigma = 0.2; % Coefficiente di riduzione
 
-[x_1_1, f_1_1, n_iter_1_1] = Nelder_mead(x1, f, rho, mu, gamma, sigma, tol, max_iter);
-[x_0_1, f_0_1, n_iter_0_1] = Nelder_mead(x0, f, rho, mu, gamma, sigma, tol, max_iter);
+[x_1_1, f_1_1, n_iter_1_1] = Nelder_mead(x1, f, rho, mu, gamma, sigma, tol, max_iter,Delta);
+[x_0_1, f_0_1, n_iter_0_1] = Nelder_mead(x0, f, rho, mu, gamma, sigma, tol, max_iter,Delta);
 
 
 disp('----------------- NEALDER-MEAD CON NUOVI VALORI')
 % Visualizzare il risultato
 disp('Punto ottimale da x1=[-1.2,1]:');
-disp(x_1_1(end));
+disp(x_1_1(:,end));
 disp('Valore della funzione ottimizzata:');
 disp(f_1_1(end));
 disp('Numero di iterazioni:');
@@ -136,7 +138,7 @@ disp(n_iter_1_1);
 
 % Visualizzare il risultato
 disp('Punto ottimale da x0=[1.2,1.2]:');
-disp(x_0_1(end));
+disp(x_0_1(:,end));
 disp('Valore della funzione ottimizzata:');
 disp(f_0_1(end));
 disp('Numero di iterazioni:');
@@ -153,14 +155,14 @@ mu = 4.5;   % Coefficiente di contrazione
 gamma = 0.8;  % Coefficiente di espansione
 sigma = 0.1; % Coefficiente di riduzione
 
-[x_1_1, f_1_1, n_iter_1_1] = Nelder_mead(x1, f, rho, mu, gamma, sigma, tol, max_iter);
-[x_0_1, f_0_1, n_iter_0_1] = Nelder_mead(x0, f, rho, mu, gamma, sigma, tol, max_iter);
+[x_1_1, f_1_1, n_iter_1_1] = Nelder_mead(x1, f, rho, mu, gamma, sigma, tol, max_iter,Delta);
+[x_0_1, f_0_1, n_iter_0_1] = Nelder_mead(x0, f, rho, mu, gamma, sigma, tol, max_iter,Delta);
 
 
 disp('----------------- NEALDER-MEAD CON NUOVI VALORI')
 % Visualizzare il risultato
 disp('Punto ottimale da x1=[-1.2,1]:');
-disp(x_1_1(end));
+disp(x_1_1(:,end));
 disp('Valore della funzione ottimizzata:');
 disp(f_1_1(end));
 disp('Numero di iterazioni:');
@@ -168,7 +170,7 @@ disp(n_iter_1_1);
 
 % Visualizzare il risultato
 disp('Punto ottimale da x0=[1.2,1.2]:');
-disp(x_0_1(end));
+disp(x_0_1(:,end));
 disp('Valore della funzione ottimizzata:');
 disp(f_0_1(end));
 disp('Numero di iterazioni:');
@@ -186,14 +188,14 @@ mu = 4.5;   % Coefficiente di contrazione
 gamma = 0.9;  % Coefficiente di espansione
 sigma = 0.1; % Coefficiente di riduzione
 
-[x_1_1, f_1_1, n_iter_1_1] = Nelder_mead(x1, f, rho, mu, gamma, sigma, tol, max_iter);
-[x_0_1, f_0_1, n_iter_0_1] = Nelder_mead(x0, f, rho, mu, gamma, sigma, tol, max_iter);
+[x_1_1, f_1_1, n_iter_1_1] = Nelder_mead(x1, f, rho, mu, gamma, sigma, tol, max_iter,Delta);
+[x_0_1, f_0_1, n_iter_0_1] = Nelder_mead(x0, f, rho, mu, gamma, sigma, tol, max_iter,Delta);
 
 
 disp('----------------- NEALDER-MEAD CON NUOVI VALORI')
 % Visualizzare il risultato
 disp('Punto ottimale da x1=[-1.2,1]:');
-disp(x_1_1(end));
+disp(x_1_1(:,end));
 disp('Valore della funzione ottimizzata:');
 disp(f_1_1(end));
 disp('Numero di iterazioni:');
@@ -201,7 +203,7 @@ disp(n_iter_1_1);
 
 % Visualizzare il risultato
 disp('Punto ottimale da x0=[1.2,1.2]:');
-disp(x_0_1(end));
+disp(x_0_1(:,end));
 disp('Valore della funzione ottimizzata:');
 disp(f_0_1(end));
 disp('Numero di iterazioni:');
@@ -218,8 +220,8 @@ mu = 4.55;   % Coefficiente di contrazione
 gamma = 0.95;  % Coefficiente di espansione
 sigma = 0.15; % Coefficiente di riduzione
 
-[x_1_1, f_1_1, n_iter_1_1] = Nelder_mead(x1, f, rho, mu, gamma, sigma, tol, max_iter);
-[x_0_1, f_0_1, n_iter_0_1] = Nelder_mead(x0, f, rho, mu, gamma, sigma, tol, max_iter);
+[x_1_1, f_1_1, n_iter_1_1] = Nelder_mead(x1, f, rho, mu, gamma, sigma, tol, max_iter,Delta);
+[x_0_1, f_0_1, n_iter_0_1] = Nelder_mead(x0, f, rho, mu, gamma, sigma, tol, max_iter,Delta);
 
 
 disp('----------------- NEALDER-MEAD CON NUOVI VALORI')
@@ -233,7 +235,7 @@ disp(n_iter_1_1);
 
 % Visualizzare il risultato
 disp('Punto ottimale da x0=[1.2,1.2]:');
-disp(x_0_1(end));
+disp(x_0_1(:,end));
 disp('Valore della funzione ottimizzata:');
 disp(f_0_1(end));
 disp('Numero di iterazioni:');
