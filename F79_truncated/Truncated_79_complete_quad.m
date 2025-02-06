@@ -38,7 +38,7 @@ vec_times1_ex=zeros(1,N+1); % vector with execution times
 vec_val1_ex=zeros(1,N+1); %vector with minimal values found
 vec_grad1_ex=zeros(1,N+1); %vector with final gradient
 vec_iter1_ex=zeros(1,N+1); %vector with number of iterations 
-mat_conv_ex=zeros(15, N+1);
+mat_conv1_ex=zeros(12, N+1);
 vec_converged1_ex=zeros(1,N+1); % vector of booleans (true if it has converged) 
 vec_violations1_ex=zeros(1,N+1); % vector with number of violations of curvature condition in Newton method
 
@@ -50,7 +50,7 @@ mat_times1_fd1=zeros(6,N+1); % matrix with execution times
 mat_val1_fd1=zeros(6,N+1); %matrix with minimal values found
 mat_grad1_fd1=zeros(6,N+1); %matrix with final gradient
 mat_iter1_fd1=zeros(6,N+1); %matrix with number of iterations 
-mat_conv_fd1=cell(6, N+1);
+mat_conv1_fd1=cell(6, N+1);
 mat_converged1_fd1=zeros(6,N+1); % matrix of booleans (true if it has converged) 
 mat_violations1_fd1=zeros(6,N+1); % matrix with number of violations of curvature condition in Newton method
 
@@ -62,7 +62,7 @@ mat_times1_fd2=zeros(6,N+1); % matrix with execution times
 mat_val1_fd2=zeros(6,N+1); %matrix with minimal values found
 mat_grad1_fd2=zeros(6,N+1); %matrix with final gradient
 mat_iter1_fd2=zeros(6,N+1); %matrix with number of iterations 
-mat_conv_fd2=cell(6,N+1);
+mat_conv1_fd2=cell(6,N+1);
 mat_converged1_fd2=zeros(6,N+1); % matrix of booleans (true if it has converged) 
 mat_violations1_fd2=zeros(6,N+1); % matrix with number of violations of curvature condition in Newton method
 
@@ -84,8 +84,8 @@ for j =1:N+1
     vec_grad1_ex(j)=gradf_norm1;
     vec_iter1_ex(j)=k1;
     vec_violations1_ex(j)=violations1;
-    last_vals = conv_ord1_ex(max(end-14,1):end);
-    mat_conv_ex(:, j) = last_vals;
+    last_vals = conv_ord1_ex(max(end-11,1):end);
+    mat_conv1_ex(:, j) = last_vals;
 
     
     for i=2:2:12
@@ -106,8 +106,8 @@ for j =1:N+1
     mat_iter1_fd1(i/2,j)=k1;
     mat_violations1_fd1(i/2,j)=violations1;
 
-    last_vals = conv_ord1_df1(max(end-14,1):end);
-    mat_conv_fd1(i/2, j) = {last_vals};
+    last_vals = conv_ord1_df1(max(end-11,1):end);
+    mat_conv1_fd1(i/2, j) = {last_vals};
 
 
     % FINITE DIFFERENCES 2
@@ -124,8 +124,8 @@ for j =1:N+1
     mat_grad1_fd2(i/2,j)=gradf_norm1;
     mat_iter1_fd2(i/2,j)=k1;
     mat_violations1_fd2(i/2,j)=violations1;
-    last_vals = conv_ord1_df2(max(end-14,1):end);
-    mat_conv_fd2(i/2, j) = {last_vals};
+    last_vals = conv_ord1_df2(max(end-11,1):end);
+    mat_conv1_fd2(i/2, j) = {last_vals};
 
 
     end
@@ -150,17 +150,17 @@ for j = 1:num_initial_points
     % Estrai l'ordine di convergenza per la j-esima condizione iniziale
     conv_ord_ex = mat_conv1_ex(:,j); % Derivate esatte
 
-    plot(1:15,conv_ord_ex, 'Color', 'b', 'LineWidth', 1.5);
+    plot(1:12,conv_ord_ex, 'Color', 'b', 'LineWidth', 1.5);
     hold on;
     for i =1:6 
         conv_ord_fd1 = mat_conv1_fd1{i, j}; % Differenze finite classiche
 
        
         conv_ord_fd2 = mat_conv1_fd2{i, j}; % Differenze finite adattative
-        plot(1:15,conv_ord_fd1, '-', 'Color', 'r', 'LineWidth', 1.5);
+        plot(1:12,conv_ord_fd1, '-', 'Color', 'r', 'LineWidth', 1.5);
 
         hold on;
-        plot(1:15,conv_ord_fd2, '-o', 'Color', 'g', 'LineWidth', 1.5);
+        plot(1:12,conv_ord_fd2, '-o', 'Color', 'g', 'LineWidth', 1.5);
         hold on;
     end
 
@@ -168,7 +168,7 @@ for j = 1:num_initial_points
 end
 
 % Aggiungi titolo e legenda
-title('F79 10^3 quad');
+title('F79 10^3 quadratic');
 xlabel('Iterazione');
 ylabel('Ordine di Convergenza');
 legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
@@ -338,7 +338,7 @@ vec_times2_ex=zeros(1,N+1); % vector with execution times
 vec_val2_ex=zeros(1,N+1); %vector with minimal values found
 vec_grad2_ex=zeros(1,N+1); %vector with final gradient
 vec_iter2_ex=zeros(1,N+1); %vector with number of iterations 
-mat_conv2_ex=zeros(15,N+1);
+mat_conv2_ex=zeros(12,N+1);
 vec_converged2_ex=zeros(1,N+1); % vector of booleans (true if it has converged) 
 vec_violations2_ex=zeros(1,N+1); % vector with number of violations of curvature condition in Newton method
 
@@ -384,7 +384,7 @@ for j =1:N+1
     vec_grad2_ex(j)=gradf_norm2;
     vec_iter2_ex(j)=k2;
     vec_violations2_ex(j)=violations2;
-    last_vals = conv_ord2_ex(max(end-14,1):end);
+    last_vals = conv_ord2_ex(max(end-11,1):end);
     mat_conv2_ex(:, j) = last_vals;
     
     for i=2:2:12
@@ -404,7 +404,7 @@ for j =1:N+1
     mat_grad2_fd1(i/2,j)=gradf_norm2;
     mat_iter2_fd1(i/2,j)=k2;
     mat_violations2_fd1(i/2,j)=violations2;
-    last_vals = conv_ord2_df1(max(end-14,1):end);
+    last_vals = conv_ord2_df1(max(end-11,1):end);
     mat_conv2_fd1(i/2, j) = {last_vals};
 
 
@@ -423,7 +423,7 @@ for j =1:N+1
     mat_grad2_fd2(i/2,j)=gradf_norm2;
     mat_iter2_fd2(i/2,j)=k2;
     mat_violations2_fd2(i/2,j)=violations2;
-    last_vals = conv_ord2_df2(max(end-14,1):end);
+    last_vals = conv_ord2_df2(max(end-11,1):end);
     mat_conv2_fd2(i/2, j) = {last_vals};
 
     end
@@ -448,17 +448,17 @@ for j = 1:num_initial_points
     % Estrai l'ordine di convergenza per la j-esima condizione iniziale
     conv_ord_ex = mat_conv2_ex(:,j); % Derivate esatte
 
-    plot(1:15,conv_ord_ex, 'Color', 'b', 'LineWidth', 1.5);
+    plot(1:12,conv_ord_ex, 'Color', 'b', 'LineWidth', 1.5);
     hold on;
     for i =1:6 
         conv_ord_fd1 = mat_conv2_fd1{i, j}; % Differenze finite classiche
 
        
         conv_ord_fd2 = mat_conv2_fd2{i, j}; % Differenze finite adattative
-        plot(1:15,conv_ord_fd1, '-', 'Color', 'r', 'LineWidth', 1.5);
+        plot(1:12,conv_ord_fd1, '-', 'Color', 'r', 'LineWidth', 1.5);
 
         hold on;
-        plot(1:15,conv_ord_fd2, '-o', 'Color', 'g', 'LineWidth', 1.5);
+        plot(1:12,conv_ord_fd2, '-o', 'Color', 'g', 'LineWidth', 1.5);
         hold on;
     end
 
@@ -466,7 +466,7 @@ for j = 1:num_initial_points
 end
 
 % Aggiungi titolo e legenda
-title('F79 10^4 quad');
+title('F79 10^4 quadratic');
 xlabel('Iterazione');
 ylabel('Ordine di Convergenza');
 legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
@@ -636,7 +636,7 @@ vec_times3_ex=zeros(1,N+1); % vector with execution times
 vec_val3_ex=zeros(1,N+1); %vector with minimal values found
 vec_grad3_ex=zeros(1,N+1); %vector with final gradient
 vec_iter3_ex=zeros(1,N+1); %vector with number of iterations 
-mat_conv3_ex=zeros(15:N+1);
+mat_conv3_ex=zeros(12:N+1);
 vec_converged3_ex=zeros(1,N+1); % vector of booleans (true if it has converged) 
 vec_violations3_ex=zeros(1,N+1); % vector with number of violations of curvature condition in Newton method
 
@@ -682,7 +682,7 @@ for j =1:N+1
     vec_grad3_ex(j)=gradf_norm3;
     vec_iter3_ex(j)=k3;
     vec_violations3_ex(j)=violations3;
-    last_vals = conv_ord3_ex(max(end-14,1):end);
+    last_vals = conv_ord3_ex(max(end-11,1):end);
     mat_conv3_ex(:, j) = last_vals;
     
     for i=2:2:12
@@ -702,7 +702,7 @@ for j =1:N+1
     mat_grad3_fd1(i/2,j)=gradf_norm3;
     mat_iter3_fd1(i/2,j)=k3;
     mat_violations3_fd1(i/2,j)=violations3;
-    last_vals = conv_ord3_df1(max(end-14,1):end);
+    last_vals = conv_ord3_df1(max(end-11,1):end);
     mat_conv3_fd1(i/2, j) = {last_vals};
 
 
@@ -721,7 +721,7 @@ for j =1:N+1
     mat_grad3_fd2(i/2,j)=gradf_norm3;
     mat_iter3_fd2(i/2,j)=k3;
     mat_violations3_fd2(i/2,j)=violations3;
-    last_vals = conv_ord3_df2(max(end-14,1):end);
+    last_vals = conv_ord3_df2(max(end-11,1):end);
     mat_conv3_fd2(i/2, j) = {last_vals};
 
     end
@@ -746,17 +746,17 @@ for j = 1:num_initial_points
     % Estrai l'ordine di convergenza per la j-esima condizione iniziale
     conv_ord_ex = mat_conv3_ex(:,j); % Derivate esatte
 
-    plot(1:15,conv_ord_ex, 'Color', 'b', 'LineWidth', 1.5);
+    plot(1:12,conv_ord_ex, 'Color', 'b', 'LineWidth', 1.5);
     hold on;
     for i =1:6 
         conv_ord_fd1 = mat_conv3_fd1{i, j}; % Differenze finite classiche
 
        
         conv_ord_fd2 = mat_conv3_fd2{i, j}; % Differenze finite adattative
-        plot(1:15,conv_ord_fd1, '-', 'Color', 'r', 'LineWidth', 1.5);
+        plot(1:12,conv_ord_fd1, '-', 'Color', 'r', 'LineWidth', 1.5);
 
         hold on;
-        plot(1:15,conv_ord_fd2, '-o', 'Color', 'g', 'LineWidth', 1.5);
+        plot(1:12,conv_ord_fd2, '-o', 'Color', 'g', 'LineWidth', 1.5);
         hold on;
     end
 
@@ -764,7 +764,7 @@ for j = 1:num_initial_points
 end
 
 % Aggiungi titolo e legenda
-title('F79 10^5 quad');
+title('F79 10^5 quadratic');
 xlabel('Iterazione');
 ylabel('Ordine di Convergenza');
 legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
@@ -924,3 +924,5 @@ disp(T_compare)
 % Salvataggio su Excel
 writetable(T_compare, 'results_f79_quad.xlsx', 'Sheet', 'ExactComparison', 'WriteRowNames', true);
 
+%%
+save('risultati_convergenza_F79_quad.mat', 'mat_converged1_fd1', 'mat_converged2_fd1', 'mat_converged3_fd1', 'mat_converged1_fd2', 'mat_converged2_fd2', 'mat_converged3_fd2', 'vec_converged1_ex', 'vec_converged2_ex', 'vec_converged3_ex');

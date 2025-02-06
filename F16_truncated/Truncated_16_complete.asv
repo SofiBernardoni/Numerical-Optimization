@@ -1,10 +1,10 @@
-%% FUNCTION 79  (with different initial points)- with exact derivatives and finite differences
+%% FUNCTION 16  (with different initial points)- with exact derivatives and finite differences
 
 sparse=true;
 
-F = @(x) F79(x);  % Defining F79 as function handle
-JF_gen = @(x,exact,fin_dif2,h) JF79(x,exact,fin_dif2,h); % Defining JF79 as function handle 
-HF_gen= @(x,exact,fin_dif2,h) HF79(x,sparse,exact,fin_dif2,h); % Defining HF79 as function handle (sparse version)
+F = @(x) F16(x);  % Defining F16 as function handle
+JF_gen = @(x,exact,fin_dif2,h) JF16(x,exact,fin_dif2,h); % Defining JF16 as function handle 
+HF_gen= @(x,exact,fin_dif2,h) HF16(x,sparse,exact,fin_dif2,h); % Defining HF16 as function handle (sparse version)
 
 load forcing_terms.mat % possible terms for adaptive tolerance 
 
@@ -25,10 +25,10 @@ c1=1e-4;
 rho=0.50;
 btmax=50; % compatible with rho (with alpha0=1 you get min_step 8.8e-16)
 
-x0=-1*ones(n,1);  % initial point
+x0 = ones(n, 1); % initial point
 N=10; % number of initial points to be generated
 
-% Initial points:
+% Initial poin7ts:
 Mat_points=repmat(x0,1,N+1); 
 rand_mat=2*rand(n, N)-1;
 Mat_points(:,2:end)=Mat_points(:,2:end) + rand_mat; % matrix with columns=initial points
@@ -74,9 +74,7 @@ for j =1:N+1
 
     % EXACT DERIVATIVES
     tic;
-
     [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1_ex,flag1, converged1, violations1] = truncated_newton(Mat_points(:,j), F, JF_ex, HF_ex, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
-
     vec_times1_ex(j)=toc;
 
     disp(['Exact derivatives: ',flag1]) 
@@ -97,9 +95,7 @@ for j =1:N+1
     JF=@(x)JF_fd1(x,h);
     HF=@(x)HF_fd1(x,h);
     tic;
-
     [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1_df1,flag1, converged1, violations1] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
-
     mat_times1_fd1(i/2,j)=toc;
 
     disp(['Finite differences (classical version) with h=1e-',num2str(i),' : ',flag1]) 
@@ -109,7 +105,6 @@ for j =1:N+1
     mat_grad1_fd1(i/2,j)=gradf_norm1;
     mat_iter1_fd1(i/2,j)=k1;
     mat_violations1_fd1(i/2,j)=violations1;
-
     last_vals = conv_ord1_df1(max(end-11,1):end);
     mat_conv1_fd1(i/2, j) = {last_vals};
 
@@ -118,9 +113,7 @@ for j =1:N+1
     JF=@(x) JF_fd2(x,h);
     HF=@(x) HF_fd2(x,h);
     tic;
-
     [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1_df2,flag1, converged1, violations1] = truncated_newton(Mat_points(:,j), F, JF, HF, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
-
     mat_times1_fd2(i/2,j)=toc;
 
     disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag1]) 
@@ -130,11 +123,8 @@ for j =1:N+1
     mat_grad1_fd2(i/2,j)=gradf_norm1;
     mat_iter1_fd2(i/2,j)=k1;
     mat_violations1_fd2(i/2,j)=violations1;
-
     last_vals = conv_ord1_df2(max(end-11,1):end);
     mat_conv1_fd2(i/2, j) = {last_vals};
-
-
 
     end
 end
@@ -177,7 +167,7 @@ for j = 1:num_initial_points
 end
 
 % Aggiungi titolo e legenda
-title('F79 10^3 superlinear');
+title('F16, n=10^3, superlienar');
 xlabel('Iterazione');
 ylabel('Ordine di Convergenza');
 legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
@@ -221,11 +211,11 @@ data = [ fd1_vals, avg_exact_t1; fd2_vals, avg_exact_t1;];
 T1 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation times table (only for successful runs): F79, n=10^3, superlienar');
+disp('Average computation times table (only for successful runs): F16, n=10^3, superlienar');
 disp(T1);
 
 % (Opzionale) Salva la tabella in un file CSV
-%writetable(T, 'Time_tabel_f79_3_suplin.csv', 'WriteRowNames', true);
+%writetable(T, 'Time_tabel_f16_3_suplin.csv', 'WriteRowNames', true);
 
 
 %% Calcolo delle medie considerando solo le esecuzioni convergenti
@@ -264,11 +254,11 @@ data = [ fd1_vals, avg_exact_i1; fd2_vals, avg_exact_i1;];
 T2 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation iteration table (only for successful runs): F79, n=10^3, suplin');
+disp('Average computation iteration table (only for successful runs): F16, n=10^3, suplin');
 disp(T2);
 
 % (Opzionale) Salva la tabella in un file CSV
-%writetable(T, 'Iteration_tabel_f79_3_suplin.csv', 'WriteRowNames', true);
+%writetable(T, 'Iteration_tabel_f16_3_suplin.csv', 'WriteRowNames', true);
 
 %% Calcolo delle medie considerando solo le esecuzioni convergenti
 
@@ -306,15 +296,15 @@ data = [ fd1_vals, avg_exact_f1; fd2_vals, avg_exact_f1;];
 T3 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation fmin value table (only for successful runs): F79, n=10^3, suplin');
+disp('Average computation fmin value table (only for successful runs): F16, n=10^3, suplin');
 disp(T3);
 
 % (Opzionale) Salva la tabella in un file CSV
-%writetable(T, 'Fminvalue_tabel_f79_3_suplin.csv', 'WriteRowNames', true);
+%writetable(T, 'Fminvalue_tabel_f16_3_suplin.csv', 'WriteRowNames', true);
 
-writetable(T1, 'results_f79_suplin.xlsx', 'Sheet', 'time_3','WriteRowNames', true);
-writetable(T2, 'results_f79_suplin.xlsx', 'Sheet', 'niter_3','WriteRowNames', true);
-writetable(T3, 'results_f79_suplin.xlsx', 'Sheet', 'f_val_3','WriteRowNames', true);
+writetable(T1, 'results_f16_suplin.xlsx', 'Sheet', 'time_3','WriteRowNames', true);
+writetable(T2, 'results_f16_suplin.xlsx', 'Sheet', 'niter_3','WriteRowNames', true);
+writetable(T3, 'results_f16_suplin.xlsx', 'Sheet', 'f_val_3','WriteRowNames', true);
 
 
 
@@ -326,7 +316,7 @@ rng(345989);
 n=1e4; 
 
 kmax=1.5e3; % maximum number of iterations of Newton method
-tolgrad=5e-7; % tolerance on gradient norm
+tolgrad=1e-5; % tolerance on gradient norm %%%%%%%%%%%%%%%%%%%% decide if we want to keep the tolerance 5e-7
 
 cg_maxit=100; % maximum number of iterations of coniugate gradient method (for the linear system)
 z0=zeros(n,1); % initial point of coniugate gradient method (for the linear system)
@@ -336,7 +326,7 @@ c1=1e-4;
 rho=0.50;
 btmax=50; % compatible with rho (with alpha0=1 you get min_step 8.8e-16)
 
-x0=-1*ones(n,1);  % initial point
+x0 = ones(n, 1);  % initial point
 N=10; % number of initial points to be generated
 
 % Initial points:
@@ -349,7 +339,7 @@ vec_times2_ex=zeros(1,N+1); % vector with execution times
 vec_val2_ex=zeros(1,N+1); %vector with minimal values found
 vec_grad2_ex=zeros(1,N+1); %vector with final gradient
 vec_iter2_ex=zeros(1,N+1); %vector with number of iterations 
-mat_conv2_ex=zeros(12,N+1);
+mat_conv2_ex=zeros(15,N+1);
 vec_converged2_ex=zeros(1,N+1); % vector of booleans (true if it has converged) 
 vec_violations2_ex=zeros(1,N+1); % vector with number of violations of curvature condition in Newton method
 
@@ -395,10 +385,9 @@ for j =1:N+1
     vec_grad2_ex(j)=gradf_norm2;
     vec_iter2_ex(j)=k2;
     vec_violations2_ex(j)=violations2;
-
+    
     last_vals = conv_ord2_ex(max(end-11,1):end);
     mat_conv2_ex(:, j) = last_vals;
-    
     
     for i=2:2:12
     h=10^(-i);
@@ -439,7 +428,6 @@ for j =1:N+1
     last_vals = conv_ord2_df2(max(end-11,1):end);
     mat_conv2_fd2(i/2, j) = {last_vals};
 
-
     end
 end
 
@@ -462,17 +450,17 @@ for j = 1:num_initial_points
     % Estrai l'ordine di convergenza per la j-esima condizione iniziale
     conv_ord_ex = mat_conv2_ex(:,j); % Derivate esatte
 
-    plot(1:12,conv_ord_ex, 'Color', 'b', 'LineWidth', 1.5);
+    plot(1:15,conv_ord_ex, 'Color', 'b', 'LineWidth', 1.5);
     hold on;
     for i =1:6 
         conv_ord_fd1 = mat_conv2_fd1{i, j}; % Differenze finite classiche
 
        
         conv_ord_fd2 = mat_conv2_fd2{i, j}; % Differenze finite adattative
-        plot(1:12,conv_ord_fd1, '-', 'Color', 'r', 'LineWidth', 1.5);
+        plot(1:15,conv_ord_fd1, '-', 'Color', 'r', 'LineWidth', 1.5);
 
         hold on;
-        plot(1:12,conv_ord_fd2, '-o', 'Color', 'g', 'LineWidth', 1.5);
+        plot(1:15,conv_ord_fd2, '-o', 'Color', 'g', 'LineWidth', 1.5);
         hold on;
     end
 
@@ -480,7 +468,7 @@ for j = 1:num_initial_points
 end
 
 % Aggiungi titolo e legenda
-title('F79 10^4 superlinear');
+title('F16, n=10^4, superlienar');
 xlabel('Iterazione');
 ylabel('Ordine di Convergenza');
 legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
@@ -524,11 +512,11 @@ data = [ fd1_vals, avg_exact_t2; fd2_vals, avg_exact_t2;];
 T4 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation times table (only for successful runs): F79, n=10^4, superlinear');
+disp('Average computation times table (only for successful runs): F16, n=10^4, superlinear');
 disp(T4);
 
 % (Opzionale) Salva la tabella in un file CSV
-%writetable(T, 'Time_tabel_f79_3_suplin.csv', 'WriteRowNames', true);
+%writetable(T, 'Time_tabel_f16_3_suplin.csv', 'WriteRowNames', true);
 
 
 %% Calcolo delle medie considerando solo le esecuzioni convergenti
@@ -567,11 +555,11 @@ data = [ fd1_vals, avg_exact_i2; fd2_vals, avg_exact_i2;];
 T5 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation iteration table (only for successful runs): F79, n=10^4, superlinear');
+disp('Average computation iteration table (only for successful runs): F16, n=10^4, superlinear');
 disp(T5);
 
 % (Opzionale) Salva la tabella in un file CSV
-%writetable(T, 'Iteration_tabel_f79_3_suplin.csv', 'WriteRowNames', true);
+%writetable(T, 'Iteration_tabel_f16_3_suplin.csv', 'WriteRowNames', true);
 
 %% Calcolo delle medie considerando solo le esecuzioni convergenti
 
@@ -609,15 +597,15 @@ data = [ fd1_vals, avg_exact_f2; fd2_vals, avg_exact_f2;];
 T6 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation fmin value table (only for successful runs): F79, n=10^4, superlinear');
+disp('Average computation fmin value table (only for successful runs): F16, n=10^4, superlinear');
 disp(T6);
 
 % (Opzionale) Salva la tabella in un file CSV
-%writetable(T, 'Fminvalue_tabel_f79_3_suplin.csv', 'WriteRowNames', true);
+%writetable(T, 'Fminvalue_tabel_f16_3_suplin.csv', 'WriteRowNames', true);
 
-writetable(T4, 'results_f79_suplin.xlsx', 'Sheet', 'time_4','WriteRowNames', true);
-writetable(T5, 'results_f79_suplin.xlsx', 'Sheet', 'niter_4','WriteRowNames', true);
-writetable(T6, 'results_f79_suplin.xlsx', 'Sheet', 'f_val_4','WriteRowNames', true);
+writetable(T4, 'results_f16_suplin.xlsx', 'Sheet', 'time_4','WriteRowNames', true);
+writetable(T5, 'results_f16_suplin.xlsx', 'Sheet', 'niter_4','WriteRowNames', true);
+writetable(T6, 'results_f16_suplin.xlsx', 'Sheet', 'f_val_4','WriteRowNames', true);
 
 
 
@@ -628,7 +616,7 @@ rng(345989);
 n=1e5; 
 
 kmax=1.5e3; % maximum number of iterations of Newton method
-tolgrad=5e-7; % tolerance on gradient norm
+tolgrad=5e-4; % tolerance on gradient norm
 
 cg_maxit=100; % maximum number of iterations of coniugate gradient method (for the linear system)
 z0=zeros(n,1); % initial point of coniugate gradient method (for the linear system)
@@ -638,7 +626,7 @@ c1=1e-4;
 rho=0.50;
 btmax=50; % compatible with rho (with alpha0=1 you get min_step 8.8e-16)
 
-x0=-1*ones(n,1);  % initial point
+x0 = ones(n, 1);  % initial point
 N=10; % number of initial points to be generated
 
 % Initial points:
@@ -651,7 +639,7 @@ vec_times3_ex=zeros(1,N+1); % vector with execution times
 vec_val3_ex=zeros(1,N+1); %vector with minimal values found
 vec_grad3_ex=zeros(1,N+1); %vector with final gradient
 vec_iter3_ex=zeros(1,N+1); %vector with number of iterations 
-mat_conv3_ex=zeros(12:N+1);
+mat_conv3_ex=zeros(15:N+1);
 vec_converged3_ex=zeros(1,N+1); % vector of booleans (true if it has converged) 
 vec_violations3_ex=zeros(1,N+1); % vector with number of violations of curvature condition in Newton method
 
@@ -704,7 +692,7 @@ for j =1:N+1
     for i=2:2:12
     h=10^(-i);
     
-    % FINITE DIFFERENCES 1mat_conv2_fd1
+    % FINITE DIFFERENCES 1
     JF=@(x)JF_fd1(x,h);
     HF=@(x)HF_fd1(x,h);
     tic;
@@ -720,7 +708,6 @@ for j =1:N+1
     mat_violations3_fd1(i/2,j)=violations3;
     last_vals = conv_ord3_df1(max(end-11,1):end);
     mat_conv3_fd1(i/2, j) = {last_vals};
-
 
 
     % FINITE DIFFERENCES 2
@@ -781,7 +768,7 @@ for j = 1:num_initial_points
 end
 
 % Aggiungi titolo e legenda
-title('F79 10^5 superlinear');
+title('F16, n=10^5, superlinear');
 xlabel('Iterazione');
 ylabel('Ordine di Convergenza');
 legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
@@ -826,11 +813,11 @@ data = [ fd1_vals, avg_exact_t3; fd2_vals, avg_exact_t3;];
 T7 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation times table (only for successful runs): F79, n=10^5, superlinear');
+disp('Average computation times table (only for successful runs): F16, n=10^5, superlinear');
 disp(T7);
 
 % (Opzionale) Salva la tabella in un file CSV
-%writetable(T, 'Time_tabel_f79_3_suplin.csv', 'WriteRowNames', true);
+%writetable(T, 'Time_tabel_f16_3_suplin.csv', 'WriteRowNames', true);
 
 
 %% Calcolo delle medie considerando solo le esecuzioni convergenti
@@ -869,11 +856,11 @@ data = [ fd1_vals, avg_exact_i3; fd2_vals, avg_exact_i3;];
 T8 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation iteration table (only for successful runs): F79, n=10^5, superlinear');
+disp('Average computation iteration table (only for successful runs): F16, n=10^5, superlinear');
 disp(T8);
 
 % (Opzionale) Salva la tabella in un file CSV
-%writetable(T, 'Iteration_tabel_f79_3_suplin.csv', 'WriteRowNames', true);
+%writetable(T, 'Iteration_tabel_f16_3_suplin.csv', 'WriteRowNames', true);
 
 %% Calcolo delle medie considerando solo le esecuzioni convergenti
 
@@ -911,15 +898,15 @@ data = [ fd1_vals, avg_exact_f3; fd2_vals, avg_exact_f3;];
 T9 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation fmin value table (only for successful runs): F79, n=10^5, superlinear');
+disp('Average computation fmin value table (only for successful runs): F16, n=10^5, superlinear');
 disp(T9);
 
 % (Opzionale) Salva la tabella in un file CSV
-%writetable(T, 'Fminvalue_tabel_f79_3_suplin.csv', 'WriteRowNames', true);
+%writetable(T, 'Fminvalue_tabel_f16_3_suplin.csv', 'WriteRowNames', true);
 
-writetable(T7, 'results_f79_suplin.xlsx', 'Sheet', 'time5','WriteRowNames', true);
-writetable(T8, 'results_f79_suplin.xlsx', 'Sheet', 'niter_5','WriteRowNames', true);
-writetable(T9, 'results_f79_suplin.xlsx', 'Sheet', 'f_val_5','WriteRowNames', true);
+writetable(T7, 'results_f16_suplin.xlsx', 'Sheet', 'time5','WriteRowNames', true);
+writetable(T8, 'results_f16_suplin.xlsx', 'Sheet', 'niter_5','WriteRowNames', true);
+writetable(T9, 'results_f16_suplin.xlsx', 'Sheet', 'f_val_5','WriteRowNames', true);
 
 
 %%
@@ -939,7 +926,5 @@ T_compare = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames
 disp(T_compare)
 
 % Salvataggio su Excel
-writetable(T_compare, 'results_f79_suplin.xlsx', 'Sheet', 'ExactComparison', 'WriteRowNames', true);
+writetable(T_compare, 'results_f16_suplin.xlsx', 'Sheet', 'ExactComparison', 'WriteRowNames', true);
 
-%%
-save('risultati_convergenza_F79_suplin.mat', 'mat_converged1_fd1', 'mat_converged2_fd1', 'mat_converged3_fd1', 'mat_converged1_fd2', 'mat_converged2_fd2', 'mat_converged3_fd2', 'vec_converged1_ex', 'vec_converged2_ex', 'vec_converged3_ex');
