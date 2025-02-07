@@ -38,6 +38,8 @@ vec_times1_ex=zeros(1,N+1); % vector with execution times
 vec_val1_ex=zeros(1,N+1); %vector with minimal values found
 vec_grad1_ex=zeros(1,N+1); %vector with final gradient
 vec_iter1_ex=zeros(1,N+1); %vector with number of iterations 
+vec_cg_iter1_ex=zeros(1,N+1); %vector with mean number of inner iterations
+vec_bt1_ex=zeros(1,N+1); %vector with mean number of backtracking iterations
 mat_conv1_ex=zeros(12, N+1);
 vec_converged1_ex=zeros(1,N+1); % vector of booleans (true if it has converged) 
 vec_violations1_ex=zeros(1,N+1); % vector with number of violations of curvature condition in Newton method
@@ -50,6 +52,8 @@ mat_times1_fd1=zeros(6,N+1); % matrix with execution times
 mat_val1_fd1=zeros(6,N+1); %matrix with minimal values found
 mat_grad1_fd1=zeros(6,N+1); %matrix with final gradient
 mat_iter1_fd1=zeros(6,N+1); %matrix with number of iterations 
+mat_cg_iter1_fd1=zeros(6,N+1); %matrix with mean number of inner iterations
+mat_bt1_fd1=zeros(6,N+1); %matrix with mean number of backtracking iterations
 mat_conv1_fd1=cell(6, N+1);
 mat_converged1_fd1=zeros(6,N+1); % matrix of booleans (true if it has converged) 
 mat_violations1_fd1=zeros(6,N+1); % matrix with number of violations of curvature condition in Newton method
@@ -62,6 +66,8 @@ mat_times1_fd2=zeros(6,N+1); % matrix with execution times
 mat_val1_fd2=zeros(6,N+1); %matrix with minimal values found
 mat_grad1_fd2=zeros(6,N+1); %matrix with final gradient
 mat_iter1_fd2=zeros(6,N+1); %matrix with number of iterations 
+mat_cg_iter1_fd2=zeros(6,N+1); %matrix with mean number of inner iterations
+mat_bt1_fd2=zeros(6,N+1); %matrix with mean number of backtracking iterations
 mat_conv1_fd2=cell(6,N+1);
 mat_converged1_fd2=zeros(6,N+1); % matrix of booleans (true if it has converged) 
 mat_violations1_fd2=zeros(6,N+1); % matrix with number of violations of curvature condition in Newton method
@@ -79,10 +85,11 @@ for j =1:N+1
 
     disp(['Exact derivatives: ',flag1]) 
     vec_converged1_ex(j)=converged1;
-    %conv_ord1(end-10:end) %aggiustare
     vec_val1_ex(j)=f1;
     vec_grad1_ex(j)=gradf_norm1;
     vec_iter1_ex(j)=k1;
+    vec_cg_iter1_ex(j)=sum(cgiterseq1)/k1; 
+    vec_bt1_ex(j)=sum(btseq1)/k1; 
     vec_violations1_ex(j)=violations1;
     last_vals = conv_ord1_ex(max(end-11,1):end);
     mat_conv1_ex(:, j) = last_vals;
@@ -100,12 +107,12 @@ for j =1:N+1
 
     disp(['Finite differences (classical version) with h=1e-',num2str(i),' : ',flag1]) 
     mat_converged1_fd1(i/2,j)=converged1;
-    %conv_ord1(end-10:end) %aggiustare
     mat_val1_fd1(i/2,j)=f1;
     mat_grad1_fd1(i/2,j)=gradf_norm1;
     mat_iter1_fd1(i/2,j)=k1;
+    mat_cg_iter1_fd1(i/2,j)=sum(cgiterseq1)/k1; 
+    mat_bt1_fd1(i/2,j)=sum(btseq1)/k1; 
     mat_violations1_fd1(i/2,j)=violations1;
-
     last_vals = conv_ord1_df1(max(end-11,1):end);
     mat_conv1_fd1(i/2, j) = {last_vals};
 
@@ -119,10 +126,11 @@ for j =1:N+1
 
     disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag1]) 
     mat_converged1_fd2(i/2,j)=converged1;
-    %conv_ord1(end-10:end) %aggiustare
     mat_val1_fd2(i/2,j)=f1;
     mat_grad1_fd2(i/2,j)=gradf_norm1;
     mat_iter1_fd2(i/2,j)=k1;
+    mat_cg_iter1_fd2(i/2,j)=sum(cgiterseq1)/k1; 
+    mat_bt1_fd2(i/2,j)=sum(btseq1)/k1;
     mat_violations1_fd2(i/2,j)=violations1;
     last_vals = conv_ord1_df2(max(end-11,1):end);
     mat_conv1_fd2(i/2, j) = {last_vals};
@@ -131,12 +139,6 @@ for j =1:N+1
     end
 end
 
-% Forse ha senso plottare poi solo i risultati delle convergenze
-% per confrontare i metodi sulle varie dimensioni e enlle varianti ha senso
-% usare per esempio la media e le statistiche sui vari successi ottenuti (tipo la media delle iterazioni e del tempo)
-
-% INSERIRE TABELLA
-% INSERIRE GRAFICI
 %%
 num_initial_points = N + 1;
 
@@ -338,6 +340,8 @@ vec_times2_ex=zeros(1,N+1); % vector with execution times
 vec_val2_ex=zeros(1,N+1); %vector with minimal values found
 vec_grad2_ex=zeros(1,N+1); %vector with final gradient
 vec_iter2_ex=zeros(1,N+1); %vector with number of iterations 
+vec_cg_iter2_ex=zeros(1,N+1); %vector with mean number of inner iterations
+vec_bt2_ex=zeros(1,N+1); %vector with mean number of backtracking iterations
 mat_conv2_ex=zeros(12,N+1);
 vec_converged2_ex=zeros(1,N+1); % vector of booleans (true if it has converged) 
 vec_violations2_ex=zeros(1,N+1); % vector with number of violations of curvature condition in Newton method
@@ -350,6 +354,8 @@ mat_times2_fd1=zeros(6,N+1); % matrix with execution times
 mat_val2_fd1=zeros(6,N+1); %matrix with minimal values found
 mat_grad2_fd1=zeros(6,N+1); %matrix with final gradient
 mat_iter2_fd1=zeros(6,N+1); %matrix with number of iterations 
+mat_cg_iter2_fd1=zeros(6,N+1); %matrix with mean number of inner iterations
+mat_bt2_fd1=zeros(6,N+1); %matrix with mean number of backtracking iterations
 mat_conv2_fd1=cell(6,N+1);
 mat_converged2_fd1=zeros(6,N+1); % matrix of booleans (true if it has converged) 
 mat_violations2_fd1=zeros(6,N+1); % matrix with number of violations of curvature condition in Newton method
@@ -362,6 +368,8 @@ mat_times2_fd2=zeros(6,N+1); % matrix with execution times
 mat_val2_fd2=zeros(6,N+1); %matrix with minimal values found
 mat_grad2_fd2=zeros(6,N+1); %matrix with final gradient
 mat_iter2_fd2=zeros(6,N+1); %matrix with number of iterations 
+mat_cg_iter2_fd2=zeros(6,N+1); %matrix with mean number of inner iterations
+mat_bt2_fd2=zeros(6,N+1); %matrix with mean number of backtracking iterations
 mat_conv2_fd2=cell(6,N+1);
 mat_converged2_fd2=zeros(6,N+1); % matrix of booleans (true if it has converged) 
 mat_violations2_fd2=zeros(6,N+1); % matrix with number of violations of curvature condition in Newton method
@@ -379,10 +387,11 @@ for j =1:N+1
 
     disp(['Exact derivatives: ',flag2]) 
     vec_converged2_ex(j)=converged2;
-    %conv_ord2(end-10:end) %aggiustare
     vec_val2_ex(j)=f2;
     vec_grad2_ex(j)=gradf_norm2;
     vec_iter2_ex(j)=k2;
+    vec_cg_iter2_ex(j)=sum(cgiterseq2)/k2; 
+    vec_bt2_ex(j)=sum(btseq2)/k2; 
     vec_violations2_ex(j)=violations2;
     last_vals = conv_ord2_ex(max(end-11,1):end);
     mat_conv2_ex(:, j) = last_vals;
@@ -399,10 +408,11 @@ for j =1:N+1
 
     disp(['Finite differences (classical version) with h=1e-',num2str(i),' : ',flag2]) 
     mat_converged2_fd1(i/2,j)=converged2;
-    %conv_ord2(end-10:end) %aggiustare
     mat_val2_fd1(i/2,j)=f2;
     mat_grad2_fd1(i/2,j)=gradf_norm2;
     mat_iter2_fd1(i/2,j)=k2;
+    mat_cg_iter2_fd1(i/2,j)=sum(cgiterseq2)/k2; 
+    mat_bt2_fd1(i/2,j)=sum(btseq2)/k2;
     mat_violations2_fd1(i/2,j)=violations2;
     last_vals = conv_ord2_df1(max(end-11,1):end);
     mat_conv2_fd1(i/2, j) = {last_vals};
@@ -418,10 +428,11 @@ for j =1:N+1
 
     disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag2]) 
     mat_converged2_fd2(i/2,j)=converged2;
-    %conv_ord2(end-10:end) %aggiustare
     mat_val2_fd2(i/2,j)=f2;
     mat_grad2_fd2(i/2,j)=gradf_norm2;
     mat_iter2_fd2(i/2,j)=k2;
+    mat_cg_iter2_fd2(i/2,j)=sum(cgiterseq2)/k2; 
+    mat_bt2_fd2(i/2,j)=sum(btseq2)/k2;
     mat_violations2_fd2(i/2,j)=violations2;
     last_vals = conv_ord2_df2(max(end-11,1):end);
     mat_conv2_fd2(i/2, j) = {last_vals};
@@ -429,12 +440,7 @@ for j =1:N+1
     end
 end
 
-% Forse ha senso plottare poi solo i risultati delle convergenze
-% per confrontare i metodi sulle varie dimensioni e enlle varianti ha senso
-% usare per esempio la media e le statistiche sui vari successi ottenuti (tipo la media delle iterazioni e del tempo)
 
-% INSERIRE TABELLA
-% INSERIRE GRAFICI
 %%
 num_initial_points = N + 1;
 
@@ -636,6 +642,8 @@ vec_times3_ex=zeros(1,N+1); % vector with execution times
 vec_val3_ex=zeros(1,N+1); %vector with minimal values found
 vec_grad3_ex=zeros(1,N+1); %vector with final gradient
 vec_iter3_ex=zeros(1,N+1); %vector with number of iterations 
+vec_cg_iter3_ex=zeros(1,N+1); %vector with mean number of inner iterations
+vec_bt3_ex=zeros(1,N+1); %vector with mean number of backtracking iterations
 mat_conv3_ex=zeros(12:N+1);
 vec_converged3_ex=zeros(1,N+1); % vector of booleans (true if it has converged) 
 vec_violations3_ex=zeros(1,N+1); % vector with number of violations of curvature condition in Newton method
@@ -647,7 +655,9 @@ HF_ex = @(x) HF_gen(x,true,false,0);
 mat_times3_fd1=zeros(6,N+1); % matrix with execution times 
 mat_val3_fd1=zeros(6,N+1); %matrix with minimal values found
 mat_grad3_fd1=zeros(6,N+1); %matrix with final gradient
-mat_iter3_fd1=zeros(6,N+1); %matrix with number of iterations 
+mat_iter3_fd1=zeros(6,N+1); %matrix with number of iterations
+mat_cg_iter3_fd1=zeros(6,N+1); %matrix with mean number of inner iterations
+mat_bt3_fd1=zeros(6,N+1); %matrix with mean number of backtracking iterations
 mat_conv3_fd1=cell(6,N+1);
 mat_converged3_fd1=zeros(6,N+1); % matrix of booleans (true if it has converged) 
 mat_violations3_fd1=zeros(6,N+1); % matrix with number of violations of curvature condition in Newton method
@@ -660,6 +670,8 @@ mat_times3_fd2=zeros(6,N+1); % matrix with execution times
 mat_val3_fd2=zeros(6,N+1); %matrix with minimal values found
 mat_grad3_fd2=zeros(6,N+1); %matrix with final gradient
 mat_iter3_fd2=zeros(6,N+1); %matrix with number of iterations 
+mat_cg_iter3_fd2=zeros(6,N+1); %matrix with mean number of inner iterations
+mat_bt3_fd2=zeros(6,N+1); %matrix with mean number of backtracking iterations
 mat_conv3_fd2=cell(6,N+1);
 mat_converged3_fd2=zeros(6,N+1); % matrix of booleans (true if it has converged) 
 mat_violations3_fd2=zeros(6,N+1); % matrix with number of violations of curvature condition in Newton method
@@ -677,10 +689,11 @@ for j =1:N+1
 
     disp(['Exact derivatives: ',flag3]) 
     vec_converged3_ex(j)=converged3;
-    %conv_ord3(end-10:end) %aggiustare
     vec_val3_ex(j)=f3;
     vec_grad3_ex(j)=gradf_norm3;
     vec_iter3_ex(j)=k3;
+    vec_cg_iter3_ex(j)=sum(cgiterseq3)/k3; 
+    vec_bt3_ex(j)=sum(btseq3)/k3; 
     vec_violations3_ex(j)=violations3;
     last_vals = conv_ord3_ex(max(end-11,1):end);
     mat_conv3_ex(:, j) = last_vals;
@@ -697,10 +710,11 @@ for j =1:N+1
 
     disp(['Finite differences (classical version) with h=1e-',num2str(i),' : ',flag3]) 
     mat_converged3_fd1(i/2,j)=converged3;
-    %conv_ord3(end-10:end) %aggiustare
     mat_val3_fd1(i/2,j)=f3;
     mat_grad3_fd1(i/2,j)=gradf_norm3;
     mat_iter3_fd1(i/2,j)=k3;
+    mat_cg_iter3_fd1(i/2,j)=sum(cgiterseq3)/k3; 
+    mat_bt3_fd1(i/2,j)=sum(btseq3)/k3;
     mat_violations3_fd1(i/2,j)=violations3;
     last_vals = conv_ord3_df1(max(end-11,1):end);
     mat_conv3_fd1(i/2, j) = {last_vals};
@@ -716,10 +730,11 @@ for j =1:N+1
 
     disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag3]) 
     mat_converged3_fd2(i/2,j)=converged3;
-    %conv_ord3(end-10:end) %aggiustare
     mat_val3_fd2(i/2,j)=f3;
     mat_grad3_fd2(i/2,j)=gradf_norm3;
     mat_iter3_fd2(i/2,j)=k3;
+    mat_cg_iter3_fd2(i/2,j)=sum(cgiterseq3)/k3; 
+    mat_bt3_fd2(i/2,j)=sum(btseq3)/k3;
     mat_violations3_fd2(i/2,j)=violations3;
     last_vals = conv_ord3_df2(max(end-11,1):end);
     mat_conv3_fd2(i/2, j) = {last_vals};
@@ -727,12 +742,6 @@ for j =1:N+1
     end
 end
 
-% Forse ha senso plottare poi solo i risultati delle convergenze
-% per confrontare i metodi sulle varie dimensioni e enlle varianti ha senso
-% usare per esempio la media e le statistiche sui vari successi ottenuti (tipo la media delle iterazioni e del tempo)
-
-% INSERIRE TABELLA
-% INSERIRE GRAFICI
 %%
 num_initial_points = N + 1;
 
@@ -912,7 +921,7 @@ data = [avg_exact_t1, avg_exact_t2, avg_exact_t3;
         avg_exact_f1, avg_exact_f2, avg_exact_f3];
 
 % Definizione delle intestazioni
-rowNames = {'Avergae Time', 'Avergae Iter', 'Average fval'};
+rowNames = {'Average Time', 'Average Iter', 'Average fval'};
 columnNames = {'n=10^3', 'n=10^4', 'n=10^5'};
 
 
