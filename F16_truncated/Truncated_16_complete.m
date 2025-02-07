@@ -38,6 +38,8 @@ vec_times1_ex=zeros(1,N+1); % vector with execution times
 vec_val1_ex=zeros(1,N+1); %vector with minimal values found
 vec_grad1_ex=zeros(1,N+1); %vector with final gradient
 vec_iter1_ex=zeros(1,N+1); %vector with number of iterations 
+vec_cg_iter1_ex=zeros(1,N+1); %vector with mean number of inner iterations
+vec_bt1_ex=zeros(1,N+1); %vector with mean number of backtracking iterations
 mat_conv1_ex=zeros(12, N+1);
 vec_converged1_ex=zeros(1,N+1); % vector of booleans (true if it has converged) 
 vec_violations1_ex=zeros(1,N+1); % vector with number of violations of curvature condition in Newton method
@@ -50,6 +52,8 @@ mat_times1_fd1=zeros(6,N+1); % matrix with execution times
 mat_val1_fd1=zeros(6,N+1); %matrix with minimal values found
 mat_grad1_fd1=zeros(6,N+1); %matrix with final gradient
 mat_iter1_fd1=zeros(6,N+1); %matrix with number of iterations 
+mat_cg_iter1_fd1=zeros(6,N+1); %matrix with mean number of inner iterations
+mat_bt1_fd1=zeros(6,N+1); %matrix with mean number of backtracking iterations
 mat_conv1_fd1=cell(6, N+1);
 mat_converged1_fd1=zeros(6,N+1); % matrix of booleans (true if it has converged) 
 mat_violations1_fd1=zeros(6,N+1); % matrix with number of violations of curvature condition in Newton method
@@ -62,6 +66,8 @@ mat_times1_fd2=zeros(6,N+1); % matrix with execution times
 mat_val1_fd2=zeros(6,N+1); %matrix with minimal values found
 mat_grad1_fd2=zeros(6,N+1); %matrix with final gradient
 mat_iter1_fd2=zeros(6,N+1); %matrix with number of iterations 
+mat_cg_iter1_fd2=zeros(6,N+1); %matrix with mean number of inner iterations
+mat_bt1_fd2=zeros(6,N+1); %matrix with mean number of backtracking iterations
 mat_conv1_fd2=cell(6,N+1);
 mat_converged1_fd2=zeros(6,N+1); % matrix of booleans (true if it has converged) 
 mat_violations1_fd2=zeros(6,N+1); % matrix with number of violations of curvature condition in Newton method
@@ -79,10 +85,11 @@ for j =1:N+1
 
     disp(['Exact derivatives: ',flag1]) 
     vec_converged1_ex(j)=converged1;
-    %conv_ord1(end-10:end) %aggiustare
     vec_val1_ex(j)=f1;
     vec_grad1_ex(j)=gradf_norm1;
     vec_iter1_ex(j)=k1;
+    vec_cg_iter1_ex(j)=sum(cgiterseq1)/k1; 
+    vec_bt1_ex(j)=sum(btseq1)/k1; %vector with mean number of backtracking iterations
     vec_violations1_ex(j)=violations1;
     last_vals = conv_ord1_ex(max(end-11,1):end);
     mat_conv1_ex(:, j) = last_vals;
@@ -100,10 +107,11 @@ for j =1:N+1
 
     disp(['Finite differences (classical version) with h=1e-',num2str(i),' : ',flag1]) 
     mat_converged1_fd1(i/2,j)=converged1;
-    %conv_ord1(end-10:end) %aggiustare
     mat_val1_fd1(i/2,j)=f1;
     mat_grad1_fd1(i/2,j)=gradf_norm1;
     mat_iter1_fd1(i/2,j)=k1;
+    mat_cg_iter1_fd1(i/2,j)=sum(cgiterseq1)/k1; 
+    mat_bt1_fd1(i/2,j)=sum(btseq1)/k1;
     mat_violations1_fd1(i/2,j)=violations1;
     last_vals = conv_ord1_df1(max(end-11,1):end);
     mat_conv1_fd1(i/2, j) = {last_vals};
@@ -118,10 +126,11 @@ for j =1:N+1
 
     disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag1]) 
     mat_converged1_fd2(i/2,j)=converged1;
-    %conv_ord1(end-10:end) %aggiustare
     mat_val1_fd2(i/2,j)=f1;
     mat_grad1_fd2(i/2,j)=gradf_norm1;
     mat_iter1_fd2(i/2,j)=k1;
+    mat_cg_iter1_fd2(i/2,j)=sum(cgiterseq1)/k1; 
+    mat_bt1_fd2(i/2,j)=sum(btseq1)/k1;
     mat_violations1_fd2(i/2,j)=violations1;
     last_vals = conv_ord1_df2(max(end-11,1):end);
     mat_conv1_fd2(i/2, j) = {last_vals};
@@ -129,12 +138,6 @@ for j =1:N+1
     end
 end
 
-% Forse ha senso plottare poi solo i risultati delle convergenze
-% per confrontare i metodi sulle varie dimensioni e enlle varianti ha senso
-% usare per esempio la media e le statistiche sui vari successi ottenuti (tipo la media delle iterazioni e del tempo)
-
-% INSERIRE TABELLA
-% INSERIRE GRAFICI
 
 %%
 num_initial_points = N + 1;
@@ -928,3 +931,5 @@ disp(T_compare)
 % Salvataggio su Excel
 writetable(T_compare, 'results_f16_suplin.xlsx', 'Sheet', 'ExactComparison', 'WriteRowNames', true);
 
+%%
+save('risultati_convergenza_F16_suplin.mat', 'mat_converged1_fd1', 'mat_converged2_fd1', 'mat_converged3_fd1', 'mat_converged1_fd2', 'mat_converged2_fd2', 'mat_converged3_fd2', 'vec_converged1_ex', 'vec_converged2_ex', 'vec_converged3_ex');
