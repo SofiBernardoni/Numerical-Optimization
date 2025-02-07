@@ -1,4 +1,4 @@
-%% FUNCTION 27  QUADRATIC (with different initial points)- with exact derivatives and finite differences
+%% FUNCTION 27  (with different initial points)- with exact derivatives and finite differences
 
 
 F = @(x) F27(x);  % Defining F79 as function handle
@@ -38,7 +38,6 @@ vec_grad1_ex=zeros(1,N+1); %vector with final gradient
 vec_iter1_ex=zeros(1,N+1); %vector with number of iterations 
 vec_cg_iter1_ex=zeros(1,N+1); %vector with mean number of inner iterations
 vec_bt1_ex=zeros(1,N+1); %vector with mean number of backtracking iterations
-
 mat_conv1_ex=zeros(15,N+1);
 vec_converged1_ex=zeros(1,N+1); % vector of booleans (true if it has converged) 
 vec_violations1_ex=zeros(1,N+1); % vector with number of violations of curvature condition in Newton method
@@ -76,18 +75,17 @@ for j =1:N+1
 
     % EXACT DERIVATIVES
     tic;
-    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1_ex,flag1, converged1, violations1] = truncated_newton_27(Mat_points(:,j), F, JF_ex, true,false,0, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
+    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1_ex,flag1, converged1, violations1] = truncated_newton_27(Mat_points(:,j), F, JF_ex, true,false,0, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
 
     vec_times1_ex(j)=toc;
 
     disp(['Exact derivatives: ',flag1]) 
     vec_converged1_ex(j)=converged1;
-    %conv_ord1(end-10:end) %aggiustare
     vec_val1_ex(j)=f1;
     vec_grad1_ex(j)=gradf_norm1;
     vec_iter1_ex(j)=k1;
     vec_cg_iter1_ex(j)=sum(cgiterseq1)/k1; 
-    vec_bt1_ex(j)=sum(btseq1)/k1;
+    vec_bt1_ex(j)=sum(btseq1)/k1; 
     vec_violations1_ex(j)=violations1;
 
     last_vals = conv_ord1_ex(max(end-14,1):end);
@@ -101,20 +99,18 @@ for j =1:N+1
     
     tic;
 
-    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1_df1,flag1, converged1, violations1] = truncated_newton_27(Mat_points(:,j), F, JF, false,false,h, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
+    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1_df1,flag1, converged1, violations1] = truncated_newton_27(Mat_points(:,j), F, JF, false,false,h, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
 
     mat_times1_fd1(i/2,j)=toc;
 
     disp(['Finite differences (classical version) with h=1e-',num2str(i),' : ',flag1]) 
     mat_converged1_fd1(i/2,j)=converged1;
-    %conv_ord1(end-10:end) %aggiustare
     mat_val1_fd1(i/2,j)=f1;
     mat_grad1_fd1(i/2,j)=gradf_norm1;
     mat_iter1_fd1(i/2,j)=k1;
     mat_cg_iter1_fd1(i/2,j)=sum(cgiterseq1)/k1; 
     mat_bt1_fd1(i/2,j)=sum(btseq1)/k1;
     mat_violations1_fd1(i/2,j)=violations1;
-
 
     last_vals = conv_ord1_df1(max(end-14,1):end);
     mat_conv1_fd1(i/2, j) = {last_vals};
@@ -124,7 +120,7 @@ for j =1:N+1
     JF=@(x) JF_fd2(x,h);
     tic;
 
-    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1_df2,flag1, converged1, violations1] = truncated_newton_27(Mat_points(:,j), F, JF, false,true,h, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
+    [x1, f1, gradf_norm1, k1, xseq1, btseq1,cgiterseq1,conv_ord1_df2,flag1, converged1, violations1] = truncated_newton_27(Mat_points(:,j), F, JF, false,true,h, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
 
     mat_times1_fd2(i/2,j)=toc;
 
@@ -145,7 +141,6 @@ for j =1:N+1
 
     end
 end
-
 
 
 % %%
@@ -179,7 +174,7 @@ end
 % end
 % 
 % % Aggiungi titolo e legenda
-% title('Ordine di Convergenza per Tutte le Condizioni Iniziali');
+% title('F27 10^3 suplin');
 % xlabel('Iterazione');
 % ylabel('Ordine di Convergenza');
 % legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
@@ -223,9 +218,8 @@ data = [ fd1_vals, avg_exact_t1; fd2_vals, avg_exact_t1;];
 T1 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation times table (only for successful runs): F27, n=10^3, quadratic');
+disp('Average computation times table (only for successful runs): F27, n=10^3, superlinear');
 disp(T1);
-
 
 
 %% Iterazioni
@@ -264,11 +258,10 @@ data = [ fd1_vals, avg_exact_i1; fd2_vals, avg_exact_i1;];
 T2 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation iteration table (only for successful runs): F27, n=10^3, quadratic');
+disp('Average computation iteration table (only for successful runs): F27, n=10^3, superlinear');
 disp(T2);
 
-
-%% Fval
+%% fval
 
 % Metodo Exact (derivate esatte) - media unica
 vec_times_ex_clean = vec_val1_ex; % copia dei tempi
@@ -304,7 +297,7 @@ data = [ fd1_vals, avg_exact_f1; fd2_vals, avg_exact_f1;];
 T3 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation fmin value table (only for successful runs): F27, n=10^3, quadratic');
+disp('Average computation fmin value table (only for successful runs): F27, n=10^3, superlinear');
 disp(T3);
 
 %% VIOLATION
@@ -343,7 +336,7 @@ data = [ fd1_vals, avg_exact_v1; fd2_vals, avg_exact_v1;];
 T10 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation violation  table (only for successful runs): F27, n=10^3, quad');
+disp('Average computation violation  table (only for successful runs): F27, n=10^3, suplin');
 disp(T10);
 
 
@@ -382,7 +375,7 @@ data = [ fd1_vals, avg_exact_bt1; fd2_vals, avg_exact_bt1;];
 T11 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation bt iteration table (only for successful runs): F27, n=10^3, quad');
+disp('Average computation bt iteration table (only for successful runs): F27, n=10^3, suplin');
 disp(T11);
 
 
@@ -422,7 +415,7 @@ data = [ fd1_vals, avg_exact_cg1; fd2_vals, avg_exact_cg1;];
 T12 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation cg iteration table (only for successful runs): F27, n=10^3, quad');
+disp('Average computation cg iteration table (only for successful runs): F27, n=10^3, suplin');
 disp(T12);
 
 
@@ -448,16 +441,16 @@ data = [ fd1_vals, sum(vec_converged1_ex); fd2_vals, sum(vec_converged1_ex);];
 T13 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Number of converged : F27, n=10^3, quad');
+disp('Number of converged : F27, n=10^3, suplin');
 disp(T13);
 
-writetable(T1, 'results_f27_quad.xlsx', 'Sheet', 'time_3','WriteRowNames', true);
-writetable(T2, 'results_f27_quad.xlsx', 'Sheet', 'niter_3','WriteRowNames', true);
-writetable(T3, 'results_f27_quad.xlsx', 'Sheet', 'f_val_3','WriteRowNames', true);
-writetable(T10, 'results_f27_quad.xlsx', 'Sheet', 'v_3','WriteRowNames', true);
-writetable(T11, 'results_f27_quad.xlsx', 'Sheet', 'bt_3','WriteRowNames', true);
-writetable(T12, 'results_f27_quad.xlsx', 'Sheet', 'cg_3','WriteRowNames', true);
-writetable(T13, 'results_f27_quad.xlsx', 'Sheet', 'n_conv3','WriteRowNames', true);
+writetable(T1, 'results_f27_suplin.xlsx', 'Sheet', 'time_3','WriteRowNames', true);
+writetable(T2, 'results_f27_suplin.xlsx', 'Sheet', 'niter_3','WriteRowNames', true);
+writetable(T3, 'results_f27_suplin.xlsx', 'Sheet', 'f_val_3','WriteRowNames', true);
+writetable(T10, 'results_f27_suplin.xlsx', 'Sheet', 'v_3','WriteRowNames', true);
+writetable(T11, 'results_f27_suplin.xlsx', 'Sheet', 'bt_3','WriteRowNames', true);
+writetable(T12, 'results_f27_suplin.xlsx', 'Sheet', 'cg_3','WriteRowNames', true);
+writetable(T13, 'results_f27_suplin.xlsx', 'Sheet', 'n_conv3','WriteRowNames', true);
 
 
 
@@ -532,17 +525,18 @@ for j =1:N+1
     % EXACT DERIVATIVES
     tic;
 
-    [x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2_ex,flag2, converged2, violations2] = truncated_newton_27(Mat_points(:,j), F, JF_ex, true,false,0, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
+    [x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2_ex,flag2, converged2, violations2] = truncated_newton_27(Mat_points(:,j), F, JF_ex, true,false,0, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
 
     vec_times2_ex(j)=toc;
 
     disp(['Exact derivatives: ',flag2]) 
     vec_converged2_ex(j)=converged2;
+    
     vec_val2_ex(j)=f2;
     vec_grad2_ex(j)=gradf_norm2;
     vec_iter2_ex(j)=k2;
     vec_cg_iter2_ex(j)=sum(cgiterseq2)/k2; 
-    vec_bt2_ex(j)=sum(btseq2)/k2;
+    vec_bt2_ex(j)=sum(btseq2)/k2; 
     vec_violations2_ex(j)=violations2;
 
     last_vals = conv_ord2_ex(max(end-14,1):end);
@@ -558,13 +552,13 @@ for j =1:N+1
     
     tic;
 
-    [x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2_df1,flag2, converged2, violations2] = truncated_newton_27(Mat_points(:,j), F, JF, false,false,h, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
+    [x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2_df1,flag2, converged2, violations2] = truncated_newton_27(Mat_points(:,j), F, JF, false,false,h, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
 
     mat_times2_fd1(i/2,j)=toc;
 
     disp(['Finite differences (classical version) with h=1e-',num2str(i),' : ',flag2]) 
     mat_converged2_fd1(i/2,j)=converged2;
-    %conv_ord2(end-10:end) %aggiustare
+    
     mat_val2_fd1(i/2,j)=f2;
     mat_grad2_fd1(i/2,j)=gradf_norm2;
     mat_iter2_fd1(i/2,j)=k2;
@@ -580,12 +574,12 @@ for j =1:N+1
     
     tic;
 
-    [x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2_df2,flag2, converged2, violations2] = truncated_newton_27(Mat_points(:,j), F, JF, false,true,h, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
+    [x2, f2, gradf_norm2, k2, xseq2, btseq2,cgiterseq2,conv_ord2_df2,flag2, converged2, violations2] = truncated_newton_27(Mat_points(:,j), F, JF, false,true,h, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
     mat_times2_fd2(i/2,j)=toc;
 
     disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag2]) 
     mat_converged2_fd2(i/2,j)=converged2;
-    %conv_ord2(end-10:end) %aggiustare
+    
     mat_val2_fd2(i/2,j)=f2;
     mat_grad2_fd2(i/2,j)=gradf_norm2;
     mat_iter2_fd2(i/2,j)=k2;
@@ -597,6 +591,7 @@ for j =1:N+1
 
     end
 end
+
 
 
 % %%
@@ -630,7 +625,7 @@ end
 % end
 % 
 % % Aggiungi titolo e legenda
-% title('Ordine di Convergenza per Tutte le Condizioni Iniziali');
+% title('F27 10^4 suplin');
 % xlabel('Iterazione');
 % ylabel('Ordine di Convergenza');
 % legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
@@ -674,12 +669,10 @@ data = [ fd1_vals, avg_exact_t2; fd2_vals, avg_exact_t2;];
 T4 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation times table (only for successful runs): F27, n=10^4, quadratic');
+disp('Average computation times table (only for successful runs): F27, n=10^4, superlinear');
 disp(T4);
 
-
-
-%% Iterazioni
+%% iterazioni
 
 % Metodo Exact (derivate esatte) - media unica
 vec_times_ex_clean = vec_iter2_ex; % copia dei tempi
@@ -715,7 +708,7 @@ data = [ fd1_vals, avg_exact_i2; fd2_vals, avg_exact_i2;];
 T5 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation iteration table (only for successful runs): F27, n=10^4, quadratic');
+disp('Average computation iteration table (only for successful runs): F27, n=10^4, superlinear');
 disp(T5);
 
 
@@ -755,7 +748,7 @@ data = [ fd1_vals, avg_exact_f2; fd2_vals, avg_exact_f2;];
 T6 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation fmin value table (only for successful runs): F27, n=10^3, quadratic');
+disp('Average computation fmin value table (only for successful runs): F27, n=10^4, superlinear');
 disp(T6);
 
 %% VIOLATION
@@ -794,7 +787,7 @@ data = [ fd1_vals, avg_exact_v2; fd2_vals, avg_exact_v2;];
 T14 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation violation  table (only for successful runs): F27, n=10^4, quad');
+disp('Average computation violation  table (only for successful runs): F27, n=10^4, suplin');
 disp(T14);
 
 
@@ -833,7 +826,7 @@ data = [ fd1_vals, avg_exact_bt2; fd2_vals, avg_exact_bt2;];
 T15 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation bt iteration table (only for successful runs): F27, n=10^4, quad');
+disp('Average computation bt iteration table (only for successful runs): F27, n=10^4, suplin');
 disp(T15);
 
 
@@ -873,7 +866,7 @@ data = [ fd1_vals, avg_exact_cg2; fd2_vals, avg_exact_cg2;];
 T16 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation cg iteration table (only for successful runs): F27, n=10^4, quad');
+disp('Average computation cg iteration table (only for successful runs): F27, n=10^4, suplin');
 disp(T16);
 
 
@@ -899,16 +892,16 @@ data = [ fd1_vals, sum(vec_converged2_ex); fd2_vals, sum(vec_converged2_ex);];
 T17 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Number of converged : F27, n=10^3, quad');
+disp('Number of converged : F27, n=10^4, suplin');
 disp(T17);
 
-writetable(T4, 'results_f27_quad.xlsx', 'Sheet', 'time_4','WriteRowNames', true);
-writetable(T5, 'results_f27_quad.xlsx', 'Sheet', 'niter_4','WriteRowNames', true);
-writetable(T6, 'results_f27_quad.xlsx', 'Sheet', 'f_val_4','WriteRowNames', true);
-writetable(T14, 'results_f27_quad.xlsx', 'Sheet', 'v_4','WriteRowNames', true);
-writetable(T15, 'results_f27_quad.xlsx', 'Sheet', 'bt_4','WriteRowNames', true);
-writetable(T16, 'results_f27_quad.xlsx', 'Sheet', 'cg_4','WriteRowNames', true);
-writetable(T17, 'results_f27_quad.xlsx', 'Sheet', 'n_conv4','WriteRowNames', true);
+writetable(T4, 'results_f27_suplin.xlsx', 'Sheet', 'time_4','WriteRowNames', true);
+writetable(T5, 'results_f27_suplin.xlsx', 'Sheet', 'niter_4','WriteRowNames', true);
+writetable(T6, 'results_f27_suplin.xlsx', 'Sheet', 'f_val_4','WriteRowNames', true);
+writetable(T14, 'results_f27_suplin.xlsx', 'Sheet', 'v_4','WriteRowNames', true);
+writetable(T15, 'results_f27_suplin.xlsx', 'Sheet', 'bt_4','WriteRowNames', true);
+writetable(T16, 'results_f27_suplin.xlsx', 'Sheet', 'cg_4','WriteRowNames', true);
+writetable(T17, 'results_f27_suplin.xlsx', 'Sheet', 'n_conv4','WriteRowNames', true);
 
 
 
@@ -977,6 +970,7 @@ mat_iter3_fd2=zeros(6,N+1); %matrix with number of iterations
 mat_cg_iter3_fd2=zeros(6,N+1); %matrix with mean number of inner iterations
 mat_bt3_fd2=zeros(6,N+1); %matrix with mean number of backtracking iterations
 mat_conv3_fd2=cell(6,N+1);
+
 mat_converged3_fd2=zeros(6,N+1); % matrix of booleans (true if it has converged) 
 mat_violations3_fd2=zeros(6,N+1); % matrix with number of violations of curvature condition in Newton method
 
@@ -989,13 +983,12 @@ for j =1:N+1
     % EXACT DERIVATIVES
     tic;
 
-    [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3_ex,flag3, converged3, violations3] = truncated_newton_27(Mat_points(:,j), F, JF_ex, true, false,0, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
+    [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3_ex,flag3, converged3, violations3] = truncated_newton_27(Mat_points(:,j), F, JF_ex, true, false,0, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
 
     vec_times3_ex(j)=toc;
 
     disp(['Exact derivatives: ',flag3]) 
     vec_converged3_ex(j)=converged3;
-    
     vec_val3_ex(j)=f3;
     vec_grad3_ex(j)=gradf_norm3;
     vec_iter3_ex(j)=k3;
@@ -1016,19 +1009,20 @@ for j =1:N+1
 
     tic;
 
-    [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3_df1,flag3, converged3, violations3] = truncated_newton_27(Mat_points(:,j), F, JF, false,false,h, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
+    [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3_df1,flag3, converged3, violations3] = truncated_newton_27(Mat_points(:,j), F, JF, false,false,h, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
     mat_times3_fd1(i/2,j)=toc;
 
 
     disp(['Finite differences (classical version) with h=1e-',num2str(i),' : ',flag3]) 
     mat_converged3_fd1(i/2,j)=converged3;
-    
+    %conv_ord3(end-10:end) %aggiustare
     mat_val3_fd1(i/2,j)=f3;
     mat_grad3_fd1(i/2,j)=gradf_norm3;
     mat_iter3_fd1(i/2,j)=k3;
     mat_cg_iter3_fd1(i/2,j)=sum(cgiterseq3)/k3; 
     mat_bt3_fd1(i/2,j)=sum(btseq3)/k3;
     mat_violations3_fd1(i/2,j)=violations3;
+
 
     last_vals = conv_ord3_df1(max(end-14,1):end);
     mat_conv3_fd1(i/2, j) = {last_vals};
@@ -1039,12 +1033,12 @@ for j =1:N+1
 
     tic;
 
-    [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3_df2,flag3, converged3, violations3] = truncated_newton_27(Mat_points(:,j), F, JF, false,true,h, kmax, tolgrad, fterms_quad, cg_maxit,z0, c1, rho, btmax);
+    [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3_df2,flag3, converged3, violations3] = truncated_newton_27(Mat_points(:,j), F, JF, false,true,h, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
     mat_times3_fd2(i/2,j)=toc;
 
     disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag3]) 
     mat_converged3_fd2(i/2,j)=converged3;
-    
+    %conv_ord3(end-10:end) %aggiustare
     mat_val3_fd2(i/2,j)=f3;
     mat_grad3_fd2(i/2,j)=gradf_norm3;
     mat_iter3_fd2(i/2,j)=k3;
@@ -1094,7 +1088,7 @@ end
 % end
 % 
 % % Aggiungi titolo e legenda
-% title('Ordine di Convergenza per Tutte le Condizioni Iniziali');
+% title('F27 10^5 suplin');
 % xlabel('Iterazione');
 % ylabel('Ordine di Convergenza');
 % legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
@@ -1102,8 +1096,7 @@ end
 % hold off;
 
 
-%% tempo
-
+%% Tempo
 % Metodo Exact (derivate esatte) - media unica
 vec_times_ex_clean = vec_times3_ex; % copia dei tempi
 vec_times_ex_clean(vec_converged3_ex == 0) = NaN; % sostituisce con NaN i non convergenti
@@ -1139,7 +1132,7 @@ data = [ fd1_vals, avg_exact_t3; fd2_vals, avg_exact_t3;];
 T7 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation times table (only for successful runs): F27, n=10^5, quadratic');
+disp('Average computation times table (only for successful runs): F27, n=10^5, superlinear');
 disp(T7);
 
 
@@ -1180,9 +1173,8 @@ data = [ fd1_vals, avg_exact_i3; fd2_vals, avg_exact_i3;];
 T8 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation iteration table (only for successful runs): F27, n=10^5, quadratic');
+disp('Average computation iteration table (only for successful runs): F27, n=10^5, superlinear');
 disp(T8);
-
 
 %% fval
 
@@ -1220,7 +1212,7 @@ data = [ fd1_vals, avg_exact_f3; fd2_vals, avg_exact_f3;];
 T9 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation fmin value table (only for successful runs): F27, n=10^5, quadratic');
+disp('Average computation fmin value table (only for successful runs): F27, n=10^5, superlinear');
 disp(T9);
 
 %% VIOLATION
@@ -1259,7 +1251,7 @@ data = [ fd1_vals, avg_exact_v3; fd2_vals, avg_exact_v3;];
 T18 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation violation  table (only for successful runs): F27, n=10^5, quad');
+disp('Average computation violation  table (only for successful runs): F27, n=10^5, suplin');
 disp(T18);
 
 
@@ -1298,7 +1290,7 @@ data = [ fd1_vals, avg_exact_bt3; fd2_vals, avg_exact_bt3;];
 T19 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation bt iteration table (only for successful runs): F27, n=10^5, quad');
+disp('Average computation bt iteration table (only for successful runs): F27, n=10^5, suplin');
 disp(T19);
 
 
@@ -1338,7 +1330,7 @@ data = [ fd1_vals, avg_exact_cg3; fd2_vals, avg_exact_cg3;];
 T20 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation cg iteration table (only for successful runs): F27, n=10^5, quad');
+disp('Average computation cg iteration table (only for successful runs): F27, n=10^5, suplin');
 disp(T20);
 
 
@@ -1364,16 +1356,16 @@ data = [ fd1_vals, sum(vec_converged3_ex); fd2_vals, sum(vec_converged3_ex);];
 T21 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Number of converged : F27, n=10^5, quad');
+disp('Number of converged : F27, n=10^5, suplin');
 disp(T17);
 
-writetable(T7, 'results_f27_quad.xlsx', 'Sheet', 'time_5','WriteRowNames', true);
-writetable(T8, 'results_f27_quad.xlsx', 'Sheet', 'niter_5','WriteRowNames', true);
-writetable(T9, 'results_f27_quad.xlsx', 'Sheet', 'f_val_5','WriteRowNames', true);
-writetable(T18, 'results_f27_quad.xlsx', 'Sheet', 'v_5','WriteRowNames', true);
-writetable(T19, 'results_f27_quad.xlsx', 'Sheet', 'bt_5','WriteRowNames', true);
-writetable(T20, 'results_f27_quad.xlsx', 'Sheet', 'cg_5','WriteRowNames', true);
-writetable(T21, 'results_f27_quad.xlsx', 'Sheet', 'n_conv5','WriteRowNames', true);
+writetable(T7, 'results_f27_suplin.xlsx', 'Sheet', 'time_5','WriteRowNames', true);
+writetable(T8, 'results_f27_suplin.xlsx', 'Sheet', 'niter_5','WriteRowNames', true);
+writetable(T9, 'results_f27_suplin.xlsx', 'Sheet', 'f_val_5','WriteRowNames', true);
+writetable(T18, 'results_f27_suplin.xlsx', 'Sheet', 'v_5','WriteRowNames', true);
+writetable(T19, 'results_f27_suplin.xlsx', 'Sheet', 'bt_5','WriteRowNames', true);
+writetable(T20, 'results_f27_suplin.xlsx', 'Sheet', 'cg_5','WriteRowNames', true);
+writetable(T21, 'results_f27_suplin.xlsx', 'Sheet', 'n_conv5','WriteRowNames', true);
 
 
 
@@ -1398,5 +1390,5 @@ T_compare = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames
 disp(T_compare)
 
 % Salvataggio su Excel
-writetable(T_compare, 'results_f27_quad.xlsx', 'Sheet', 'ExactComparison', 'WriteRowNames', true);
+writetable(T_compare, 'results_f27_suplin.xlsx', 'Sheet', 'ExactComparison', 'WriteRowNames', true);
 
