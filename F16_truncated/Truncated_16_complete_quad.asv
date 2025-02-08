@@ -452,7 +452,7 @@ disp(T13);
 
 writetable(T1, 'results_f16_quad.xlsx', 'Sheet', 'time_3','WriteRowNames', true);
 writetable(T2, 'results_f16_quad.xlsx', 'Sheet', 'niter_3','WriteRowNames', true);
-writetable(T3, 'results_f16_quad.xlsx', 'Sheet', 'f_val_3','WriteRowNames', true);
+writetable(T3, 'results_f16_quadn.xlsx', 'Sheet', 'f_val_3','WriteRowNames', true);
 writetable(T10, 'results_f16_quad.xlsx', 'Sheet', 'viol_3','WriteRowNames', true);
 writetable(T11, 'results_f16_quad.xlsx', 'Sheet', 'bt_3','WriteRowNames', true);
 writetable(T12, 'results_f16_quad.xlsx', 'Sheet', 'cg_3','WriteRowNames', true);
@@ -1330,7 +1330,7 @@ data = [ fd1_vals, avg_exact_cg3; fd2_vals, avg_exact_cg3;];
 T20 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Average computation cg iteration table (only for successful runs): F16, n=10^5, quadratic');
+disp('Average computation cg iteration table (only for successful runs): F16, n=10^5, suplin');
 disp(T20);
 
 
@@ -1357,16 +1357,22 @@ data = [ fd1_vals, sum(vec_converged3_ex); fd2_vals, sum(vec_converged3_ex);];
 T21 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
 % Visualizza la tabella
-disp('Number of converged : F16, n=10^5, quadratic');
+disp('Number of converged : F16, n=10^5, suplin');
 disp(T21);
 
-writetable(T7, 'results_f16_quad.xlsx', 'Sheet', 'time_5','WriteRowNames', true);
+writetable(T7, 'results_f16_suplin.xlsx', 'Sheet', 'time_5','WriteRowNames', true);
+writetable(T8, 'results_f16_suplin.xlsx', 'Sheet', 'niter_5','WriteRowNames', true);
+writetable(T9, 'results_f16_suplin.xlsx', 'Sheet', 'f_val_5','WriteRowNames', true);
+writetable(T18, 'results_f16_suplin.xlsx', 'Sheet', 'viol_5','WriteRowNames', true);
+writetable(T19, 'results_f16_suplin.xlsx', 'Sheet', 'bt_5','WriteRowNames', true);
+writetable(T20, 'results_f16_suplin.xlsx', 'Sheet', 'cg_5','WriteRowNames', true);
+writetable(T21, 'results_f16_suplin.xlsx', 'Sheet', 'n_conv5','WriteRowNames', true);
+
+
+
+writetable(T7, 'results_f16_quad.xlsx', 'Sheet', 'time5','WriteRowNames', true);
 writetable(T8, 'results_f16_quad.xlsx', 'Sheet', 'niter_5','WriteRowNames', true);
 writetable(T9, 'results_f16_quad.xlsx', 'Sheet', 'f_val_5','WriteRowNames', true);
-writetable(T18, 'results_f16_quad.xlsx', 'Sheet', 'viol_5','WriteRowNames', true);
-writetable(T19, 'results_f16_quad.xlsx', 'Sheet', 'bt_5','WriteRowNames', true);
-writetable(T20, 'results_f16_quad.xlsx', 'Sheet', 'cg_5','WriteRowNames', true);
-writetable(T21, 'results_f16_quad.xlsx', 'Sheet', 'n_conv5','WriteRowNames', true);
 
 
 %%
