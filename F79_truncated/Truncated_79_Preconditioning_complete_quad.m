@@ -1069,7 +1069,7 @@ for j =1:N+1
     disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag3]) 
     mat_converged3_fd2(i/2,j)=converged2;
     %conv_ord2(end-10:end) %aggiustare
-    mat_val2_fd2(i/2,j)=f3;
+    mat_val3_fd2(i/2,j)=f3;
     mat_grad3_fd2(i/2,j)=gradf_norm3;
     mat_iter3_fd2(i/2,j)=k3;
     mat_cg_iter3_fd2(i/2,j)=sum(cgiterseq3)/k3; 
