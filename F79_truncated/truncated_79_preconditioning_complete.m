@@ -1231,6 +1231,8 @@ T9 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 % Visualizza la tabella
 disp('Average computation fmin value table (only for successful runs): F79P, n=10^5, superlinear');
 disp(T9);
+addpath('\Users\sofia\Documents\Numerical-Optimization\stase');
+writetable(T9, 'results_f79P_suplin.xlsx', 'Sheet', 'f_val_5','WriteRowNames', true);
 
 %% VIOLATION
 

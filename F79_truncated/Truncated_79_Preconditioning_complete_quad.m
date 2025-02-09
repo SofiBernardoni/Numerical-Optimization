@@ -237,8 +237,6 @@ T1 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 disp('Average computation times table (only for successful runs): F79 Preconditioning, n=10^3, quadratic');
 disp(T1);
 
-% (Opzionale) Salva la tabella in un file CSV
-%writetable(T, 'Time_tabel_f79_3_quad.csv', 'WriteRowNames', true);
 
 
 %% Iterazioni

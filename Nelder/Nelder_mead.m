@@ -25,7 +25,7 @@ iter=0;
 [f_val_S, sort_idx] = sort(f_val_S); %vettore con gli indici ordinati per valore della funzione 
 idx=idx(sort_idx); % sono le posizioni dei punti nel simplesso
 
-while iter < max_iter
+while iter < max_iter && abs(f_val_S(n+1) - f_val_S(1)) > tol
     %------------ordiniamo i punti in ordine crescente:
 
     %risistemiamo il simplesso:
@@ -95,15 +95,15 @@ while iter < max_iter
     end
 
     % ---------------- CRITERI DI ARRESTO ----------------
-    % 1. Differenza nei valori della funzione obiettivo
-    if max(abs(f_val_S(n+1) - f_val_S(1))) < tol
-        %disp('esco per f_val')
-        break;
-    end
+    % % 1. Differenza nei valori della funzione obiettivo
+    % if max(abs(f_val_S(n+1) - f_val_S(1))) < tol*f_val_S(1)
+    %     %disp('esco per f_val')
+    %     break;
+    % end
 
     
     iter = iter + 1;
-    %%%%% errore qua
+    
     x=[x, S(:,idx(1))];
     f_k=[f_k;f_val_S(1)];
 end
