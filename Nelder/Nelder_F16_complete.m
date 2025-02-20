@@ -3,19 +3,19 @@
 format long
 rng(345989);
 n = 10;
-tol = 1e-14;
-max_iter = 1e06;
-rho = 1.1;
-mu = 2.5;
-gamma = 0.8;
-sigma = 0.9;
-delta = 1; 
+tol = 1e-13;      %tollerance
+max_iter = 1e06;  %max iteration
+rho = 1.1;        %reflection parameter  
+mu = 2.5;         %expansion parameter  
+gamma = 0.8;      %contraction parameter
+sigma = 0.9;      %shirinking parameter
+delta = 1;        %Initialization of the simplex
 
 % function 
 F = @(x) F16(x);
 
 
-N=10; %numbber of starting points
+N=10; %number of starting points
 x0 = ones(n, 1);  % starting point
 Mat_points=repmat(x0,1,N+1); 
 rand_mat=2*(rand([n, N+1]) - 0.5); %random matrix between [-1,1]
@@ -30,7 +30,7 @@ vec_iter_10=zeros(1,N+1);
 
 
 for j = 1:N+1
-    %applying the function F6 to the 11 strarting point
+    %applying the function F16 to the 11 strarting points
     tic;
     [xk_16_10, fk_16_10, n_iter] = Nelder_mead(Mat_points(:,j), F, rho, mu, gamma, sigma, tol, max_iter, delta);
     %saving results
@@ -39,7 +39,7 @@ for j = 1:N+1
     vec_iter_10(j) = n_iter;
 
 end
-%creation of a table with che results
+%creation of a table with the results
 results_n10 = table(["x0"; "x1"; "x2"; "x3"; "x4"; "x5"; "x6"; "x7"; "x8"; "x9"; "x10"], ...
                      times_10', vec_10', vec_iter_10', ...
                      'VariableNames', {'Initial condition', 'Time', 'FinalValue', 'Iterations'});
@@ -62,7 +62,7 @@ writetable(results_n10, 'Risultati_F16_Nelder.xlsx', 'Sheet', 'n_10');
 %% FUNCTION F16 n=25
 %The same structure of n=10
 n = 25;
-tol = 1e-14;
+tol = 1e-13;
 max_iter = 1e06;
 rho = 1.1;
 mu = 1.8;

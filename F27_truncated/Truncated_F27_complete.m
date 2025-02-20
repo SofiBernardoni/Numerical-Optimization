@@ -1,8 +1,7 @@
 %% FUNCTION 27  (with different initial points)- with exact derivatives and finite differences
 
-
-F = @(x) F27(x);  % Defining F79 as function handle
-JF_gen = @(x,exact,fin_dif2,h) JF27(x,exact,fin_dif2,h); % Defining JF79 as function handle 
+F = @(x) F27(x);  % Defining F27 as function handle
+JF_gen = @(x,exact,fin_dif2,h) JF27(x,exact,fin_dif2,h); % Defining JF27 as function handle 
 
 load forcing_terms.mat % possible terms for adaptive tolerance 
 
@@ -38,7 +37,7 @@ vec_grad1_ex=zeros(1,N+1); %vector with final gradient
 vec_iter1_ex=zeros(1,N+1); %vector with number of iterations 
 vec_cg_iter1_ex=zeros(1,N+1); %vector with mean number of inner iterations
 vec_bt1_ex=zeros(1,N+1); %vector with mean number of backtracking iterations
-mat_conv1_ex=zeros(15,N+1);
+mat_conv1_ex=zeros(15,N+1); %matrix with che last 15 values of rate of convergence for the starting point 
 vec_converged1_ex=zeros(1,N+1); % vector of booleans (true if it has converged) 
 vec_violations1_ex=zeros(1,N+1); % vector with number of violations of curvature condition in Newton method
 
@@ -51,7 +50,7 @@ mat_grad1_fd1=zeros(6,N+1); %matrix with final gradient
 mat_iter1_fd1=zeros(6,N+1); %matrix with number of iterations 
 mat_cg_iter1_fd1=zeros(6,N+1); %matrix with mean number of inner iterations
 mat_bt1_fd1=zeros(6,N+1); %matrix with mean number of backtracking iterations
-mat_conv1_fd1=cell(6,N+1);
+mat_conv1_fd1=cell(6,N+1); %matrix with che last 15 values of rate of convergence for the starting point 
 mat_converged1_fd1=zeros(6,N+1); % matrix of booleans (true if it has converged) 
 mat_violations1_fd1=zeros(6,N+1); % matrix with number of violations of curvature condition in Newton method
 
@@ -64,7 +63,7 @@ mat_grad1_fd2=zeros(6,N+1); %matrix with final gradient
 mat_iter1_fd2=zeros(6,N+1); %matrix with number of iterations 
 mat_cg_iter1_fd2=zeros(6,N+1); %matrix with mean number of inner iterations
 mat_bt1_fd2=zeros(6,N+1); %matrix with mean number of backtracking iterations
-mat_conv1_fd2=cell(6,N+1);
+mat_conv1_fd2=cell(6,N+1);%matrix with che last 15 values of rate of convergence for the starting point 
 mat_converged1_fd2=zeros(6,N+1); % matrix of booleans (true if it has converged) 
 mat_violations1_fd2=zeros(6,N+1); % matrix with number of violations of curvature condition in Newton method
 
@@ -126,7 +125,6 @@ for j =1:N+1
 
     disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag1]) 
     mat_converged1_fd2(i/2,j)=converged1;
-    %conv_ord1(end-10:end) %aggiustare
     mat_val1_fd2(i/2,j)=f1;
     mat_grad1_fd2(i/2,j)=gradf_norm1;
     mat_iter1_fd2(i/2,j)=k1;
@@ -142,308 +140,233 @@ for j =1:N+1
     end
 end
 
+%% Plot of the last 12 values of experimentale rate of convergence
+num_initial_points = N + 1;
+figure;
+hold on;
 
-% %%
-% num_initial_points = N + 1;
-% 
-% % Crea una figura
-% figure;
-% hold on;
-% 
-% 
-% % Plot per ciascuna condizione iniziale
-% for j = 1:num_initial_points
-%     % Estrai l'ordine di convergenza per la j-esima condizione iniziale
-%     conv_ord_ex = mat_conv1_ex(:,j); % Derivate esatte
-% 
-%     plot(1:15,conv_ord_ex, 'Color', 'b', 'LineWidth', 1.5);
-%     hold on;
-%     for i =1:6 
-%         conv_ord_fd1 = mat_conv1_fd1{i, j}; % Differenze finite classiche
-% 
-% 
-%         conv_ord_fd2 = mat_conv1_fd2{i, j}; % Differenze finite adattative
-%         plot(1:15,conv_ord_fd1, '-', 'Color', 'r', 'LineWidth', 1.5);
-% 
-%         hold on;
-%         plot(1:15,conv_ord_fd2, '-o', 'Color', 'g', 'LineWidth', 1.5);
-%         hold on;
-%     end
-% 
-% 
-% end
-% 
-% % Aggiungi titolo e legenda
-% title('F27 10^3 suplin');
-% xlabel('Iterazione');
-% ylabel('Ordine di Convergenza');
-% legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
-% grid on;
-% hold off;
+% Plot for every initial condition
+for j = 1:num_initial_points
+    conv_ord_ex = mat_conv1_ex(:,j); %exact derivarives
+    plot(1:12,conv_ord_ex, 'Color', 'b', 'LineWidth', 1.5);
+    hold on;
+    for i =1:6 
+        conv_ord_fd1 = mat_conv1_fd1{i, j}; % FD1
+        conv_ord_fd2 = mat_conv1_fd2{i, j}; % FD2
+        plot(1:12,conv_ord_fd1, '-', 'Color', 'r', 'LineWidth', 1.5);
+        hold on;
+        plot(1:12,conv_ord_fd2, '-o', 'Color', 'g', 'LineWidth', 1.5);
+        hold on;
+    end
+end
+
+% title and legend
+title('F27 10^3 superlinear');
+xlabel('Iterazione');
+ylabel('Ordine di Convergenza');
+legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
+grid on;
+hold off;
 
 
-%% Tempo
+%% Execution Time 
 
-% Metodo Exact (derivate esatte) - media unica
-vec_times_ex_clean = vec_times1_ex; % copia dei tempi
-vec_times_ex_clean(vec_converged1_ex == 0) = NaN; % sostituisce con NaN i non convergenti
-avg_exact_t1 = mean(vec_times_ex_clean, 'omitnan');  % calcola la media (scalare)
+% Exact Derivative
+vec_times_ex_clean = vec_times1_ex; %a copy of the vector
+vec_times_ex_clean(vec_converged1_ex == 0) = NaN; %Set NaN for those that do not converge
+avg_exact_t1 = mean(vec_times_ex_clean, 'omitnan'); %calculate the mean
 
-% Metodo FD1 (Finite Differences classiche)
-mat_times_fd1_clean = mat_times1_fd1;
-mat_times_fd1_clean(mat_converged1_fd1 == 0) = NaN;
-avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan'); % media per ogni h (6x1)
+% FD1
+mat_times_fd1_clean = mat_times1_fd1; %a copy of the matrix
+mat_times_fd1_clean(mat_converged1_fd1 == 0) = NaN; %Set NaN for those that do not converge.
+avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan'); %calculate the mean
 
-% Metodo FD2 (Finite Differences nuove)
-mat_times_fd2_clean = mat_times1_fd2;
-mat_times_fd2_clean(mat_converged1_fd2 == 0) = NaN;
-avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan'); % media per ogni h (6x1)
+% FD2
+mat_times_fd2_clean = mat_times1_fd2; %a copy of the matrix
+mat_times_fd2_clean(mat_converged1_fd2 == 0) = NaN; %Set NaN for those that do not converge.
+avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan'); %calculate the mean
 
-% Creazione delle etichette per i valori di h
-h_exponents = [2, 4, 6, 8, 10, 12];  % Solo valori di h (senza h=0)
+% Creation of the labels
+h_exponents = [2, 4, 6, 8, 10, 12];  
 h_labels = arrayfun(@(e) sprintf('h=1e-%d', e), h_exponents, 'UniformOutput', false);
 
-% Preparazione dei dati per la tabella
-% FD1 e FD2 hanno le medie per ogni h, mentre Exact è ripetuto in tutte le colonne
-%exact_vals = [avg_exact, avg_exact]; % Esatto in tutte le colonne
-fd1_vals = avg_fd1';  % Trasposto per allineare con le colonne
-fd2_vals = avg_fd2';  % Trasposto per allineare con le colonne
+fd1_vals = avg_fd1';  
+fd2_vals = avg_fd2'; 
 
-% Costruzione della tabella
+% Table costruction with exact for both the row
 rowNames = {'FD1', 'FD2'};
-columnNames = [ h_labels,'Exact']; % Prima colonna "Exact", poi gli h
+columnNames = [ h_labels,'Exact'];
 data = [ fd1_vals, avg_exact_t1; fd2_vals, avg_exact_t1;];
-
-% Creiamo la tabella con i nomi delle colonne e delle righe
 T1 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
-% Visualizza la tabella
+% visualization
 disp('Average computation times table (only for successful runs): F27, n=10^3, superlinear');
 disp(T1);
 
 
-%% Iterazioni
+%% All the tables has the same structure
+%% Iteration
 
-% Metodo Exact (derivate esatte) - media unica
-vec_times_ex_clean = vec_iter1_ex; % copia dei tempi
-vec_times_ex_clean(vec_converged1_ex == 0) = NaN; % sostituisce con NaN i non convergenti
-avg_exact_i1 = mean(vec_times_ex_clean, 'omitnan');  % calcola la media (scalare)
+vec_times_ex_clean = vec_iter1_ex; 
+vec_times_ex_clean(vec_converged1_ex == 0) = NaN; 
+avg_exact_i1 = mean(vec_times_ex_clean, 'omitnan'); 
 
-% Metodo FD1 (Finite Differences classiche)
 mat_times_fd1_clean = mat_iter1_fd1;
 mat_times_fd1_clean(mat_converged1_fd1 == 0) = NaN;
-avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan'); 
 
-% Metodo FD2 (Finite Differences nuove)
 mat_times_fd2_clean = mat_iter1_fd2;
 mat_times_fd2_clean(mat_converged1_fd2 == 0) = NaN;
-avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan'); 
 
-% Creazione delle etichette per i valori di h
-h_exponents = [2, 4, 6, 8, 10, 12];  % Solo valori di h (senza h=0)
+h_exponents = [2, 4, 6, 8, 10, 12];  
 h_labels = arrayfun(@(e) sprintf('h=1e-%d', e), h_exponents, 'UniformOutput', false);
 
-% Preparazione dei dati per la tabella
-% FD1 e FD2 hanno le medie per ogni h, mentre Exact è ripetuto in tutte le colonne
-%exact_vals = [avg_exact, avg_exact]; % Esatto in tutte le colonne
-fd1_vals = avg_fd1';  % Trasposto per allineare con le colonne
-fd2_vals = avg_fd2';  % Trasposto per allineare con le colonne
+fd1_vals = avg_fd1';  
+fd2_vals = avg_fd2';  
 
-% Costruzione della tabella
 rowNames = {'FD1', 'FD2'};
-columnNames = [ h_labels,'Exact']; % Prima colonna "Exact", poi gli h
+columnNames = [ h_labels,'Exact'];
 data = [ fd1_vals, avg_exact_i1; fd2_vals, avg_exact_i1;];
 
-% Creiamo la tabella con i nomi delle colonne e delle righe
 T2 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
-% Visualizza la tabella
-disp('Average computation iteration table (only for successful runs): F27, n=10^3, superlinear');
+disp('Average computation iteration table (only for successful runs): F27, n=10^3, suplin');
 disp(T2);
 
-%% fval
+%% F value
 
-% Metodo Exact (derivate esatte) - media unica
-vec_times_ex_clean = vec_val1_ex; % copia dei tempi
-vec_times_ex_clean(vec_converged1_ex == 0) = NaN; % sostituisce con NaN i non convergenti
-avg_exact_f1 = mean(vec_times_ex_clean, 'omitnan');  % calcola la media (scalare)
+vec_times_ex_clean = vec_val1_ex; 
+vec_times_ex_clean(vec_converged1_ex == 0) = NaN; 
+avg_exact_f1 = mean(vec_times_ex_clean, 'omitnan');  
 
-% Metodo FD1 (Finite Differences classiche)
 mat_times_fd1_clean = mat_val1_fd1;
 mat_times_fd1_clean(mat_converged1_fd1 == 0) = NaN;
-avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan'); 
 
-% Metodo FD2 (Finite Differences nuove)
 mat_times_fd2_clean = mat_val1_fd2;
 mat_times_fd2_clean(mat_converged1_fd2 == 0) = NaN;
-avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan'); 
 
-% Creazione delle etichette per i valori di h
-h_exponents = [2, 4, 6, 8, 10, 12];  % Solo valori di h (senza h=0)
+h_exponents = [2, 4, 6, 8, 10, 12];  
 h_labels = arrayfun(@(e) sprintf('h=1e-%d', e), h_exponents, 'UniformOutput', false);
 
-% Preparazione dei dati per la tabella
-% FD1 e FD2 hanno le medie per ogni h, mentre Exact è ripetuto in tutte le colonne
-%exact_vals = [avg_exact, avg_exact]; % Esatto in tutte le colonne
-fd1_vals = avg_fd1';  % Trasposto per allineare con le colonne
-fd2_vals = avg_fd2';  % Trasposto per allineare con le colonne
+fd1_vals = avg_fd1'; 
+fd2_vals = avg_fd2';  
 
-% Costruzione della tabella
 rowNames = {'FD1', 'FD2'};
-columnNames = [ h_labels,'Exact']; % Prima colonna "Exact", poi gli h
+columnNames = [ h_labels,'Exact']; 
 data = [ fd1_vals, avg_exact_f1; fd2_vals, avg_exact_f1;];
 
-% Creiamo la tabella con i nomi delle colonne e delle righe
 T3 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
-% Visualizza la tabella
-disp('Average computation fmin value table (only for successful runs): F27, n=10^3, superlinear');
+disp('Average computation fmin value table (only for successful runs): F27, n=10^3, suplin');
 disp(T3);
 
 %% VIOLATION
 
-% Metodo Exact (derivate esatte) - media unica
-vec_times_ex_clean = vec_violations1_ex; % copia dei tempi
-vec_times_ex_clean(vec_converged1_ex == 0) = NaN; % sostituisce con NaN i non convergenti
-avg_exact_v1 = mean(vec_times_ex_clean, 'omitnan');  % calcola la media (scalare)
+vec_times_ex_clean = vec_violations1_ex;
+vec_times_ex_clean(vec_converged1_ex == 0) = NaN; 
+avg_exact_v1 = mean(vec_times_ex_clean, 'omitnan');  
 
-% Metodo FD1 (Finite Differences classiche)
 mat_times_fd1_clean = mat_violations1_fd1;
 mat_times_fd1_clean(mat_converged1_fd1 == 0) = NaN;
-avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan'); 
 
-% Metodo FD2 (Finite Differences nuove)
 mat_times_fd2_clean = mat_violations1_fd2;
 mat_times_fd2_clean(mat_converged1_fd2 == 0) = NaN;
-avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan');
 
-% Creazione delle etichette per i valori di h
-h_exponents = [2, 4, 6, 8, 10, 12];  % Solo valori di h (senza h=0)
+h_exponents = [2, 4, 6, 8, 10, 12]; 
 h_labels = arrayfun(@(e) sprintf('h=1e-%d', e), h_exponents, 'UniformOutput', false);
 
-% Preparazione dei dati per la tabella
-% FD1 e FD2 hanno le medie per ogni h, mentre Exact è ripetuto in tutte le colonne
-%exact_vals = [avg_exact, avg_exact]; % Esatto in tutte le colonne
-fd1_vals = avg_fd1';  % Trasposto per allineare con le colonne
-fd2_vals = avg_fd2';  % Trasposto per allineare con le colonne
+fd1_vals = avg_fd1';  
+fd2_vals = avg_fd2';  
 
-% Costruzione della tabella
 rowNames = {'FD1', 'FD2'};
-columnNames = [ h_labels,'Exact']; % Prima colonna "Exact", poi gli h
+columnNames = [ h_labels,'Exact']; 
 data = [ fd1_vals, avg_exact_v1; fd2_vals, avg_exact_v1;];
 
-% Creiamo la tabella con i nomi delle colonne e delle righe
 T10 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
-% Visualizza la tabella
-disp('Average computation violation  table (only for successful runs): F27, n=10^3, suplin');
+disp('Average computation violation  table (only for successful runs): F27, n=10^3, superlinear');
 disp(T10);
 
 
 %% BT-SEQ
-% Metodo Exact (derivate esatte) - media unica
-vec_bt_ex_clean = vec_bt1_ex; % copia dei tempi
-vec_bt_ex_clean(vec_converged1_ex == 0) = NaN; % sostituisce con NaN i non convergenti
-avg_exact_bt1 = mean(vec_bt_ex_clean, 'omitnan');  % calcola la media (scalare)
+vec_bt_ex_clean = vec_bt1_ex; 
+vec_bt_ex_clean(vec_converged1_ex == 0) = NaN;
+avg_exact_bt1 = mean(vec_bt_ex_clean, 'omitnan');  
 
-% Metodo FD1 (Finite Differences classiche)
 mat_bt_fd1_clean = mat_bt1_fd1;
 mat_bt_fd1_clean(mat_converged1_fd1 == 0) = NaN;
-avg_fd1 = mean(mat_bt_fd1_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd1 = mean(mat_bt_fd1_clean, 2, 'omitnan'); 
 
-% Metodo FD2 (Finite Differences nuove)
 mat_bt_fd2_clean = mat_bt1_fd2;
 mat_bt_fd2_clean(mat_converged1_fd2 == 0) = NaN;
-avg_fd2 = mean(mat_bt_fd2_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd2 = mean(mat_bt_fd2_clean, 2, 'omitnan'); 
 
-% Creazione delle etichette per i valori di h
-h_exponents = [2, 4, 6, 8, 10, 12];  % Solo valori di h (senza h=0)
+h_exponents = [2, 4, 6, 8, 10, 12];  
 h_labels = arrayfun(@(e) sprintf('h=1e-%d', e), h_exponents, 'UniformOutput', false);
 
-% Preparazione dei dati per la tabella
-% FD1 e FD2 hanno le medie per ogni h, mentre Exact è ripetuto in tutte le colonne
-%exact_vals = [avg_exact, avg_exact]; % Esatto in tutte le colonne
-fd1_vals = avg_fd1';  % Trasposto per allineare con le colonne
-fd2_vals = avg_fd2';  % Trasposto per allineare con le colonne
+fd1_vals = avg_fd1';  
+fd2_vals = avg_fd2';  
 
-% Costruzione della tabella
 rowNames = {'FD1', 'FD2'};
-columnNames = [ h_labels,'Exact']; % Prima colonna "Exact", poi gli h
+columnNames = [ h_labels,'Exact'];
 data = [ fd1_vals, avg_exact_bt1; fd2_vals, avg_exact_bt1;];
 
-% Creiamo la tabella con i nomi delle colonne e delle righe
 T11 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
-% Visualizza la tabella
-disp('Average computation bt iteration table (only for successful runs): F27, n=10^3, suplin');
+disp('Average computation bt iteration table (only for successful runs): F27, n=10^3, superlinear');
 disp(T11);
 
-
-
 %% CG-SEQ
-% Metodo Exact (derivate esatte) - media unica
-vec_bt_ex_clean = vec_cg_iter1_ex; % copia dei tempi
-vec_bt_ex_clean(vec_converged1_ex == 0) = NaN; % sostituisce con NaN i non convergenti
-avg_exact_cg1 = mean(vec_bt_ex_clean, 'omitnan');  % calcola la media (scalare)
 
-% Metodo FD1 (Finite Differences classiche)
+vec_bt_ex_clean = vec_cg_iter1_ex; 
+vec_bt_ex_clean(vec_converged1_ex == 0) = NaN; 
+avg_exact_cg1 = mean(vec_bt_ex_clean, 'omitnan');  
+
 mat_bt_fd1_clean = mat_cg_iter1_fd1;
 mat_bt_fd1_clean(mat_converged1_fd1 == 0) = NaN;
-avg_fd1 = mean(mat_bt_fd1_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd1 = mean(mat_bt_fd1_clean, 2, 'omitnan'); 
 
-% Metodo FD2 (Finite Differences nuove)
 mat_bt_fd2_clean = mat_cg_iter1_fd2;
 mat_bt_fd2_clean(mat_converged1_fd2 == 0) = NaN;
-avg_fd2 = mean(mat_bt_fd2_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd2 = mean(mat_bt_fd2_clean, 2, 'omitnan'); 
 
-% Creazione delle etichette per i valori di h
-h_exponents = [2, 4, 6, 8, 10, 12];  % Solo valori di h (senza h=0)
+h_exponents = [2, 4, 6, 8, 10, 12]; 
 h_labels = arrayfun(@(e) sprintf('h=1e-%d', e), h_exponents, 'UniformOutput', false);
 
-% Preparazione dei dati per la tabella
-% FD1 e FD2 hanno le medie per ogni h, mentre Exact è ripetuto in tutte le colonne
-%exact_vals = [avg_exact, avg_exact]; % Esatto in tutte le colonne
-fd1_vals = avg_fd1';  % Trasposto per allineare con le colonne
-fd2_vals = avg_fd2';  % Trasposto per allineare con le colonne
+fd1_vals = avg_fd1';  
+fd2_vals = avg_fd2';  
 
-% Costruzione della tabella
 rowNames = {'FD1', 'FD2'};
-columnNames = [ h_labels,'Exact']; % Prima colonna "Exact", poi gli h
+columnNames = [ h_labels,'Exact'];
 data = [ fd1_vals, avg_exact_cg1; fd2_vals, avg_exact_cg1;];
 
-% Creiamo la tabella con i nomi delle colonne e delle righe
 T12 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
-% Visualizza la tabella
-disp('Average computation cg iteration table (only for successful runs): F27, n=10^3, suplin');
+disp('Average computation cg iteration table (only for successful runs): F27, n=10^3, superlinear');
 disp(T12);
 
+%% Number of starting point converged
 
-
-%% Calcolo quanti a convergenza
-
-% Creazione delle etichette per i valori di h
-h_exponents = [2, 4, 6, 8, 10, 12];  % Solo valori di h (senza h=0)
+h_exponents = [2, 4, 6, 8, 10, 12];  
 h_labels = arrayfun(@(e) sprintf('h=1e-%d', e), h_exponents, 'UniformOutput', false);
 
-% Preparazione dei dati per la tabella
-% FD1 e FD2 hanno le medie per ogni h, mentre Exact è ripetuto in tutte le colonne
-%exact_vals = [avg_exact, avg_exact]; % Esatto in tutte le colonne
-fd1_vals = sum(mat_converged1_fd1,2)';  % Trasposto per allineare con le colonne
-fd2_vals = sum(mat_converged1_fd2,2)';  % Trasposto per allineare con le colonne
+fd1_vals = sum(mat_converged1_fd1,2)';  
+fd2_vals = sum(mat_converged1_fd2,2)';  
 
-% Costruzione della tabella
 rowNames = {'FD1', 'FD2'};
-columnNames = [ h_labels,'Exact']; % Prima colonna "Exact", poi gli h
+columnNames = [ h_labels,'Exact'];
 data = [ fd1_vals, sum(vec_converged1_ex); fd2_vals, sum(vec_converged1_ex);];
 
-% Creiamo la tabella con i nomi delle colonne e delle righe
 T13 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
-% Visualizza la tabella
-disp('Number of converged : F27, n=10^3, suplin');
+disp('Number of converged : F27, n=10^3, superlinear');
 disp(T13);
-
+%save the table in a file xlsx
 writetable(T1, 'results_f27_suplin.xlsx', 'Sheet', 'time_3','WriteRowNames', true);
 writetable(T2, 'results_f27_suplin.xlsx', 'Sheet', 'niter_3','WriteRowNames', true);
 writetable(T3, 'results_f27_suplin.xlsx', 'Sheet', 'f_val_3','WriteRowNames', true);
@@ -486,7 +409,7 @@ vec_grad2_ex=zeros(1,N+1); %vector with final gradient
 vec_iter2_ex=zeros(1,N+1); %vector with number of iterations 
 vec_cg_iter2_ex=zeros(1,N+1); %vector with mean number of inner iterations
 vec_bt2_ex=zeros(1,N+1); %vector with mean number of backtracking iterations
-mat_conv2_ex=zeros(15,N+1);
+mat_conv2_ex=zeros(15,N+1); %matrix with che last 15 values of rate of convergence for the starting point 
 vec_converged2_ex=zeros(1,N+1); % vector of booleans (true if it has converged) 
 vec_violations2_ex=zeros(1,N+1); % vector with number of violations of curvature condition in Newton method
 
@@ -499,7 +422,7 @@ mat_grad2_fd1=zeros(6,N+1); %matrix with final gradient
 mat_iter2_fd1=zeros(6,N+1); %matrix with number of iterations 
 mat_cg_iter2_fd1=zeros(6,N+1); %matrix with mean number of inner iterations
 mat_bt2_fd1=zeros(6,N+1); %matrix with mean number of backtracking iterations
-mat_conv2_fd1=cell(6,N+1);
+mat_conv2_fd1=cell(6,N+1); %matrix with che last 15 values of rate of convergence for the starting point 
 mat_converged2_fd1=zeros(6,N+1); % matrix of booleans (true if it has converged) 
 mat_violations2_fd1=zeros(6,N+1); % matrix with number of violations of curvature condition in Newton method
 
@@ -513,7 +436,7 @@ mat_grad2_fd2=zeros(6,N+1); %matrix with final gradient
 mat_iter2_fd2=zeros(6,N+1); %matrix with number of iterations 
 mat_cg_iter2_fd2=zeros(6,N+1); %matrix with mean number of inner iterations
 mat_bt2_fd2=zeros(6,N+1); %matrix with mean number of backtracking iterations
-mat_conv2_fd2=cell(6,N+1);
+mat_conv2_fd2=cell(6,N+1);%matrix with che last 15 values of rate of convergence for the starting point 
 mat_converged2_fd2=zeros(6,N+1); % matrix of booleans (true if it has converged) 
 mat_violations2_fd2=zeros(6,N+1); % matrix with number of violations of curvature condition in Newton method
 
@@ -593,308 +516,228 @@ for j =1:N+1
 end
 
 
+%% The Plot has the same structure
+num_initial_points = N + 1;
+figure;
+hold on;
 
-% %%
-% num_initial_points = N + 1;
-% 
-% % Crea una figura
-% figure;
-% hold on;
-% 
-% 
-% % Plot per ciascuna condizione iniziale
-% for j = 1:num_initial_points
-%     % Estrai l'ordine di convergenza per la j-esima condizione iniziale
-%     conv_ord_ex = mat_conv2_ex(:,j); % Derivate esatte
-% 
-%     plot(1:15,conv_ord_ex, 'Color', 'b', 'LineWidth', 1.5);
-%     hold on;
-%     for i =1:6 
-%         conv_ord_fd1 = mat_conv2_fd1{i, j}; % Differenze finite classiche
-% 
-% 
-%         conv_ord_fd2 = mat_conv2_fd2{i, j}; % Differenze finite adattative
-%         plot(1:15,conv_ord_fd1, '-', 'Color', 'r', 'LineWidth', 1.5);
-% 
-%         hold on;
-%         plot(1:15,conv_ord_fd2, '-o', 'Color', 'g', 'LineWidth', 1.5);
-%         hold on;
-%     end
-% 
-% 
-% end
-% 
-% % Aggiungi titolo e legenda
-% title('F27 10^4 suplin');
-% xlabel('Iterazione');
-% ylabel('Ordine di Convergenza');
-% legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
-% grid on;
-% hold off;
+for j = 1:num_initial_points
+    conv_ord_ex = mat_conv2_ex(:,j); 
+    plot(1:12,conv_ord_ex, 'Color', 'b', 'LineWidth', 1.5);
+    hold on;
+    for i =1:6 
+        conv_ord_fd1 = mat_conv2_fd1{i, j}; 
+        conv_ord_fd2 = mat_conv2_fd2{i, j}; 
+        plot(1:12,conv_ord_fd1, '-', 'Color', 'r', 'LineWidth', 1.5);
+        hold on;
+        plot(1:12,conv_ord_fd2, '-o', 'Color', 'g', 'LineWidth', 1.5);
+        hold on;
+    end
+end
+
+title('F27 10^4 superlinear');
+xlabel('Iterazione');
+ylabel('Ordine di Convergenza');
+legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
+grid on;
+hold off;
 
 
-%% Tempo
+%% Execution time
 
-% Metodo Exact (derivate esatte) - media unica
-vec_times_ex_clean = vec_times2_ex; % copia dei tempi
-vec_times_ex_clean(vec_converged2_ex == 0) = NaN; % sostituisce con NaN i non convergenti
-avg_exact_t2 = mean(vec_times_ex_clean, 'omitnan');  % calcola la media (scalare)
+% Exact derivative
+vec_times_ex_clean = vec_times2_ex; %a copy of the vector
+vec_times_ex_clean(vec_converged2_ex == 0) = NaN; %Set NaN for those that do not converge
+avg_exact_t2 = mean(vec_times_ex_clean, 'omitnan');  % computation of the mean
 
-% Metodo FD1 (Finite Differences classiche)
-mat_times_fd1_clean = mat_times2_fd1;
-mat_times_fd1_clean(mat_converged2_fd1 == 0) = NaN;
-avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan'); % media per ogni h (6x1)
+% FD1
+mat_times_fd1_clean = mat_times2_fd1; % a copy of the vector
+mat_times_fd1_clean(mat_converged2_fd1 == 0) = NaN; %Set NaN for those that do not converge
+avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan'); % computation of the mean
 
-% Metodo FD2 (Finite Differences nuove)
-mat_times_fd2_clean = mat_times2_fd2;
-mat_times_fd2_clean(mat_converged2_fd2 == 0) = NaN;
-avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan'); % media per ogni h (6x1)
+% FD2 
+mat_times_fd2_clean = mat_times2_fd2; %a copy of the vector
+mat_times_fd2_clean(mat_converged2_fd2 == 0) = NaN; %Set NaN for those that do not converge
+avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan'); % computation of the mean
 
-% Creazione delle etichette per i valori di h
-h_exponents = [2, 4, 6, 8, 10, 12];  % Solo valori di h (senza h=0)
+% Creation of the labels
+h_exponents = [2, 4, 6, 8, 10, 12];  
 h_labels = arrayfun(@(e) sprintf('h=1e-%d', e), h_exponents, 'UniformOutput', false);
 
-% Preparazione dei dati per la tabella
-% FD1 e FD2 hanno le medie per ogni h, mentre Exact è ripetuto in tutte le colonne
-%exact_vals = [avg_exact, avg_exact]; % Esatto in tutte le colonne
-fd1_vals = avg_fd1';  % Trasposto per allineare con le colonne
-fd2_vals = avg_fd2';  % Trasposto per allineare con le colonne
+fd1_vals = avg_fd1';  
+fd2_vals = avg_fd2';  
 
-% Costruzione della tabella
+% Table creation
 rowNames = {'FD1', 'FD2'};
-columnNames = [ h_labels,'Exact']; % Prima colonna "Exact", poi gli h
+columnNames = [ h_labels,'Exact']; 
 data = [ fd1_vals, avg_exact_t2; fd2_vals, avg_exact_t2;];
-
-% Creiamo la tabella con i nomi delle colonne e delle righe
 T4 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
-
-% Visualizza la tabella
+%display the table
 disp('Average computation times table (only for successful runs): F27, n=10^4, superlinear');
 disp(T4);
 
-%% iterazioni
+%% Iteration
 
-% Metodo Exact (derivate esatte) - media unica
-vec_times_ex_clean = vec_iter2_ex; % copia dei tempi
-vec_times_ex_clean(vec_converged2_ex == 0) = NaN; % sostituisce con NaN i non convergenti
-avg_exact_i2 = mean(vec_times_ex_clean, 'omitnan');  % calcola la media (scalare)
+vec_times_ex_clean = vec_iter2_ex;
+vec_times_ex_clean(vec_converged2_ex == 0) = NaN;
+avg_exact_i2 = mean(vec_times_ex_clean, 'omitnan');
 
-% Metodo FD1 (Finite Differences classiche)
 mat_times_fd1_clean = mat_iter2_fd1;
 mat_times_fd1_clean(mat_converged2_fd1 == 0) = NaN;
-avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan');
 
-% Metodo FD2 (Finite Differences nuove)
 mat_times_fd2_clean = mat_iter2_fd2;
 mat_times_fd2_clean(mat_converged2_fd2 == 0) = NaN;
-avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan');
 
-% Creazione delle etichette per i valori di h
-h_exponents = [2, 4, 6, 8, 10, 12];  % Solo valori di h (senza h=0)
+h_exponents = [2, 4, 6, 8, 10, 12];
 h_labels = arrayfun(@(e) sprintf('h=1e-%d', e), h_exponents, 'UniformOutput', false);
 
-% Preparazione dei dati per la tabella
-% FD1 e FD2 hanno le medie per ogni h, mentre Exact è ripetuto in tutte le colonne
-%exact_vals = [avg_exact, avg_exact]; % Esatto in tutte le colonne
-fd1_vals = avg_fd1';  % Trasposto per allineare con le colonne
-fd2_vals = avg_fd2';  % Trasposto per allineare con le colonne
+fd1_vals = avg_fd1';
+fd2_vals = avg_fd2';
 
-% Costruzione della tabella
 rowNames = {'FD1', 'FD2'};
-columnNames = [ h_labels,'Exact']; % Prima colonna "Exact", poi gli h
+columnNames = [ h_labels,'Exact'];
 data = [ fd1_vals, avg_exact_i2; fd2_vals, avg_exact_i2;];
 
-% Creiamo la tabella con i nomi delle colonne e delle righe
 T5 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
-% Visualizza la tabella
 disp('Average computation iteration table (only for successful runs): F27, n=10^4, superlinear');
 disp(T5);
 
+%% Function value
 
-%% fval
+vec_times_ex_clean = vec_val2_ex;
+vec_times_ex_clean(vec_converged2_ex == 0) = NaN;
+avg_exact_f2 = mean(vec_times_ex_clean, 'omitnan');
 
-% Metodo Exact (derivate esatte) - media unica
-vec_times_ex_clean = vec_val2_ex; % copia dei tempi
-vec_times_ex_clean(vec_converged2_ex == 0) = NaN; % sostituisce con NaN i non convergenti
-avg_exact_f2 = mean(vec_times_ex_clean, 'omitnan');  % calcola la media (scalare)
-
-% Metodo FD1 (Finite Differences classiche)
 mat_times_fd1_clean = mat_val2_fd1;
 mat_times_fd1_clean(mat_converged2_fd1 == 0) = NaN;
-avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan');
 
-% Metodo FD2 (Finite Differences nuove)
 mat_times_fd2_clean = mat_val2_fd2;
 mat_times_fd2_clean(mat_converged2_fd2 == 0) = NaN;
-avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan');
 
-% Creazione delle etichette per i valori di h
-h_exponents = [2, 4, 6, 8, 10, 12];  % Solo valori di h (senza h=0)
+h_exponents = [2, 4, 6, 8, 10, 12];
 h_labels = arrayfun(@(e) sprintf('h=1e-%d', e), h_exponents, 'UniformOutput', false);
 
-% Preparazione dei dati per la tabella
-% FD1 e FD2 hanno le medie per ogni h, mentre Exact è ripetuto in tutte le colonne
-%exact_vals = [avg_exact, avg_exact]; % Esatto in tutte le colonne
-fd1_vals = avg_fd1';  % Trasposto per allineare con le colonne
-fd2_vals = avg_fd2';  % Trasposto per allineare con le colonne
+fd1_vals = avg_fd1';
+fd2_vals = avg_fd2';
 
-% Costruzione della tabella
 rowNames = {'FD1', 'FD2'};
-columnNames = [ h_labels,'Exact']; % Prima colonna "Exact", poi gli h
+columnNames = [ h_labels,'Exact'];
 data = [ fd1_vals, avg_exact_f2; fd2_vals, avg_exact_f2;];
 
-% Creiamo la tabella con i nomi delle colonne e delle righe
 T6 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
-% Visualizza la tabella
 disp('Average computation fmin value table (only for successful runs): F27, n=10^4, superlinear');
 disp(T6);
 
 %% VIOLATION
 
-% Metodo Exact (derivate esatte) - media unica
-vec_times_ex_clean = vec_violations2_ex; % copia dei tempi
-vec_times_ex_clean(vec_converged2_ex == 0) = NaN; % sostituisce con NaN i non convergenti
-avg_exact_v2 = mean(vec_times_ex_clean, 'omitnan');  % calcola la media (scalare)
+vec_times_ex_clean = vec_violations2_ex;
+vec_times_ex_clean(vec_converged2_ex == 0) = NaN;
+avg_exact_v2 = mean(vec_times_ex_clean, 'omitnan');
 
-% Metodo FD1 (Finite Differences classiche)
 mat_times_fd1_clean = mat_violations2_fd1;
 mat_times_fd1_clean(mat_converged2_fd1 == 0) = NaN;
-avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan');
 
-% Metodo FD2 (Finite Differences nuove)
 mat_times_fd2_clean = mat_violations2_fd2;
 mat_times_fd2_clean(mat_converged2_fd2 == 0) = NaN;
-avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan');
 
-% Creazione delle etichette per i valori di h
-h_exponents = [2, 4, 6, 8, 10, 12];  % Solo valori di h (senza h=0)
+h_exponents = [2, 4, 6, 8, 10, 12];
 h_labels = arrayfun(@(e) sprintf('h=1e-%d', e), h_exponents, 'UniformOutput', false);
 
-% Preparazione dei dati per la tabella
-% FD1 e FD2 hanno le medie per ogni h, mentre Exact è ripetuto in tutte le colonne
-%exact_vals = [avg_exact, avg_exact]; % Esatto in tutte le colonne
-fd1_vals = avg_fd1';  % Trasposto per allineare con le colonne
-fd2_vals = avg_fd2';  % Trasposto per allineare con le colonne
+fd1_vals = avg_fd1';
+fd2_vals = avg_fd2';
 
-% Costruzione della tabella
 rowNames = {'FD1', 'FD2'};
-columnNames = [ h_labels,'Exact']; % Prima colonna "Exact", poi gli h
+columnNames = [ h_labels,'Exact'];
 data = [ fd1_vals, avg_exact_v2; fd2_vals, avg_exact_v2;];
 
-% Creiamo la tabella con i nomi delle colonne e delle righe
 T14 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
-% Visualizza la tabella
-disp('Average computation violation  table (only for successful runs): F27, n=10^4, suplin');
+disp('Average computation violation  table (only for successful runs): F27, n=10^4, suplinear');
 disp(T14);
 
-
 %% BT-SEQ
-% Metodo Exact (derivate esatte) - media unica
-vec_bt_ex_clean = vec_bt2_ex; % copia dei tempi
-vec_bt_ex_clean(vec_converged2_ex == 0) = NaN; % sostituisce con NaN i non convergenti
-avg_exact_bt2 = mean(vec_bt_ex_clean, 'omitnan');  % calcola la media (scalare)
 
-% Metodo FD1 (Finite Differences classiche)
+vec_bt_ex_clean = vec_bt2_ex;
+vec_bt_ex_clean(vec_converged2_ex == 0) = NaN;
+avg_exact_bt2 = mean(vec_bt_ex_clean, 'omitnan');
+
 mat_bt_fd1_clean = mat_bt2_fd1;
 mat_bt_fd1_clean(mat_converged2_fd1 == 0) = NaN;
-avg_fd1 = mean(mat_bt_fd1_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd1 = mean(mat_bt_fd1_clean, 2, 'omitnan');
 
-% Metodo FD2 (Finite Differences nuove)
 mat_bt_fd2_clean = mat_bt2_fd2;
 mat_bt_fd2_clean(mat_converged2_fd2 == 0) = NaN;
-avg_fd2 = mean(mat_bt_fd2_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd2 = mean(mat_bt_fd2_clean, 2, 'omitnan');
 
-% Creazione delle etichette per i valori di h
-h_exponents = [2, 4, 6, 8, 10, 12];  % Solo valori di h (senza h=0)
+h_exponents = [2, 4, 6, 8, 10, 12];
 h_labels = arrayfun(@(e) sprintf('h=1e-%d', e), h_exponents, 'UniformOutput', false);
 
-% Preparazione dei dati per la tabella
-% FD1 e FD2 hanno le medie per ogni h, mentre Exact è ripetuto in tutte le colonne
-%exact_vals = [avg_exact, avg_exact]; % Esatto in tutte le colonne
-fd1_vals = avg_fd1';  % Trasposto per allineare con le colonne
-fd2_vals = avg_fd2';  % Trasposto per allineare con le colonne
+fd1_vals = avg_fd1';
+fd2_vals = avg_fd2';
 
-% Costruzione della tabella
 rowNames = {'FD1', 'FD2'};
-columnNames = [ h_labels,'Exact']; % Prima colonna "Exact", poi gli h
+columnNames = [ h_labels,'Exact'];
 data = [ fd1_vals, avg_exact_bt2; fd2_vals, avg_exact_bt2;];
 
-% Creiamo la tabella con i nomi delle colonne e delle righe
 T15 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
-% Visualizza la tabella
-disp('Average computation bt iteration table (only for successful runs): F27, n=10^4, suplin');
+disp('Average computation bt iteration table (only for successful runs): F27, n=10^4, superlinear');
 disp(T15);
 
-
-
 %% CG-SEQ
-% Metodo Exact (derivate esatte) - media unica
-vec_bt_ex_clean = vec_cg_iter2_ex; % copia dei tempi
-vec_bt_ex_clean(vec_converged2_ex == 0) = NaN; % sostituisce con NaN i non convergenti
-avg_exact_cg2 = mean(vec_bt_ex_clean, 'omitnan');  % calcola la media (scalare)
 
-% Metodo FD1 (Finite Differences classiche)
+vec_bt_ex_clean = vec_cg_iter2_ex;
+vec_bt_ex_clean(vec_converged2_ex == 0) = NaN;
+avg_exact_cg2 = mean(vec_bt_ex_clean, 'omitnan');
+
 mat_bt_fd1_clean = mat_cg_iter2_fd1;
 mat_bt_fd1_clean(mat_converged2_fd1 == 0) = NaN;
-avg_fd1 = mean(mat_bt_fd1_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd1 = mean(mat_bt_fd1_clean, 2, 'omitnan');
 
-% Metodo FD2 (Finite Differences nuove)
 mat_bt_fd2_clean = mat_cg_iter2_fd2;
 mat_bt_fd2_clean(mat_converged2_fd2 == 0) = NaN;
-avg_fd2 = mean(mat_bt_fd2_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd2 = mean(mat_bt_fd2_clean, 2, 'omitnan');
 
-% Creazione delle etichette per i valori di h
-h_exponents = [2, 4, 6, 8, 10, 12];  % Solo valori di h (senza h=0)
+h_exponents = [2, 4, 6, 8, 10, 12];
 h_labels = arrayfun(@(e) sprintf('h=1e-%d', e), h_exponents, 'UniformOutput', false);
 
-% Preparazione dei dati per la tabella
-% FD1 e FD2 hanno le medie per ogni h, mentre Exact è ripetuto in tutte le colonne
-%exact_vals = [avg_exact, avg_exact]; % Esatto in tutte le colonne
-fd1_vals = avg_fd1';  % Trasposto per allineare con le colonne
-fd2_vals = avg_fd2';  % Trasposto per allineare con le colonne
+fd1_vals = avg_fd1';
+fd2_vals = avg_fd2';
 
-% Costruzione della tabella
 rowNames = {'FD1', 'FD2'};
-columnNames = [ h_labels,'Exact']; % Prima colonna "Exact", poi gli h
+columnNames = [ h_labels,'Exact'];
 data = [ fd1_vals, avg_exact_cg2; fd2_vals, avg_exact_cg2;];
 
-% Creiamo la tabella con i nomi delle colonne e delle righe
 T16 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
-% Visualizza la tabella
-disp('Average computation cg iteration table (only for successful runs): F27, n=10^4, suplin');
+disp('Average computation cg iteration table (only for successful runs): F27, n=10^4, superlinear');
 disp(T16);
 
+%% Number of initial point converged
 
-
-%% Calcolo quanti a convergenza
-
-% Creazione delle etichette per i valori di h
-h_exponents = [2, 4, 6, 8, 10, 12];  % Solo valori di h (senza h=0)
+h_exponents = [2, 4, 6, 8, 10, 12];
 h_labels = arrayfun(@(e) sprintf('h=1e-%d', e), h_exponents, 'UniformOutput', false);
 
-% Preparazione dei dati per la tabella
-% FD1 e FD2 hanno le medie per ogni h, mentre Exact è ripetuto in tutte le colonne
-%exact_vals = [avg_exact, avg_exact]; % Esatto in tutte le colonne
-fd1_vals = sum(mat_converged2_fd1,2)';  % Trasposto per allineare con le colonne
-fd2_vals = sum(mat_converged2_fd2,2)';  % Trasposto per allineare con le colonne
+fd1_vals = sum(mat_converged2_fd1,2)';
+fd2_vals = sum(mat_converged2_fd2,2)';
 
-% Costruzione della tabella
 rowNames = {'FD1', 'FD2'};
-columnNames = [ h_labels,'Exact']; % Prima colonna "Exact", poi gli h
+columnNames = [ h_labels,'Exact'];
 data = [ fd1_vals, sum(vec_converged2_ex); fd2_vals, sum(vec_converged2_ex);];
 
-% Creiamo la tabella con i nomi delle colonne e delle righe
 T17 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
-% Visualizza la tabella
-disp('Number of converged : F27, n=10^4, suplin');
+disp('Number of converged : F27, n=10^4, superlinear');
 disp(T17);
-
+%save the table in a file xlsx
 writetable(T4, 'results_f27_suplin.xlsx', 'Sheet', 'time_4','WriteRowNames', true);
 writetable(T5, 'results_f27_suplin.xlsx', 'Sheet', 'niter_4','WriteRowNames', true);
 writetable(T6, 'results_f27_suplin.xlsx', 'Sheet', 'f_val_4','WriteRowNames', true);
@@ -937,14 +780,11 @@ vec_grad3_ex=zeros(1,N+1); %vector with final gradient
 vec_iter3_ex=zeros(1,N+1); %vector with number of iterations 
 vec_cg_iter3_ex=zeros(1,N+1); %vector with mean number of inner iterations
 vec_bt3_ex=zeros(1,N+1); %vector with mean number of backtracking iterations
-
-mat_conv3_ex=zeros(15:N+1);
-
+mat_conv3_ex=zeros(15:N+1);%matrix with che last 15 values of rate of convergence for the starting point 
 vec_converged3_ex=zeros(1,N+1); % vector of booleans (true if it has converged) 
 vec_violations3_ex=zeros(1,N+1); % vector with number of violations of curvature condition in Newton method
 
 JF_ex = @(x) JF_gen(x,true,false,0);
-
 
 % Structure for derivatives approximated with FINITE DIFFERENCES (classical version) 
 mat_times3_fd1=zeros(6,N+1); % matrix with execution times 
@@ -953,14 +793,11 @@ mat_grad3_fd1=zeros(6,N+1); %matrix with final gradient
 mat_iter3_fd1=zeros(6,N+1); %matrix with number of iterations 
 mat_cg_iter3_fd1=zeros(6,N+1); %matrix with mean number of inner iterations
 mat_bt3_fd1=zeros(6,N+1); %matrix with mean number of backtracking iterations
-
-mat_conv3_fd1=cell(6,N+1);
-
+mat_conv3_fd1=cell(6,N+1);%matrix with che last 15 values of rate of convergence for the starting point 
 mat_converged3_fd1=zeros(6,N+1); % matrix of booleans (true if it has converged) 
 mat_violations3_fd1=zeros(6,N+1); % matrix with number of violations of curvature condition in Newton method
 
 JF_fd1 = @(x,h) JF_gen(x,false,false,h);
-
 
 % Structure for derivatives approximated with FINITE DIFFERENCES (version with h=h*abs(x_j) as increment) 
 mat_times3_fd2=zeros(6,N+1); % matrix with execution times 
@@ -969,8 +806,7 @@ mat_grad3_fd2=zeros(6,N+1); %matrix with final gradient
 mat_iter3_fd2=zeros(6,N+1); %matrix with number of iterations 
 mat_cg_iter3_fd2=zeros(6,N+1); %matrix with mean number of inner iterations
 mat_bt3_fd2=zeros(6,N+1); %matrix with mean number of backtracking iterations
-mat_conv3_fd2=cell(6,N+1);
-
+mat_conv3_fd2=cell(6,N+1);%matrix with che last 15 values of rate of convergence for the starting point 
 mat_converged3_fd2=zeros(6,N+1); % matrix of booleans (true if it has converged) 
 mat_violations3_fd2=zeros(6,N+1); % matrix with number of violations of curvature condition in Newton method
 
@@ -995,8 +831,6 @@ for j =1:N+1
     vec_cg_iter3_ex(j)=sum(cgiterseq3)/k3; 
     vec_bt3_ex(j)=sum(btseq3)/k3;
     vec_violations3_ex(j)=violations3;
-    
-
     last_vals = conv_ord3_ex(max(end-14,1):end);
     mat_conv3_ex(:, j) = last_vals;
     
@@ -1012,7 +846,6 @@ for j =1:N+1
     [x3, f3, gradf_norm3, k3, xseq3, btseq3,cgiterseq3,conv_ord3_df1,flag3, converged3, violations3] = truncated_newton_27(Mat_points(:,j), F, JF, false,false,h, kmax, tolgrad, fterms_suplin, cg_maxit,z0, c1, rho, btmax);
     mat_times3_fd1(i/2,j)=toc;
 
-
     disp(['Finite differences (classical version) with h=1e-',num2str(i),' : ',flag3]) 
     mat_converged3_fd1(i/2,j)=converged3;
     
@@ -1022,8 +855,6 @@ for j =1:N+1
     mat_cg_iter3_fd1(i/2,j)=sum(cgiterseq3)/k3; 
     mat_bt3_fd1(i/2,j)=sum(btseq3)/k3;
     mat_violations3_fd1(i/2,j)=violations3;
-
-
     last_vals = conv_ord3_df1(max(end-14,1):end);
     mat_conv3_fd1(i/2, j) = {last_vals};
 
@@ -1038,327 +869,236 @@ for j =1:N+1
 
     disp(['Finite differences (new version) with h=1e-',num2str(i),' : ',flag3]) 
     mat_converged3_fd2(i/2,j)=converged3;
-    
     mat_val3_fd2(i/2,j)=f3;
     mat_grad3_fd2(i/2,j)=gradf_norm3;
     mat_iter3_fd2(i/2,j)=k3;
     mat_cg_iter3_fd2(i/2,j)=sum(cgiterseq3)/k3; 
     mat_bt3_fd2(i/2,j)=sum(btseq3)/k3;
     mat_violations3_fd2(i/2,j)=violations3;
-
-
     last_vals = conv_ord3_df2(max(end-14,1):end);
     mat_conv3_fd2(i/2, j) = {last_vals};
-
-
 
     end
 end
 
 
+%% The plot has the same structure as n=10^3
+num_initial_points = N + 1;
+figure;
+hold on;
 
-% %%
-% num_initial_points = N + 1;
-% 
-% % Crea una figura
-% figure;
-% hold on;
-% 
-% 
-% % Plot per ciascuna condizione iniziale
-% for j = 1:num_initial_points
-%     % Estrai l'ordine di convergenza per la j-esima condizione iniziale
-%     conv_ord_ex = mat_conv3_ex(:,j); % Derivate esatte
-% 
-%     plot(1:15,conv_ord_ex, 'Color', 'b', 'LineWidth', 1.5);
-%     hold on;
-%     for i =1:6 
-%         conv_ord_fd1 = mat_conv3_fd1{i, j}; % Differenze finite classiche
-% 
-% 
-%         conv_ord_fd2 = mat_conv3_fd2{i, j}; % Differenze finite adattative
-%         plot(1:15,conv_ord_fd1, '-', 'Color', 'r', 'LineWidth', 1.5);
-% 
-%         hold on;
-%         plot(1:15,conv_ord_fd2, '-o', 'Color', 'g', 'LineWidth', 1.5);
-%         hold on;
-%     end
-% 
-% 
-% end
-% 
-% % Aggiungi titolo e legenda
-% title('F27 10^5 suplin');
-% xlabel('Iterazione');
-% ylabel('Ordine di Convergenza');
-% legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
-% grid on;
-% hold off;
+for j = 1:num_initial_points
+    conv_ord_ex = mat_conv3_ex(:,j); 
+    plot(1:12,conv_ord_ex, 'Color', 'b', 'LineWidth', 1.5);
+    hold on;
+    for i =1:6 
+        conv_ord_fd1 = mat_conv3_fd1{i, j}; 
+        conv_ord_fd2 = mat_conv3_fd2{i, j}; 
+        plot(1:12,conv_ord_fd1, '-', 'Color', 'r', 'LineWidth', 1.5);
+        hold on;
+        plot(1:12,conv_ord_fd2, '-o', 'Color', 'g', 'LineWidth', 1.5);
+        hold on;
+    end
+end
 
+title('F27 10^5 superlinear');
+xlabel('Iterazione');
+ylabel('Ordine di Convergenza');
+legend({'Exact Derivatives', 'dif fin_1', 'dif fin_2'}, 'Location', 'Best');
+grid on;
+hold off;
 
-%% Tempo
-% Metodo Exact (derivate esatte) - media unica
-vec_times_ex_clean = vec_times3_ex; % copia dei tempi
-vec_times_ex_clean(vec_converged3_ex == 0) = NaN; % sostituisce con NaN i non convergenti
-avg_exact_t3 = mean(vec_times_ex_clean, 'omitnan');  % calcola la media (scalare)
+%% Time
 
-% Metodo FD1 (Finite Differences classiche)
+vec_times_ex_clean = vec_times3_ex;
+vec_times_ex_clean(vec_converged3_ex == 0) = NaN;
+avg_exact_t3 = mean(vec_times_ex_clean, 'omitnan');
+
 mat_times_fd1_clean = mat_times3_fd1;
 mat_times_fd1_clean(mat_converged3_fd1 == 0) = NaN;
-avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan'); % media per ogni h (6x1)
-%mat_times3_fd2(2:2:end,: )
+avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan');
 
-% Metodo FD2 (Finite Differences nuove)
 mat_times_fd2_clean = mat_times3_fd2;
 mat_times_fd2_clean(mat_converged3_fd2 == 0) = NaN;
-avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan');
 
-% Creazione delle etichette per i valori di h
-h_exponents = [2, 4, 6, 8, 10, 12];  % Solo valori di h (senza h=0)
+h_exponents = [2, 4, 6, 8, 10, 12];
 h_labels = arrayfun(@(e) sprintf('h=1e-%d', e), h_exponents, 'UniformOutput', false);
 
-% Preparazione dei dati per la tabella
-% FD1 e FD2 hanno le medie per ogni h, mentre Exact è ripetuto in tutte le colonne
-%exact_vals = [avg_exact, avg_exact]; % Esatto in tutte le colonne
-fd1_vals = avg_fd1';  % Trasposto per allineare con le colonne
-fd2_vals = avg_fd2';  % Trasposto per allineare con le colonne
+fd1_vals = avg_fd1';
+fd2_vals = avg_fd2';
 
-% Costruzione della tabella
 rowNames = {'FD1', 'FD2'};
-columnNames = [ h_labels,'Exact']; % Prima colonna "Exact", poi gli h
+columnNames = [ h_labels,'Exact'];
 data = [ fd1_vals, avg_exact_t3; fd2_vals, avg_exact_t3;];
 
-% Creiamo la tabella con i nomi delle colonne e delle righe
 T7 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
-% Visualizza la tabella
 disp('Average computation times table (only for successful runs): F27, n=10^5, superlinear');
 disp(T7);
 
+%% Iteration
 
+vec_times_ex_clean = vec_iter3_ex;
+vec_times_ex_clean(vec_converged3_ex == 0) = NaN;
+avg_exact_i3 = mean(vec_times_ex_clean, 'omitnan');
 
-%% Iterazioni
-
-% Metodo Exact (derivate esatte) - media unica
-vec_times_ex_clean = vec_iter3_ex; % copia dei tempi
-vec_times_ex_clean(vec_converged3_ex == 0) = NaN; % sostituisce con NaN i non convergenti
-avg_exact_i3 = mean(vec_times_ex_clean, 'omitnan');  % calcola la media (scalare)
-
-% Metodo FD1 (Finite Differences classiche)
 mat_times_fd1_clean = mat_iter3_fd1;
 mat_times_fd1_clean(mat_converged3_fd1 == 0) = NaN;
-avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan');
 
-% Metodo FD2 (Finite Differences nuove)
 mat_times_fd2_clean = mat_iter3_fd2;
 mat_times_fd2_clean(mat_converged3_fd2 == 0) = NaN;
-avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan');
 
-% Creazione delle etichette per i valori di h
-h_exponents = [2, 4, 6, 8, 10, 12];  % Solo valori di h (senza h=0)
+h_exponents = [2, 4, 6, 8, 10, 12];
 h_labels = arrayfun(@(e) sprintf('h=1e-%d', e), h_exponents, 'UniformOutput', false);
 
-% Preparazione dei dati per la tabella
-% FD1 e FD2 hanno le medie per ogni h, mentre Exact è ripetuto in tutte le colonne
-%exact_vals = [avg_exact, avg_exact]; % Esatto in tutte le colonne
-fd1_vals = avg_fd1';  % Trasposto per allineare con le colonne
-fd2_vals = avg_fd2';  % Trasposto per allineare con le colonne
+fd1_vals = avg_fd1';
+fd2_vals = avg_fd2';
 
-% Costruzione della tabella
 rowNames = {'FD1', 'FD2'};
-columnNames = [ h_labels,'Exact']; % Prima colonna "Exact", poi gli h
+columnNames = [ h_labels,'Exact'];
 data = [ fd1_vals, avg_exact_i3; fd2_vals, avg_exact_i3;];
 
-% Creiamo la tabella con i nomi delle colonne e delle righe
 T8 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
-% Visualizza la tabella
 disp('Average computation iteration table (only for successful runs): F27, n=10^5, superlinear');
 disp(T8);
 
-%% fval
+%% function value
 
-% Metodo Exact (derivate esatte) - media unica
-vec_times_ex_clean = vec_val3_ex; % copia dei tempi
-vec_times_ex_clean(vec_converged3_ex == 0) = NaN; % sostituisce con NaN i non convergenti
-avg_exact_f3 = mean(vec_times_ex_clean, 'omitnan');  % calcola la media (scalare)
+vec_times_ex_clean = vec_val3_ex;
+vec_times_ex_clean(vec_converged3_ex == 0) = NaN;
+avg_exact_f3 = mean(vec_times_ex_clean, 'omitnan');
 
-% Metodo FD1 (Finite Differences classiche)
 mat_times_fd1_clean = mat_val3_fd1;
 mat_times_fd1_clean(mat_converged3_fd1 == 0) = NaN;
-avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan');
 
-% Metodo FD2 (Finite Differences nuove)
 mat_times_fd2_clean = mat_val3_fd2;
 mat_times_fd2_clean(mat_converged3_fd2 == 0) = NaN;
-avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan');
 
-% Creazione delle etichette per i valori di h
-h_exponents = [2, 4, 6, 8, 10, 12];  % Solo valori di h (senza h=0)
+h_exponents = [2, 4, 6, 8, 10, 12];
 h_labels = arrayfun(@(e) sprintf('h=1e-%d', e), h_exponents, 'UniformOutput', false);
 
-% Preparazione dei dati per la tabella
-% FD1 e FD2 hanno le medie per ogni h, mentre Exact è ripetuto in tutte le colonne
-%exact_vals = [avg_exact, avg_exact]; % Esatto in tutte le colonne
-fd1_vals = avg_fd1';  % Trasposto per allineare con le colonne
-fd2_vals = avg_fd2';  % Trasposto per allineare con le colonne
+fd1_vals = avg_fd1';
+fd2_vals = avg_fd2';
 
-% Costruzione della tabella
 rowNames = {'FD1', 'FD2'};
-columnNames = [ h_labels,'Exact']; % Prima colonna "Exact", poi gli h
+columnNames = [ h_labels,'Exact'];
 data = [ fd1_vals, avg_exact_f3; fd2_vals, avg_exact_f3;];
 
-% Creiamo la tabella con i nomi delle colonne e delle righe
 T9 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
-% Visualizza la tabella
 disp('Average computation fmin value table (only for successful runs): F27, n=10^5, superlinear');
 disp(T9);
 
 %% VIOLATION
 
-% Metodo Exact (derivate esatte) - media unica
-vec_times_ex_clean = vec_violations3_ex; % copia dei tempi
-vec_times_ex_clean(vec_converged3_ex == 0) = NaN; % sostituisce con NaN i non convergenti
-avg_exact_v3 = mean(vec_times_ex_clean, 'omitnan');  % calcola la media (scalare)
+vec_times_ex_clean = vec_violations3_ex;
+vec_times_ex_clean(vec_converged3_ex == 0) = NaN;
+avg_exact_v3 = mean(vec_times_ex_clean, 'omitnan');
 
-% Metodo FD1 (Finite Differences classiche)
 mat_times_fd1_clean = mat_violations3_fd1;
 mat_times_fd1_clean(mat_converged3_fd1 == 0) = NaN;
-avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd1 = mean(mat_times_fd1_clean, 2, 'omitnan');
 
-% Metodo FD2 (Finite Differences nuove)
 mat_times_fd2_clean = mat_violations3_fd2;
 mat_times_fd2_clean(mat_converged3_fd2 == 0) = NaN;
-avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd2 = mean(mat_times_fd2_clean, 2, 'omitnan');
 
-% Creazione delle etichette per i valori di h
-h_exponents = [2, 4, 6, 8, 10, 12];  % Solo valori di h (senza h=0)
+h_exponents = [2, 4, 6, 8, 10, 12];
 h_labels = arrayfun(@(e) sprintf('h=1e-%d', e), h_exponents, 'UniformOutput', false);
 
-% Preparazione dei dati per la tabella
-% FD1 e FD2 hanno le medie per ogni h, mentre Exact è ripetuto in tutte le colonne
-%exact_vals = [avg_exact, avg_exact]; % Esatto in tutte le colonne
-fd1_vals = avg_fd1';  % Trasposto per allineare con le colonne
-fd2_vals = avg_fd2';  % Trasposto per allineare con le colonne
+fd1_vals = avg_fd1';
+fd2_vals = avg_fd2';
 
-% Costruzione della tabella
 rowNames = {'FD1', 'FD2'};
-columnNames = [ h_labels,'Exact']; % Prima colonna "Exact", poi gli h
+columnNames = [ h_labels,'Exact'];
 data = [ fd1_vals, avg_exact_v3; fd2_vals, avg_exact_v3;];
 
-% Creiamo la tabella con i nomi delle colonne e delle righe
 T18 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
-% Visualizza la tabella
-disp('Average computation violation  table (only for successful runs): F27, n=10^5, suplin');
+disp('Average computation violation  table (only for successful runs): F27, n=10^5, superlinear');
 disp(T18);
 
-
 %% BT-SEQ
-% Metodo Exact (derivate esatte) - media unica
-vec_bt_ex_clean = vec_bt3_ex; % copia dei tempi
-vec_bt_ex_clean(vec_converged3_ex == 0) = NaN; % sostituisce con NaN i non convergenti
-avg_exact_bt3 = mean(vec_bt_ex_clean, 'omitnan');  % calcola la media (scalare)
 
-% Metodo FD1 (Finite Differences classiche)
+vec_bt_ex_clean = vec_bt3_ex;
+vec_bt_ex_clean(vec_converged3_ex == 0) = NaN;
+avg_exact_bt3 = mean(vec_bt_ex_clean, 'omitnan');
+
 mat_bt_fd1_clean = mat_bt3_fd1;
 mat_bt_fd1_clean(mat_converged3_fd1 == 0) = NaN;
-avg_fd1 = mean(mat_bt_fd1_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd1 = mean(mat_bt_fd1_clean, 2, 'omitnan');
 
-% Metodo FD2 (Finite Differences nuove)
 mat_bt_fd2_clean = mat_bt3_fd2;
 mat_bt_fd2_clean(mat_converged3_fd2 == 0) = NaN;
-avg_fd2 = mean(mat_bt_fd2_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd2 = mean(mat_bt_fd2_clean, 2, 'omitnan');
 
-% Creazione delle etichette per i valori di h
-h_exponents = [2, 4, 6, 8, 10, 12];  % Solo valori di h (senza h=0)
+h_exponents = [2, 4, 6, 8, 10, 12];
 h_labels = arrayfun(@(e) sprintf('h=1e-%d', e), h_exponents, 'UniformOutput', false);
 
-% Preparazione dei dati per la tabella
-% FD1 e FD2 hanno le medie per ogni h, mentre Exact è ripetuto in tutte le colonne
-%exact_vals = [avg_exact, avg_exact]; % Esatto in tutte le colonne
-fd1_vals = avg_fd1';  % Trasposto per allineare con le colonne
-fd2_vals = avg_fd2';  % Trasposto per allineare con le colonne
+fd1_vals = avg_fd1';
+fd2_vals = avg_fd2';
 
-% Costruzione della tabella
 rowNames = {'FD1', 'FD2'};
-columnNames = [ h_labels,'Exact']; % Prima colonna "Exact", poi gli h
+columnNames = [ h_labels,'Exact'];
 data = [ fd1_vals, avg_exact_bt3; fd2_vals, avg_exact_bt3;];
 
-% Creiamo la tabella con i nomi delle colonne e delle righe
 T19 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
-% Visualizza la tabella
-disp('Average computation bt iteration table (only for successful runs): F27, n=10^5, suplin');
+disp('Average computation bt iteration table (only for successful runs): F27, n=10^5, superlinear');
 disp(T19);
 
-
-
 %% CG-SEQ
-% Metodo Exact (derivate esatte) - media unica
-vec_bt_ex_clean = vec_cg_iter3_ex; % copia dei tempi
-vec_bt_ex_clean(vec_converged3_ex == 0) = NaN; % sostituisce con NaN i non convergenti
-avg_exact_cg3 = mean(vec_bt_ex_clean, 'omitnan');  % calcola la media (scalare)
 
-% Metodo FD1 (Finite Differences classiche)
+vec_bt_ex_clean = vec_cg_iter3_ex;
+vec_bt_ex_clean(vec_converged3_ex == 0) = NaN;
+avg_exact_cg3 = mean(vec_bt_ex_clean, 'omitnan');
+
 mat_bt_fd1_clean = mat_cg_iter3_fd1;
 mat_bt_fd1_clean(mat_converged3_fd1 == 0) = NaN;
-avg_fd1 = mean(mat_bt_fd1_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd1 = mean(mat_bt_fd1_clean, 2, 'omitnan');
 
-% Metodo FD2 (Finite Differences nuove)
 mat_bt_fd2_clean = mat_cg_iter3_fd2;
 mat_bt_fd2_clean(mat_converged3_fd2 == 0) = NaN;
-avg_fd2 = mean(mat_bt_fd2_clean, 2, 'omitnan'); % media per ogni h (6x1)
+avg_fd2 = mean(mat_bt_fd2_clean, 2, 'omitnan');
 
-% Creazione delle etichette per i valori di h
-h_exponents = [2, 4, 6, 8, 10, 12];  % Solo valori di h (senza h=0)
+h_exponents = [2, 4, 6, 8, 10, 12];
 h_labels = arrayfun(@(e) sprintf('h=1e-%d', e), h_exponents, 'UniformOutput', false);
 
-% Preparazione dei dati per la tabella
-% FD1 e FD2 hanno le medie per ogni h, mentre Exact è ripetuto in tutte le colonne
-%exact_vals = [avg_exact, avg_exact]; % Esatto in tutte le colonne
-fd1_vals = avg_fd1';  % Trasposto per allineare con le colonne
-fd2_vals = avg_fd2';  % Trasposto per allineare con le colonne
+fd1_vals = avg_fd1';
+fd2_vals = avg_fd2';
 
-% Costruzione della tabella
 rowNames = {'FD1', 'FD2'};
-columnNames = [ h_labels,'Exact']; % Prima colonna "Exact", poi gli h
+columnNames = [ h_labels,'Exact'];
 data = [ fd1_vals, avg_exact_cg3; fd2_vals, avg_exact_cg3;];
 
-% Creiamo la tabella con i nomi delle colonne e delle righe
 T20 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
-% Visualizza la tabella
-disp('Average computation cg iteration table (only for successful runs): F27, n=10^5, suplin');
+disp('Average computation cg iteration table (only for successful runs): F27, n=10^5, superlinear');
 disp(T20);
 
+%% Number of initial condition converged
 
-
-%% Calcolo quanti a convergenza
-
-% Creazione delle etichette per i valori di h
-h_exponents = [2, 4, 6, 8, 10, 12];  % Solo valori di h (senza h=0)
+h_exponents = [2, 4, 6, 8, 10, 12];
 h_labels = arrayfun(@(e) sprintf('h=1e-%d', e), h_exponents, 'UniformOutput', false);
 
-% Preparazione dei dati per la tabella
-% FD1 e FD2 hanno le medie per ogni h, mentre Exact è ripetuto in tutte le colonne
-%exact_vals = [avg_exact, avg_exact]; % Esatto in tutte le colonne
-fd1_vals = sum(mat_converged3_fd1,2)';  % Trasposto per allineare con le colonne
-fd2_vals = sum(mat_converged3_fd2,2)';  % Trasposto per allineare con le colonne
+fd1_vals = sum(mat_converged3_fd1,2)';
+fd2_vals = sum(mat_converged3_fd2,2)';
 
-% Costruzione della tabella
 rowNames = {'FD1', 'FD2'};
-columnNames = [ h_labels,'Exact']; % Prima colonna "Exact", poi gli h
+columnNames = [ h_labels,'Exact'];
 data = [ fd1_vals, sum(vec_converged3_ex); fd2_vals, sum(vec_converged3_ex);];
 
-% Creiamo la tabella con i nomi delle colonne e delle righe
 T21 = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 
-% Visualizza la tabella
-disp('Number of converged : F27, n=10^5, suplin');
-disp(T17);
-
+disp('Number of converged : F27, n=10^5, superlinear');
+disp(T21);
+%save the tables
 writetable(T7, 'results_f27_suplin.xlsx', 'Sheet', 'time_5','WriteRowNames', true);
 writetable(T8, 'results_f27_suplin.xlsx', 'Sheet', 'niter_5','WriteRowNames', true);
 writetable(T9, 'results_f27_suplin.xlsx', 'Sheet', 'f_val_5','WriteRowNames', true);
@@ -1369,8 +1109,8 @@ writetable(T21, 'results_f27_suplin.xlsx', 'Sheet', 'n_conv5','WriteRowNames', t
 
 
 
-%%
-% Creazione della tabella
+%% table with the resulta of the exact derivatives
+
 data = [avg_exact_t1, avg_exact_t2, avg_exact_t3;
         avg_exact_i1, avg_exact_i2, avg_exact_i3;
         avg_exact_f1, avg_exact_f2, avg_exact_f3;
@@ -1379,16 +1119,12 @@ data = [avg_exact_t1, avg_exact_t2, avg_exact_t3;
         avg_exact_cg1, avg_exact_cg2, avg_exact_cg3;
         sum(vec_converged1_ex),sum(vec_converged2_ex),sum(vec_converged3_ex)];
 
-% Definizione delle intestazioni
 rowNames = {'Average Time', 'Average Iter', 'Average fval', 'Violation', 'Average iter Bt', 'Average iter cg', 'N converged'};
 columnNames = {'n=10^3', 'n=10^4', 'n=10^5'};
 
 
-
-% Creazione tabella MATLAB
 T_compare = array2table(data, 'VariableNames', columnNames, 'RowNames', rowNames);
 disp(T_compare)
-%%
-% Salvataggio su Excel
+
 writetable(T_compare, 'results_f27_suplin.xlsx', 'Sheet', 'ExactComparison', 'WriteRowNames', true);
 

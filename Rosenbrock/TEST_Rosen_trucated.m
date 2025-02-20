@@ -1,4 +1,6 @@
 %% ROSENBROCK FUNCTION
+addpath("C:\Users\sofia\Documents\Numerical-Optimization")
+rng(345989);
 
 f_Rosen = @(x) 100*(x(2,:)-x(1,:).^2).^2+(1-x(1,:)).^2 ;
 gradf_Rosen= @(x) [400*x(1,:).^3+(2-400*x(2,:)).*x(1,:)-2;
@@ -30,11 +32,16 @@ disp(flag1)
 disp(['Elapsed time: ',num2str(time1)])
 disp(['Function value in the point found: ',num2str(f1)])
 disp(['Number of violations of curvature condition: ', num2str(violations1)])
-convergence_order= conv_ord1(end-5:end)
-last_bt=btseq1(k1-5:k1) 
-last_cg=cgiterseq1(k1-5:k1)
+last_bt1=sum(btseq1)/k1; 
+last_cg1=sum(cgiterseq1)/k1;
 
+%plot
 plot_iterative_optimization_results(f_Rosen,xseq1, btseq1);
+figure;
+hold on
+plot(1:length(conv_ord1), conv_ord1, 'Color', 'b', 'LineWidth', 1.5)
+title('Rosenbrock truncated Newton method [1.2, 1.2] superlinear');
+hold off;
 
 % Quadratic term of convergence
 tic
@@ -45,11 +52,17 @@ disp(flag2)
 disp(['Elapsed time: ',num2str(time2)])
 disp(['Function value in the point found: ',num2str(f2)])
 disp(['Number of violations of curvature condition: ', num2str(violations2)])
-convergence_order= conv_ord2(end-5:end)
-last_bt=btseq2(k2-5:k2) 
-last_cg=cgiterseq2(k2-5:k2)
+last_bt2=sum(btseq2)/k2; 
+last_cg2=sum(cgiterseq2)/k2;
 
+%plot
 plot_iterative_optimization_results(f_Rosen,xseq2, btseq2);
+figure;
+hold on
+plot(1:length(conv_ord2), conv_ord2, 'Color', 'b', 'LineWidth', 1.5)
+title('Rosenbrock truncated Newton method [1.2, 1.2] quadratic');
+hold off;
+
 
 %% TEST of Trucated Newton  with x0=[-1.2;1]
 
@@ -73,11 +86,16 @@ disp(flag3)
 disp(['Elapsed time: ',num2str(time3)])
 disp(['Function value in the point found: ',num2str(f3)])
 disp(['Number of violations of curvature condition: ', num2str(violations3)])
-convergence_order= conv_ord3(end-5:end)
-last_bt=btseq3(k3-5:k3) 
-last_cg=cgiterseq3(k3-5:k3)
+last_bt3=sum(btseq3)/k3; 
+last_cg3=sum(cgiterseq3)/k3;
 
+%plot
 plot_iterative_optimization_results(f_Rosen,xseq3, btseq3);
+figure;
+hold on
+plot(1:length(conv_ord3), conv_ord3, 'Color', 'b', 'LineWidth', 1.5)
+title('Rosenbrock truncated Newton method [-1.2, 1] superlinear');
+hold off;
 
 % Quadratic term of convergence
 tic
@@ -88,8 +106,26 @@ disp(flag4)
 disp(['Elapsed time: ',num2str(time4)])
 disp(['Function value in the point found: ',num2str(f4)])
 disp(['Number of violations of curvature condition: ', num2str(violations4)])
-convergence_order= conv_ord4(end-5:end)
-last_bt=btseq4(k4-5:k4) 
-last_cg=cgiterseq4(k4-5:k4)
+last_bt4=sum(btseq4)/k4; 
+last_cg4=sum(cgiterseq4)/k4;
 
+%plot
+figure;
+hold on
+plot(1:length(conv_ord4), conv_ord4, 'Color', 'b', 'LineWidth', 1.5)
+title('Rosenbrock truncated Newton method [-1.2, 1] quadratic');
+hold off;
 plot_iterative_optimization_results(f_Rosen,xseq4, btseq4);
+
+
+%% Table with results
+
+results_table = table({'[1.2;1.2]'; '[1.2;1.2]'; '[-1.2;1]'; '[-1.2;1]'}, ...
+                      {'Superlineare'; 'Quadratica'; 'Superlineare'; 'Quadratica'}, ...
+                      [f1; f2; f3; f4], [k1; k2; k3; k4], ...
+                      [time1; time2; time3; time4], ...
+                      [violations1; violations2; violations3; violations4],...
+                      [last_cg1; last_cg2; last_cg3; last_cg4],...
+                      [last_bt1; last_bt2; last_bt3; last_bt4],...
+                      'VariableNames', {'Starting point',' Forcing terms', 'f_x', 'Number of iterations', 'Executing time', 'Violation of curvature conditions', 'Average of cg iterations', 'Average of bt iterations'});
+writetable(results_table, 'rosenbrock_truncated.xlsx','WriteRowNames', true);
