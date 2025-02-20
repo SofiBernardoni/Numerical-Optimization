@@ -16,6 +16,7 @@ function [xk, fk, gradfk_norm, k, xseq, btseq,cgiterseq,convergence_order,flag, 
 % backtracking;
 % btmax= maximum number of backtracks permitted;
 % z0 (valore iniziale per risoluzione sistema)
+
 %
 % OUTPUTS:
 % xk = the last x computed by the function;
@@ -38,14 +39,12 @@ btseq = zeros(1,kmax);
 convergence_order=zeros(1,kmax);
 
 xk = x0; % assigning the initial point
-k = 0;
+k = 0; 
 gradk= gradf(xk); % assigning the initial gradient of f(xk)
 gradfk_norm = norm(gradk); % assigning the initial gradient norm
 flag=nan;
+violations=0; 
 
-violations=0; %%%%%%%%%% togli
-
-%%%%%%%%%% armijo function
 
 while k < kmax && gradfk_norm > tolgrad
     
@@ -56,7 +55,7 @@ while k < kmax && gradfk_norm > tolgrad
     zj = z0; 
     j= 0; 
     
-    % Inizializzazione del residuo relativo e della direzione di discesa
+    % Initialization of relative residual and of descent direction
     res = -gradk - A*zj; % initialize relative residual res=b-Ax 
     p = res; % initialize descent direction
     norm_b = gradfk_norm; % norm(b) where b=-gradk
@@ -70,10 +69,9 @@ while k < kmax && gradfk_norm > tolgrad
        beta = -(res'*z)/(p'*z);
        p = res + beta*p; % update descent direction
        
-       % se vuoi sposta qui calcolo z per usarlo in condizione %%%%%%%%%%%%%%%%%%%%%%%%%
        sign_curve=sign(p'*A*p);
        if sign_curve ~= 1 % negative curvature condition  p'*A*p <= 0
-           violations =violations+1; %%%%%%%% togli
+           violations =violations+1; 
            break;
        end
 

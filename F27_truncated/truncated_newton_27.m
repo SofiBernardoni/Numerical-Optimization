@@ -14,7 +14,6 @@ function [xk, fk, gradfk_norm, k, xseq, btseq,cgiterseq,convergence_order,flag, 
 % rho= fixed (for simplicity) factor less than 1 used to reduce alpha in
 % backtracking;
 % btmax= maximum number of backtracks permitted;
-%%%%%%%%%%%%%%%%% AGGIUNGERE: z0 (valore iniziale per risoluzione sistema)
 %
 % OUTPUTS:
 % xk = the last x computed by the function;
@@ -41,9 +40,7 @@ gradk= gradf(xk); % assigning the initial gradient of f(xk)
 gradfk_norm = norm(gradk); % assigning the initial gradient norm
 flag=nan;
 
-violations=0; %%%%%%%%%% togli
-
-%%%%%%%%%% armijo function
+violations=0; 
 
 while k < kmax && gradfk_norm > tolgrad
     
@@ -56,7 +53,6 @@ while k < kmax && gradfk_norm > tolgrad
     % EXACT VERSION: Hessf27(x)*z= 4*s*v1 -4*v2 +v3   with s=sum(x), v1=x.*z, v2= (x.^2).*z, v3=diag(Hessf27(x)).*z
     % diag(Hessf27(x))= (2/100000 -1+ 4*s + 8*x.^2)/2;
     % APPROXIMATED VERSION:  Hessf27_approx(x,h)*z= Hessf27(x)*z + 2*n*(h^2)*z
-
 
     %with finite difference 1: Hessf27(x)(i,j)= 4*x_i*x_j + h^2 +2hx_j+2hx_i
     %APPROXIMATED VERSION: Hessf27(x)(i,i)= (2/100000 -1+ 4*(sum(x.^2)) + 8*x_i^2 + 2*h^2)/2
@@ -79,29 +75,24 @@ while k < kmax && gradfk_norm > tolgrad
         if fin_dif_2
             Azj= (diagA.*zj +(h^2.*abs(xk).^2)) +( h^2*abs(xk).*(abs(xk)'*zj) - h^2*abs(xk).^2.*zj )+(2*h*xk.*(abs(xk)'*zj) - 4*h*xk.*abs(xk).*zj) +(2*h*abs(xk).*(xk'*zj)) + (4*xk.*(xk'*zj)-4*(xk.^2).*zj);
         else
-            %Azj= Azj+2*(h^2)*sum(zj)*ones(n,1);
             Azj=Azj+ (h^2)*sum_z*ones(length(x0),1) - (h^2)*zj + 2*h*sum_z*xk + 2*h*(xk'*zj)-4*h*(xk.*zj);
         end
     end
-
-
 
     res = -gradk - Azj; % initialize relative residual res=b-Ax 
     p = res; % initialize descent direction
     norm_b = gradfk_norm; % norm(b) where b=-gradk
     norm_r = norm(res); % norm of the residual
     
-    %neg_curv= false; % boolean checking negative curvature condition
-    
     while (j<cg_maxit && norm_r>ftol(j,norm_b)*norm_b ) %adaptive tolerance based on the norm of the gradient
        z= 4*(xk'*p)*xk-4*(xk.^2).*p+diagA.*p; % A*p : product of A and descent direction
        sum_p=sum(p);
        if ~exact %approximation with finite difference (not exact)
-           %z= z+2*(h^2)*sum(p)*ones(n,1);
+           
            if fin_dif_2
                 z= (diagA.*p +(h^2.*abs(xk).^2)) +( h^2*abs(xk).*(abs(xk)'*p) - h^2*abs(xk).^2.*p )+(2*h*xk.*(abs(xk)'*p) - 4*h*xk.*abs(xk).*p) +(2*h*abs(xk).*(xk'*p)) + (4*xk.*(xk'*p)-4*(xk.^2).*p);
            else
-               %%%%%% Da controllare se ci va z o zj
+               
                 z=z+ (h^2)*sum_p*ones(length(x0),1) - (h^2)*p + 2*h*sum_p*xk + 2*h*(xk'*p)-4*h*(xk.*p);
 
            end
@@ -112,7 +103,7 @@ while k < kmax && gradfk_norm > tolgrad
        beta = -(res'*z)/(p'*z);
        p = res + beta*p; % update descent direction
        
-       % se vuoi sposta qui calcolo z per usarlo in condizione %%%%%%%%%%%%%%%%%%%%%%%%%
+       
        z_new=4*(xk'*p)*xk'-4*((xk.^2).*p)'+(diagA.*p)'; % p'*A (as A*p because A symmetric but as a row vector)  --> needed for curvature condition
        sum_p=sum(p);
        if ~exact %approximation with finite difference (not exact)
@@ -122,9 +113,9 @@ while k < kmax && gradfk_norm > tolgrad
                 z_new=z_new+ ((h^2)*sum_p*ones(length(x0),1))' - ((h^2)*p+ 2*h*sum_p*xk)' + (2*h*(xk'*p)-4*h*(xk.*p))';
             end
        end
-       sign_curve=sign(z_new*p); %%%%%%%%%%%%%% CONTROLLA (forse rimettere A*p)
+       sign_curve=sign(z_new*p); 
        if sign_curve ~= 1 % negative curvature condition  p'*A*p <= 0
-           violations =violations+1; %%%%%%%% togli
+           violations =violations+1; 
            break;
        end
 
