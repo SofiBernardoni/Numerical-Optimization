@@ -19,7 +19,7 @@ if sparse %sparse version
         else % classic version of finite differences
            HF=(1-(h^2)/12)*HF ;  % as h is small i use cos(h) taylor expansion to avoid numerical cancellation
         end
-        % elementi non diagonali nulli anche con differenze finite
+        % non-diagonal elements null also with finite differences 
     end
 else % NOT sparse version
     HF=diag(D); %exact version
@@ -31,7 +31,7 @@ else % NOT sparse version
        else % classic version of finite differences
            HF=(1-(h^2)/12)*HF; % as h is small i use cos(h) taylor expansion to avoid numerical cancellation
        end
-       % elementi non diagonali nulli anche con differenze finite
+       % non-diagonal elements null also with finite differences
     end
 
 end

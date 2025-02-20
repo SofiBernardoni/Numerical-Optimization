@@ -15,7 +15,7 @@ function [xk, fk, gradfk_norm, k, xseq, btseq,cgiterseq,convergence_order,flag, 
 % rho= fixed (for simplicity) factor less than 1 used to reduce alpha in
 % backtracking;
 % btmax= maximum number of backtracks permitted;
-%%%%%%%%%%%%%%%%% AGGIUNGERE: z0 (valore iniziale per risoluzione sistema)
+% z0 (valore iniziale per risoluzione sistema)
 %
 % OUTPUTS:
 % xk = the last x computed by the function;
@@ -56,8 +56,7 @@ while k < kmax && gradfk_norm > tolgrad
     % Inizializzazione del residuo relativo e della direzione di discesa
     res = A*zj+gradk ; % initialize relative residual res=b-Ax 
 
-    % M da definire:
-
+    % M definition:
     D = diag(diag(A));  % Matrice diagonale (D)
     L = tril(A, -1);    % Matrice inferiore (L)
     M=D+L;
